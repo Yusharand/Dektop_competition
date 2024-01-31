@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Competition_JJBModelStoreContainer" CdmEntityContainer="Competition_JJBEntities">
+    <EntitySetMapping Name="Categories">
+      <EntityTypeMapping TypeName="Competition_JJBModel.Category">
+        <MappingFragment StoreEntitySet="Categories">
+          <ScalarProperty Name="ID_Categorie" ColumnName="ID_Categorie" />
+          <ScalarProperty Name="Nom_Categorie" ColumnName="Nom_Categorie" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Clubs">
+      <EntityTypeMapping TypeName="Competition_JJBModel.Club">
+        <MappingFragment StoreEntitySet="Clubs">
+          <ScalarProperty Name="Nom_Club" ColumnName="Nom_Club" />
+          <ScalarProperty Name="Logo_Club" ColumnName="Logo_Club" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Combats">
+      <EntityTypeMapping TypeName="Competition_JJBModel.Combat">
+        <MappingFragment StoreEntitySet="Combats">
+          <ScalarProperty Name="ID_Combat" ColumnName="ID_Combat" />
+          <ScalarProperty Name="Nom_Combat" ColumnName="Nom_Combat" />
+          <ScalarProperty Name="Points_Combattant1" ColumnName="Points_Combattant1" />
+          <ScalarProperty Name="Points_Combattant2" ColumnName="Points_Combattant2" />
+          <ScalarProperty Name="Avantages_Combattant1" ColumnName="Avantages_Combattant1" />
+          <ScalarProperty Name="Avantages_Combattant2" ColumnName="Avantages_Combattant2" />
+          <ScalarProperty Name="Penalites_Combattant1" ColumnName="Penalites_Combattant1" />
+          <ScalarProperty Name="Penalites_Combattant2" ColumnName="Penalites_Combattant2" />
+          <ScalarProperty Name="Duree_combat" ColumnName="Duree_combat" />
+          <ScalarProperty Name="Date_Heure" ColumnName="Date_Heure" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Combattants">
+      <EntityTypeMapping TypeName="Competition_JJBModel.Combattant">
+        <MappingFragment StoreEntitySet="Combattants">
+          <ScalarProperty Name="ID_Combattant" ColumnName="ID_Combattant" />
+          <ScalarProperty Name="Club_Combattant" ColumnName="Club_Combattant" />
+          <ScalarProperty Name="Nom_Combattant" ColumnName="Nom_Combattant" />
+          <ScalarProperty Name="Prenom_Combattant" ColumnName="Prenom_Combattant" />
+          <ScalarProperty Name="Genre_Combattant" ColumnName="Genre_Combattant" />
+          <ScalarProperty Name="Date_Naiss" ColumnName="Date_Naiss" />
+          <ScalarProperty Name="Age" ColumnName="Age" />
+          <ScalarProperty Name="Grade" ColumnName="Grade" />
+          <ScalarProperty Name="Poids" ColumnName="Poids" />
+          <ScalarProperty Name="ID_Categorie" ColumnName="ID_Categorie" />
+          <ScalarProperty Name="Pointspoules" ColumnName="Pointspoules" />
+          <ScalarProperty Name="ID_Poule" ColumnName="ID_Poule" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Competition_Detail">
+      <EntityTypeMapping TypeName="Competition_JJBModel.Competition_Detail">
+        <MappingFragment StoreEntitySet="Competition_Detail">
+          <ScalarProperty Name="ID_Competition_Detail" ColumnName="ID_Competition_Detail" />
+          <ScalarProperty Name="ID_Competition" ColumnName="ID_Competition" />
+          <ScalarProperty Name="ID_Combattant" ColumnName="ID_Combattant" />
+          <ScalarProperty Name="ID_Categorie" ColumnName="ID_Categorie" />
+          <ScalarProperty Name="ID_Combat" ColumnName="ID_Combat" />
+          <ScalarProperty Name="ID_Poule" ColumnName="ID_Poule" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Competitions">
+      <EntityTypeMapping TypeName="Competition_JJBModel.Competition">
+        <MappingFragment StoreEntitySet="Competitions">
+          <ScalarProperty Name="ID_Competition" ColumnName="ID_Competition" />
+          <ScalarProperty Name="Nom_Competition" ColumnName="Nom_Competition" />
+          <ScalarProperty Name="Lieu_Competition" ColumnName="Lieu_Competition" />
+          <ScalarProperty Name="Date_Competition" ColumnName="Date_Competition" />
+          <ScalarProperty Name="FondScoreboard_Competition" ColumnName="FondScoreboard_Competition" />
+          <ScalarProperty Name="Logo_Competition" ColumnName="Logo_Competition" />
+          <ScalarProperty Name="LieuPese_Competition" ColumnName="LieuPese_Competition" />
+          <ScalarProperty Name="Date_Pese" ColumnName="Date_Pese" />
+          <ScalarProperty Name="Condition_Pese" ColumnName="Condition_Pese" />
+          <ScalarProperty Name="DroitCombattant" ColumnName="DroitCombattant" />
+          <ScalarProperty Name="Remboursement" ColumnName="Remboursement" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Poules">
+      <EntityTypeMapping TypeName="Competition_JJBModel.Poule">
+        <MappingFragment StoreEntitySet="Poules">
+          <ScalarProperty Name="ID_Poule" ColumnName="ID_Poule" />
+          <ScalarProperty Name="Nom_poule" ColumnName="Nom_poule" />
+          <ScalarProperty Name="ID_Categorie" ColumnName="ID_Categorie" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

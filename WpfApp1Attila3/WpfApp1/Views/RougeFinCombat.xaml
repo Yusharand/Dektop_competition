@@ -1,0 +1,39 @@
+﻿<UserControl x:Class="WpfApp1.Views.RougeFinCombat"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WpfApp1.Views"
+             mc:Ignorable="d"  d:DesignWidth="373" Height="120"
+             Background="#393b3a">
+    <Grid x:Name="UCRContent">
+        <Grid >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="3*"/>
+            </Grid.RowDefinitions>
+            <Border x:Name="borderclv1" BorderThickness="1" BorderBrush="Black" Background="#96150c">
+                <Viewbox Margin="0,0,-2,-2">
+                    <TextBlock Text="VICTOIRE PAR" Foreground="#e3d8d8" FontWeight="dEMIBold" TextAlignment="Center"  TextWrapping="Wrap"/>
+                </Viewbox>
+            </Border>
+            <Border BorderThickness="1" BorderBrush="Black" HorizontalAlignment="Center" Height="90" Grid.Row="1" VerticalAlignment="Center" Width="373">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Button Content="POINTS" Style="{StaticResource menuboutonfin}" HorizontalAlignment="Left" Height="34" Margin="26,0,0,0" VerticalAlignment="Center" Width="136" Click="VPoint_Click"/>
+                    <Button Content="SOUMISSION" Style="{StaticResource menuboutonfin}"  Grid.Column="1" HorizontalAlignment="Left" Height="34" Margin="18,0,0,0" VerticalAlignment="Center" Click="VSoumission_Click" Width="136"/>
+                    <Button Content="DISQUALIFICATION" Style="{StaticResource menuboutonfin}" Click="VDisqualification_Click" Margin="26,0,24,10" Grid.Row="1"/>
+                    <Button Content="AVANTAGE" Grid.Column="1" Style="{StaticResource menuboutonfin}" Click="VDecision_Click"  HorizontalAlignment="Left" Margin="18,0,0,10" Width="136" Grid.Row="1"/>
+
+                </Grid>
+            </Border>
+        </Grid>
+    </Grid>
+</UserControl>

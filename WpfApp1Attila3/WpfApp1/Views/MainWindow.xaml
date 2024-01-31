@@ -1,0 +1,358 @@
+﻿<Window x:Class="WpfApp1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1"
+        mc:Ignorable="d" WindowState="Maximized"
+        ResizeMode="CanResizeWithGrip"
+        Title="Scoreboard" Height="750" Width="1080"
+        Background="#393b3a"
+        PreviewKeyDown ="Windows_Keydown">
+    <!--Block principale, Background="#393b3a"-->
+    <Grid Margin="0,0,0,-6">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <!--<Image x:Name="imgfnd" Width="1080" Height="750" Opacity="0.6" Stretch="UniformToFill"/>-->
+        <Image x:Name="imgfnd" Opacity="0.1" Stretch="UniformToFill" Margin="9,-1,1,13" Grid.RowSpan="3"/>
+        <!--Block partie rouge-->
+        <Border BorderThickness="1" BorderBrush="Black" Margin="0,0,0,246" Grid.RowSpan="2">
+            <Border BorderThickness="1" BorderBrush="Black" Margin="-1,-1,-1,-1">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <!--Partie nom et boutons-->
+                    <Border BorderThickness="0" BorderBrush="Black" HorizontalAlignment="Left" Height="245" VerticalAlignment="Center" Width="539">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="2*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Viewbox Margin="32,0,0,0" HorizontalAlignment="Left" Width="159">
+                                <TextBlock Text="" x:Name="textblockPrenom1" Style="{StaticResource styleprenom}" TextWrapping="Wrap"/>
+                            </Viewbox>
+                            <Viewbox Margin="201,6,84,58" Grid.RowSpan="2">
+                                <TextBlock Text="" x:Name="textblockNom1" Style="{StaticResource stylenom}"  TextWrapping="Wrap" Width="150" Height="26"/>
+                            </Viewbox>
+                            <Viewbox Margin="32,1,0,0" Grid.Row="1" HorizontalAlignment="Left" Width="130">
+                                <TextBlock Text="" x:Name="textblockClub1" Style="{StaticResource styleclub}" TextWrapping="Wrap"/>
+                            </Viewbox>
+                            <Viewbox HorizontalAlignment="Left" Margin="451,16,0,16" Width="88" Grid.RowSpan="2">
+                                <Image Height="50" Width="50" HorizontalAlignment="Left" VerticalAlignment="Top" x:Name="imageclub1"/>
+                            </Viewbox>
+                            <Viewbox Margin="200,11,0,8" HorizontalAlignment="Left" Width="92" Grid.Row="1">
+                                <TextBlock Text="" x:Name="textblockClub3" Style="{StaticResource styleclub}" Height="85" VerticalAlignment="Top" TextWrapping="Wrap"/>
+                            </Viewbox>
+                            <Viewbox HorizontalAlignment="Left" Height="38" Margin="295,10,0,0" VerticalAlignment="Top" Width="51" Grid.Row="1">
+                                <Image Height="38" Width="51" x:Name="imagepays1"/>
+                            </Viewbox>
+
+                            <Grid x:Name="btnContent1" Margin="32,59,133,19" Grid.Row="1" Grid.RowSpan="2">
+                                <StackPanel Margin="0,0,-32,0" x:Name="getbouton">
+                                    <Button Content="+1" Style="{StaticResource boutonplus}" Click="RougeIncrement1_Click" x:Name="RougeIncrement1" Height="42" Width="54" Margin="-348 0 0 0"/>
+                                    <Button Content="-1" Style="{StaticResource boutonmoins}"  Click="RougeDecrement1_Click" x:Name="RougeDecrement1" Height="42" Width="54" Margin="-348 0 0 0"/>
+                                    <Button Content="+2" Style="{StaticResource boutonplus}" Click="RougeIncrement2_Click_1" x:Name="RougeIncrement2" Height="42" Width="54" Margin="-242 -126 0 0"/>
+                                    <Button Content="-2" Style="{StaticResource boutonmoins}" Click="RougeDecrement2_Click" x:Name="RougeDecrement2" Height="42" Width="54" Margin="-242 -42 0 0"/>
+                                    <Button Content="+3" Style="{StaticResource boutonplus}" Click="RougeIncrement3_Click_1"  x:Name="RougeIncrement3" Height="42" Width="54" Margin="-136 -126 0 0"/>
+                                    <Button Content="-3" Style="{StaticResource boutonmoins}" Click="RougeDecrement3_Click"  x:Name="RougeDecrement3" Height="42" Width="54" Margin="-136 -42 0 0"/>
+                                    <Button Content="+4" Style="{StaticResource boutonplus}" Click="RougeIncrement4_Click"  x:Name="RougeIncrement4" Height="42" Width="54" Margin="-30 -126 0 0"/>
+                                    <Button Content="-4" Style="{StaticResource boutonmoins}"  Click="RougeDecrement4_Click"  x:Name="RougeDecrement4" Height="42" Width="54" Margin="-30 -42 0 0"/>
+                                    <Button Content="+AV" Style="{StaticResource boutonplus}"  Click="RougeAvantage_Click_1"  x:Name="RougePlusAvantage" Height="42" Width="54" Margin="76 -126 0 0"/>
+                                    <Button Content="-AV" Style="{StaticResource boutonmoins}" Click="RougeMoinsAvantage_Click"  x:Name="RougeMoinsAvantage" Height="42" Width="54" Margin="76 -42 0 0"/>
+                                    <Button Content="+PEN" Style="{StaticResource boutonplus}" Click="RougePenalite_Click"  x:Name="RougePlusPenalite" Height="42" Width="54" Margin="182 -126 0 0"/>
+                                    <Button Content="-PEN" Style="{StaticResource boutonmoins}" Click="RougeMoinsPenalite_Click"  x:Name="RougeMoinsPenalite" Height="42" Width="54" Margin="182 -42 0 0"/>
+                                    <Button Content="MED(H)" Style="{StaticResource boutonplus}" Click="StartMed1_Click" x:Name="RougeMed" Height="42" Width="54" Margin="288 -126 0 0"/>
+                                    <Button Content="RESETMED" Style="{StaticResource boutonmoins}" Click="RougeResetMed_Click" FontSize="9" x:Name="RougeResetMed" Height="42" Width="54" Margin=" 288 -42 0 0"/>
+                                </StackPanel>
+
+                            </Grid>
+                            <Border BorderThickness="1" BorderBrush="Black" Background="Yellow" HorizontalAlignment="Left" Height="84" Margin="449,59,0,0" Grid.Row="1" VerticalAlignment="Top" Width="90" Grid.RowSpan="2">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="2*"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <Border BorderThickness="0" BorderBrush="Black" Margin="1,-1,1,27" Grid.RowSpan="2">
+                                        <Grid Grid.Row="1" >
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="2*"/>
+                                                <ColumnDefinition Width="0.5*"/>
+                                                <ColumnDefinition Width="2*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Viewbox Grid.Column="0">
+                                                <TextBox Height="34" Text="02" Name="tb_MinutesMed1" BorderThickness="0" Foreground="Black" FontWeight="Bold" TextAlignment="Left" FontSize="30" Background="Yellow" TextWrapping="Wrap" Width="39"/>
+                                            </Viewbox>
+                                            <Viewbox Margin="2,0,1,0" Grid.Column="1">
+                                                <TextBlock Text=":" Name="tb_separatorMed1" FontWeight="Bold"/>
+                                            </Viewbox>
+                                            <Viewbox Grid.Column="2">
+                                                <TextBox Height="34" Text="00" Name="tb_SecondesMed1" BorderThickness="0" Foreground="Black" FontWeight="Bold" TextAlignment="Left" FontSize="30" Background="Yellow" TextWrapping="Wrap" Width="39" />
+                                            </Viewbox>
+
+                                        </Grid>
+                                    </Border>
+
+                                </Grid>
+
+                            </Border>
+
+
+
+
+
+
+
+
+
+                        </Grid>
+                    </Border>
+                    <!--Partie avantage et pénalité-->
+                    <Border BorderThickness="0" BorderBrush="Black" Grid.Column="1" Height="236" VerticalAlignment="Top" Margin="1,-1,0,0">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="2*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="2*"/>
+                            </Grid.RowDefinitions>
+                            <!--Avantage-->
+                            <Viewbox>
+                                <TextBlock Text="Avantage" Foreground="#04691f" FontWeight="DemiBold" FontSize="12" TextWrapping="Wrap" Height="18"/>
+                            </Viewbox>
+                            <Viewbox Margin="74,39,80,40" Grid.RowSpan="3">
+                                <TextBlock Text="{Binding RougeAvantage}" TextAlignment="Center" FontWeight="Bold" Foreground="#04691f" TextWrapping="Wrap" Width="21"/>
+                            </Viewbox>
+                            <!--Pénalité-->
+                            <Viewbox Grid.Row="2" Margin="78,0,80,0">
+                                <TextBlock Text="Pénalité" Foreground="#96150c" FontWeight="DemiBold" FontSize="12" TextWrapping="Wrap" Height="18"/>
+                            </Viewbox>
+                            <Viewbox Margin="74,1,80,6" Grid.Row="3">
+                                <TextBlock Text="{Binding RougePenalite}" FontWeight="Bold" TextAlignment="Center" Foreground="#96150c" TextWrapping="Wrap" Width="24"/>
+                            </Viewbox>
+                        </Grid>
+                    </Border>
+                    <!--Partie points-->
+                    <Border BorderThickness="1" Name="bordercl1" BorderBrush="#96150c" Background="#96150c" Grid.Column="2" Margin="2,0,0,0">
+                        <Viewbox Margin="-1,0,0,-1">
+                            <TextBlock Text="{Binding RougeScore}" FontWeight="Bold" Foreground="BlanchedAlmond" TextWrapping="Wrap" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Left" Width="18"/>
+                        </Viewbox>
+                    </Border>
+                </Grid>
+            </Border>
+        </Border>
+
+        <!--Block Partie bleue-->
+        <Border BorderThickness="1" BorderBrush="Black" Grid.Row="1">
+            <Border  BorderThickness="1" BorderBrush="Black" Margin="-1,-1,-1,-1">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <!--Partie nom et boutons-->
+                    <Border BorderThickness="0" BorderBrush="Black">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="2*"/>
+                            </Grid.RowDefinitions>
+                            <Viewbox Margin="32,0,0,0" HorizontalAlignment="Left" Width="159">
+                                <TextBlock Text="" x:Name="textblockPrenom2" Style="{StaticResource styleprenom}" TextWrapping="Wrap"/>
+                            </Viewbox>
+                            <Viewbox HorizontalAlignment="Left" Height="57" Margin="203,6,0,0" VerticalAlignment="Top" Width="247" Grid.RowSpan="2">
+                                <TextBlock Text="" x:Name="textblockNom2" Style="{StaticResource stylenom}" TextWrapping="Wrap" Width="150" Height="26"/>
+                            </Viewbox>
+                            <Viewbox Margin="32,1,0,0" Grid.Row="1" HorizontalAlignment="Left" Width="130">
+                                <TextBlock Text="" x:Name="textblockClub2" Style="{StaticResource styleclub}" TextWrapping="Wrap"/>
+                            </Viewbox>
+                            <Viewbox HorizontalAlignment="Left" Height="91" Margin="451,19,0,0" VerticalAlignment="Top" Width="88" Grid.RowSpan="2">
+                                <Image Height="50" Width="50" HorizontalAlignment="Left" VerticalAlignment="Top" x:Name="imageclub2"/>
+                            </Viewbox>
+                            <Viewbox HorizontalAlignment="Left" Height="43" Margin="202,7,0,0" VerticalAlignment="Top" Width="92" Grid.Row="1">
+                                <TextBlock Text="" x:Name="textblockClub4" Style="{StaticResource styleclub}" TextWrapping="Wrap"/>
+                            </Viewbox>
+                            <Viewbox HorizontalAlignment="Left" Height="38" Margin="299,10,0,0" VerticalAlignment="Top" Width="51" Grid.Row="1">
+                                <Image Height="38" Width="51" x:Name="imagepays2"/>
+                            </Viewbox>
+                            <Grid x:Name="btnContent2" Margin="32,4,0,0" Grid.Row="2" HorizontalAlignment="Left" Width="374">
+                                <StackPanel Margin="0,0,-32,0" x:Name="getbouton2">
+                                    <Button Content="+1" Style="{StaticResource boutonplus}" Click="BleuIncrement1_Click" x:Name="BleuIncrement1" Height="42" Width="54" Margin="-348 0 0 0"/>
+                                    <Button Content="-1" Style="{StaticResource boutonmoins}" Click="BleuDecrement1_Click" x:Name="BleuDecrement1" Height="42" Width="54" Margin="-348 0 0 0"/>
+                                    <Button Content="+2" Style="{StaticResource boutonplus}" Click="BleuIncrement2_Click_1" x:Name="BleuIncrement2" Height="42" Width="54" Margin="-242 -126 0 0"/>
+                                    <Button Content="-2" Style="{StaticResource boutonmoins}" Click="BleuDecrement2_Click" x:Name="BleuDecrement2" Height="42" Width="54" Margin="-242 -42 0 0"/>
+                                    <Button Content="+3" Style="{StaticResource boutonplus}" Click="BleuIncrement3_Click" x:Name="BleuIncrement3" Height="42" Width="54" Margin="-136 -126 0 0"/>
+                                    <Button Content="-3" Style="{StaticResource boutonmoins}" Click="BleuDecrement3_Click" x:Name="BleuDecrement3" Height="42" Width="54" Margin="-136 -42 0 0"/>
+                                    <Button Content="+4" Style="{StaticResource boutonplus}" Click="BleuIncrement4_Click" x:Name="BleuIncrement4" Height="42" Width="54" Margin="-30 -126 0 0"/>
+                                    <Button Content="-4" Style="{StaticResource boutonmoins}" Click="BleuDecrement4_Click" x:Name="BleuDecrement4" Height="42" Width="54" Margin="-30 -42 0 0"/>
+                                    <Button Content="+AV" Style="{StaticResource boutonplus}" Click="BleuAvantage_Click" x:Name="BleuPlusAvantage" Height="42" Width="54" Margin="76 -126 0 0"/>
+                                    <Button Content="-AV" Style="{StaticResource boutonmoins}" Click="BleuMoinsAvantage_Click" x:Name="BleuMoinsAvantage" Height="42" Width="54" Margin="76 -42 0 0"/>
+                                    <Button Content="+PEN" Style="{StaticResource boutonplus}" Click="BleuPenalite_Click" x:Name="BleuPlusPenalite" Height="42" Width="54" Margin="182 -126 0 0"/>
+                                    <Button Content="-PEN" Style="{StaticResource boutonmoins}"  Click="BleuMoinsPenalite_Click" x:Name="BleuMoinsPenalite" Height="42" Width="54" Margin="182 -42 0 0"/>
+                                    <Button Content="MED(B)" Style="{StaticResource boutonplus}" Click="StartMed2_Click" x:Name="BleuMed" Height="42" Width="54" Margin="288 -126 0 0"/>
+                                    <Button Content="RESETMED" FontSize="9" Style="{StaticResource boutonmoins}" Click="BleuResetMed_Click" Height="42" x:Name="BleuResetMed" Width="54" Margin=" 288 -42 0 0"/>
+                                </StackPanel>
+                            </Grid>
+                            <Border BorderThickness="1" BorderBrush="Black" Background="Yellow" HorizontalAlignment="Left" Height="84" Margin="451,4,-6,0" VerticalAlignment="Top" Width="90" Grid.Row="2">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="2*"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <Border BorderThickness="0" BorderBrush="Black" Margin="1,-1,1,27" Grid.RowSpan="2">
+                                        <Grid Grid.Row="1" >
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="2*"/>
+                                                <ColumnDefinition Width="0.5*"/>
+                                                <ColumnDefinition Width="2*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Viewbox Grid.Column="0">
+                                                <TextBox Height="34" Text="02" Name="tb_MinutesMed2" BorderThickness="0" Foreground="Black" FontWeight="Bold" TextAlignment="Left" FontSize="30" Background="Yellow" TextWrapping="Wrap" Width="39"/>
+                                            </Viewbox>
+                                            <Viewbox Margin="2,0,1,0" Grid.Column="1">
+                                                <TextBlock Text=":" Name="tb_separatorMed2" FontWeight="Bold"/>
+                                            </Viewbox>
+                                            <Viewbox Grid.Column="2">
+                                                <TextBox Height="34" Text="00" Name="tb_SecondesMed2" BorderThickness="0" Foreground="Black" FontWeight="Bold" TextAlignment="Left" FontSize="30" Background="Yellow" TextWrapping="Wrap" Width="39"/>
+                                            </Viewbox>
+
+                                        </Grid>
+                                    </Border>
+
+                                </Grid>
+                            </Border>
+
+
+
+                        </Grid>
+                    </Border>
+                    <!--Partie avantage et pénalité-->
+                    <Border BorderThickness="0" BorderBrush="Black" Grid.Column="1" Margin="1,-1,0,0">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="2*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="2*"/>
+                            </Grid.RowDefinitions>
+                            <!--Avantage-->
+                            <Viewbox>
+                                <TextBlock Text="Avantage" Foreground="#04691f" FontWeight="DemiBold" FontSize="12" TextWrapping="Wrap" Height="18"/>
+                            </Viewbox>
+                            <Viewbox Margin="74,39,79,40" Grid.RowSpan="3">
+                                <TextBlock Text="{Binding BleuAvantage}" FontWeight="Bold" TextAlignment="Center" Foreground="#04691f" TextWrapping="Wrap" Width="21"/>
+                            </Viewbox>
+                            <!--Pénalité-->
+                            <Viewbox Grid.Row="2" Margin="79,0,80,82" Grid.RowSpan="2">
+                                <TextBlock Text="Pénalité" Foreground="#96150c" FontWeight="DemiBold" FontSize="12" TextWrapping="Wrap" Height="18"/>
+                            </Viewbox>
+                            <Viewbox Margin="74,1,79,6" Grid.Row="3">
+                                <TextBlock Text="{Binding BleuPenalite}" FontWeight="Bold" TextAlignment="Center" Foreground="#96150c" TextWrapping="Wrap" Width="24"/>
+                            </Viewbox>
+                        </Grid>
+                    </Border>
+                    <!--Partie points-->
+                    <Border x:Name="bordercl2" BorderThickness="1" BorderBrush="#0b076b" Background="#0b076b" Grid.Column="2" Margin="2,0,0,0">
+                        <Viewbox Margin="-1,-1,0,0">
+                            <TextBlock Text="{Binding BleuScore}" FontWeight="Bold" Foreground="BlanchedAlmond" TextWrapping="Wrap" TextAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" Width="18"/>
+                        </Viewbox>
+
+                    </Border>
+                </Grid>
+            </Border>
+        </Border>
+
+        <!--Partie chrono et fin de match-->
+        <Border BorderThickness="1" BorderBrush="Black" Grid.Row="2" Margin="0,5,-5,5">
+            <Grid Margin="0,0,9,0" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <!--Fin de match-->
+                <StackPanel Margin="77,60,133,10">
+                    <Button Content="QUITTER" Style="{StaticResource boutonfin}" Height="78" Width="150" Margin="-175 0 0 0" Click="Button_Click_RetourForm"/>
+                    <Button Content="FIN DE MATCH" Name="finDeMatch" Style="{StaticResource boutonfin}" Height="78" Width="150" Margin="170 -77 0 0" Click="Button_Click_FinMatch"/>
+                    <Button Content="ENREGISTRER" Style="{StaticResource boutonfin}" Height="78"  Margin="207,0,3,0"/>
+                    <Button Content="SWITCH" Style="{StaticResource boutonfin}" Height="78" Click="Switch_Click" Margin="119,-79,116,0"/>
+                    <Button Content="UNDO" Style="{StaticResource boutonfin}" Height="78"  Margin="0,-78,204,0" Click="Undo_Click"/>
+                </StackPanel>
+
+                <!--Chrono-->
+                <Border BorderThickness="1" BorderBrush="Black" Grid.Column="1" Margin="0,-1,-5,10" Height="221" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="329">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1.5*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <!--Affichage chrono-->
+                        <Border BorderThickness="1" BorderBrush="Black" Grid.RowSpan="2" Margin="0,0,0,87">
+                            <Grid Grid.Row="1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="0.5*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                </Grid.ColumnDefinitions>
+                                <Viewbox>
+                                    <TextBox Height="132" BorderThickness="0" Focusable="True" IsEnabled="True" Background="Transparent" Text="00" FontWeight="Bold" TextAlignment="Right" Foreground="White"  Name="tb_Minutes" FontSize="90"  Width="143" />
+                                </Viewbox>
+                                <Viewbox Grid.Column="1" HorizontalAlignment="Center" Height="134" VerticalAlignment="Center" Width="30">
+                                    <TextBlock Height="146" Text=":" TextAlignment="Center" FontSize="95" Foreground="white" Name="tb_separator" TextWrapping="Wrap" Width="32"/>
+                                </Viewbox>
+                                <Viewbox Grid.Column="2" HorizontalAlignment="Center" Height="132" VerticalAlignment="Center" Width="143">
+                                    <TextBox BorderThickness="0" Focusable="True" IsEnabled="True" Background="Transparent" Height="132" Text="00" FontWeight="Bold"  Foreground="White" TextAlignment="Left" Name="tb_Secondes" FontSize="90" TextWrapping="Wrap" Width="143" />
+                                </Viewbox>
+
+
+                            </Grid>
+                        </Border>
+                        <!--Bouton chrono-->
+                        <Border BorderThickness="1" Background="Black" BorderBrush="Black" HorizontalAlignment="Center" Height="88" Grid.Row="1" VerticalAlignment="Center" Width="327">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+
+                                </Grid.RowDefinitions>
+                                <Button Content="-10s" Style="{StaticResource boutonchrono}" Click="Moins10secondes_Click" Name="btn_Pause"  Margin="7,16,10,28" Grid.RowSpan="2"/>
+                                <Button Content="-1s" Style="{StaticResource boutonchrono}" Click="Moins1secondes_Click" Name="btn_Stop" Grid.Column="1"  Margin="1,16,17,28"/>
+                                <Button Content="Play" Style="{StaticResource boutonchrono}" Name="btn_Start"  Click="Start_Click"  Grid.Column="1" Margin="61,16,7,28" Grid.ColumnSpan="2"/>
+                                <Button Content="+1s" Style="{StaticResource boutonchrono}" Name="a" Click="Plus1secondes_Click" Grid.Column="3" Margin="5,16,8,28"/>
+                                <Button Content="+10s" Style="{StaticResource boutonchrono}" Name="b" Click="Plus10secondes_Click"  Grid.Column="4" Margin="7,16,11,28"/>
+
+                            </Grid>
+                        </Border>
+
+
+                    </Grid>
+                </Border>
+                <TextBlock Grid.ColumnSpan="2" Margin="435,62,452,105" TextAlignment="Center" Text="" Name="tb_Phase" Foreground="AntiqueWhite" FontWeight="Bold" FontSize="40" TextWrapping="Wrap"/>
+                <TextBlock Grid.ColumnSpan="2" Margin="457,142,426,9" Text="" TextAlignment="Center" Name="tb_Categorie" FontSize="35" FontWeight="Bold" Foreground="AntiqueWhite" TextWrapping="Wrap"/>
+
+
+
+            </Grid>
+        </Border>
+
+    </Grid>
+</Window>
