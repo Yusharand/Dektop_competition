@@ -7,82 +7,547 @@
         xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
         mc:Ignorable="d"
         Title="ListePoule" Height="450" Width="700">
-    <Grid>
-        <DataGrid Style="{DynamicResource DataGridStyle1}" Height="110" SelectionMode="Extended" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" x:Name="classement1"  Margin="0,10,0,299">
-            <DataGrid.Columns>
-                <DataGridCheckBoxColumn CanUserResize="False" Width="auto" ElementStyle="{DynamicResource CheckBoxStyle1}">
-                    <DataGridCheckBoxColumn.HeaderTemplate>
-                        <DataTemplate>
-                            <CheckBox Style="{DynamicResource CheckBoxStyle1}"  />
-                        </DataTemplate>
-                    </DataGridCheckBoxColumn.HeaderTemplate>
-                </DataGridCheckBoxColumn>
+    <ScrollViewer CanContentScroll="True">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <!--Poule A-->
+            <Grid Grid.Row="0" Margin="0,0,0,89" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" Text="Poule A" FontSize="20" Margin="0,-5,0,309" RenderTransformOrigin="0.5,0.5"/>
+                <Button Style="{StaticResource addButton}" x:Name="RemovePouleButton" Grid.Row="0" Click="RemovePouleButton_Click" Background="#cc2721" Margin="113,1,0,310"  Width="150" Height="20" HorizontalAlignment="Left">
+                    <StackPanel Orientation="Horizontal">
+                        <Icon:PackIconMaterial Kind="Delete" VerticalAlignment="Center" Width="11" Height="11" Margin="0 1 8 0"/>
+                        <TextBlock Text="Supprimer la poule" FontSize="10"/>
+                    </StackPanel>
+                </Button>
+                <DataGrid Style="{DynamicResource DataGridStyle1}" Height="220" SelectionMode="Extended" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" x:Name="classement1"  Margin="0,26,0,0" VerticalAlignment="Top" Grid.RowSpan="2">
+                    <DataGrid.Columns>
+                        <DataGridCheckBoxColumn CanUserResize="False" Width="auto" ElementStyle="{DynamicResource CheckBoxStyle1}">
+                            <DataGridCheckBoxColumn.HeaderTemplate>
+                                <DataTemplate>
+                                    <CheckBox Style="{DynamicResource CheckBoxStyle1}"  />
+                                </DataTemplate>
+                            </DataGridCheckBoxColumn.HeaderTemplate>
+                        </DataGridCheckBoxColumn>
 
-                <DataGridTextColumn Header="Rang" IsReadOnly="True" CanUserResize="false" Width="0.5*"/>
-
-
-                <DataGridTextColumn Header="Nom" IsReadOnly="True" Width="1*" Binding="{Binding Nom_Combattant}"/>
-                <DataGridTextColumn Header="Prénom" IsReadOnly="True" Width="1*" Binding="{Binding Nom_Combattant}"/>
-                <DataGridTextColumn Header="Club" IsReadOnly="True" Width="1*" Binding="{Binding Nom_Combattant}"/>
-                <DataGridTextColumn Header="Points" IsReadOnly="True" Width="1*" Binding="{Binding Nom_Combattant}"/>
-
-
-                <DataGridTemplateColumn Header="Opération" IsReadOnly="True" Width="*">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation="Horizontal">
-                                <Button Style="{StaticResource gridEditButton}" >
-                                    <Icon:PackIconMaterial Kind="PencilOutline" Style="{StaticResource gridButtonIcon}"/>
-                                </Button>
-                                <Button Style="{StaticResource gridRemoveButton}" Margin="5 0 0 0" >
-                                    <Icon:PackIconMaterial Kind="DeleteOutline" Style="{StaticResource gridButtonIcon}"/>
-                                </Button>
-                            </StackPanel>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-            </DataGrid.Columns>
-
-        </DataGrid>
-
-        <DataGrid Style="{DynamicResource DataGridStyle1}" Height="110" SelectionMode="Extended" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" x:Name="classement2"  Margin="0,208,0,101">
-            <DataGrid.Columns>
-                <DataGridCheckBoxColumn CanUserResize="False" Width="auto" ElementStyle="{DynamicResource CheckBoxStyle1}">
-                    <DataGridCheckBoxColumn.HeaderTemplate>
-                        <DataTemplate>
-                            <CheckBox Style="{DynamicResource CheckBoxStyle1}"  />
-                        </DataTemplate>
-                    </DataGridCheckBoxColumn.HeaderTemplate>
-                </DataGridCheckBoxColumn>
-
-                <DataGridTextColumn Header="Rang" IsReadOnly="True" CanUserResize="false" Width="0.5*"/>
+                        <DataGridTextColumn Header="Rang" IsReadOnly="True" CanUserResize="false"  Binding="{Binding Position}" Width="0.5*"/>
 
 
-                <DataGridTextColumn Header="Nom" IsReadOnly="True" Width="1*" Binding="{Binding Nom_Combattant}"/>
-                <DataGridTextColumn Header="Prénom" IsReadOnly="True" Width="1*" Binding="{Binding Nom_Combattant}"/>
-                <DataGridTextColumn Header="Club" IsReadOnly="True" Width="1*" Binding="{Binding Nom_Combattant}"/>
-                <DataGridTextColumn Header="Points" IsReadOnly="True" Width="1*" Binding="{Binding Nom_Combattant}"/>
+                        <DataGridTextColumn Header="Nom" IsReadOnly="True" Width="1*" Binding="{Binding Nom}"/>
+                        <DataGridTextColumn Header="Prénom" IsReadOnly="True" Width="1*" Binding="{Binding Prenom}"/>
+                        <DataGridTextColumn Header="Club" IsReadOnly="True" Width="1*" Binding="{Binding Club}"/>
+                        <DataGridTextColumn Header="Points" IsReadOnly="True" Width="1*" Binding="{Binding Points}"/>
 
 
-                <DataGridTemplateColumn Header="Opération" IsReadOnly="True" Width="*">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation="Horizontal">
-                                <Button Style="{StaticResource gridEditButton}" >
-                                    <Icon:PackIconMaterial Kind="PencilOutline" Style="{StaticResource gridButtonIcon}"/>
-                                </Button>
-                                <Button Style="{StaticResource gridRemoveButton}" Margin="5 0 0 0" >
-                                    <Icon:PackIconMaterial Kind="DeleteOutline" Style="{StaticResource gridButtonIcon}"/>
-                                </Button>
-                            </StackPanel>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-            </DataGrid.Columns>
+                        <DataGridTemplateColumn Header="Opération" IsReadOnly="True" Width="*">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button Style="{StaticResource gridEditButton}" >
+                                            <Icon:PackIconMaterial Kind="PencilOutline" Style="{StaticResource gridButtonIcon}"/>
+                                        </Button>
+                                        <Button Style="{StaticResource gridRemoveButton}" Margin="5 0 0 0" >
+                                            <Icon:PackIconMaterial Kind="DeleteOutline" Style="{StaticResource gridButtonIcon}"/>
+                                        </Button>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
 
-        </DataGrid>
+                </DataGrid>
+                <!--Répartition match poule-->
+
+                <Grid Grid.Row="1" x:Name="Grid1" Margin="27,-80,461,48">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="90"/>
+                        <ColumnDefinition Width="22"/>
+                        <ColumnDefinition Width="22"/>
+                        <ColumnDefinition Width="22"/>
+                        <ColumnDefinition Width="22"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Column="0" Grid.Row="0" Text="Tour 1" Background="Yellow" FontWeight="Bold" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="1" Grid.Row="0" Text="Pt" Background="Yellow" FontWeight="Bold" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="2" Grid.Row="0" Text="Av" Background="Yellow" FontWeight="Bold" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="3" Grid.Row="0" Text="Pen" Background="Yellow" FontWeight="Bold" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="4" Grid.Row="0" Text="Sub" Background="Yellow" FontWeight="Bold" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="0" Grid.Row="1" x:Name="nom_combattant_a1"  Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="1" Grid.Row="1" x:Name="point_combattant_a1" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="2" Grid.Row="1" x:Name="av_combattant_a1" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="3" Grid.Row="1" x:Name="pen_combattant_a1" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="4" Grid.Row="1" x:Name="sub_combattant_a1" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="0" Grid.Row="2" x:Name="nom_combattant_b1" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="1" Grid.Row="2" x:Name="point_combattant_b1" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="2" Grid.Row="2" x:Name="av_combattant_b1" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="3" Grid.Row="2" x:Name="pen_combattant_b1" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="4" Grid.Row="2" x:Name="sub_combattant_b1" Text="0" Background="White" TextAlignment="Center"/>
+                </Grid>
+                <Grid Grid.Row="1" x:Name="Grid2"  Margin="27,-23,461,-5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="90"/>
+                        <ColumnDefinition Width="22"/>
+                        <ColumnDefinition Width="22"/>
+                        <ColumnDefinition Width="22"/>
+                        <ColumnDefinition Width="22"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Column="0" Grid.Row="0" Text="Tour 1" Background="Yellow" FontWeight="Bold" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="1" Grid.Row="0" Text="Pt" Background="Yellow" FontWeight="Bold" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="2" Grid.Row="0" Text="Av" Background="Yellow" FontWeight="Bold" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="3" Grid.Row="0" Text="Pen" Background="Yellow" FontWeight="Bold" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="4" Grid.Row="0" Text="Sub" Background="Yellow" FontWeight="Bold" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="0" Grid.Row="1" x:Name="nom_combattant_c1" Text="AR'AINA" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="1" Grid.Row="1" x:Name="point_combattant_c1" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="2" Grid.Row="1" x:Name="av_combattant_c1" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="3" Grid.Row="1" x:Name="pen_combattant_c1" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="4" Grid.Row="1" x:Name="sub_combattant_c1" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="0" Grid.Row="2" x:Name="nom_combattant_d1" Text="EYTHAN" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="1" Grid.Row="2" x:Name="point_combattant_d1" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="2" Grid.Row="2" x:Name="av_combattant_d1" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="3" Grid.Row="2" x:Name="pen_combattant_d1" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="4" Grid.Row="2" x:Name="sub_combattant_d1" Text="0" Background="White" TextAlignment="Center"/>
+                </Grid>
+                <Grid Grid.Row="1" x:Name="Grid3"  Margin="27,34,461,-5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="90"/>
+                        <ColumnDefinition Width="22"/>
+                        <ColumnDefinition Width="22"/>
+                        <ColumnDefinition Width="22"/>
+                        <ColumnDefinition Width="22"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Column="0" Grid.Row="0" Text="Tour 1" Background="Yellow" FontWeight="Bold" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="1" Grid.Row="0" Text="Pt" Background="Yellow" FontWeight="Bold" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="2" Grid.Row="0" Text="Av" Background="Yellow" FontWeight="Bold" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="3" Grid.Row="0" Text="Pen" Background="Yellow" FontWeight="Bold" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="4" Grid.Row="0" Text="Sub" Background="Yellow" FontWeight="Bold" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="0" Grid.Row="1" Text="AR'AINA" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="1" Grid.Row="1" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="2" Grid.Row="1" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="3" Grid.Row="1" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="4" Grid.Row="1" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="0" Grid.Row="2" Text="EYTHAN" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="1" Grid.Row="2" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="2" Grid.Row="2" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="3" Grid.Row="2" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="4" Grid.Row="2" Text="0" Background="White" TextAlignment="Center"/>
+                </Grid>
+                <Grid Grid.Row="1" x:Name="Grid4" Margin="350,-80,497,-5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="90"/>
+                        <ColumnDefinition Width="22"/>
+                        <ColumnDefinition Width="22"/>
+                        <ColumnDefinition Width="22"/>
+                        <ColumnDefinition Width="22"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Column="0" Grid.Row="0" Text="Tour 2" Background="Yellow" FontWeight="Bold" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="1" Grid.Row="0" Text="Pt" Background="Yellow" FontWeight="Bold" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="2" Grid.Row="0" Text="Av" Background="Yellow" FontWeight="Bold" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="3" Grid.Row="0" Text="Pen" Background="Yellow" FontWeight="Bold" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="4" Grid.Row="0" Text="Sub" Background="Yellow" FontWeight="Bold" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="0" Grid.Row="1" x:Name="nom_combattant_a2" Text="JEAN YVES" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="1" Grid.Row="1" x:Name="point_combattant_a2" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="2" Grid.Row="1" x:Name="av_combattant_a2" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="3" Grid.Row="1" x:Name="pen_combattant_a2" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="4" Grid.Row="1" x:Name="sub_combattant_a2" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="0" Grid.Row="2" x:Name="nom_combattant_c2" Text="AR'AINA" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="1" Grid.Row="2" x:Name="point_combattant_c2" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="2" Grid.Row="2" x:Name="av_combattant_c2" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="3" Grid.Row="2" x:Name="pen_combattant_c2" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="4" Grid.Row="2" x:Name="sub_combattant_c2" Text="0" Background="White" TextAlignment="Center"/>
+                </Grid>
+                <Grid Grid.Row="1" x:Name="Grid5"  Margin="350,-23,497,-5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="90"/>
+                        <ColumnDefinition Width="22"/>
+                        <ColumnDefinition Width="22"/>
+                        <ColumnDefinition Width="22"/>
+                        <ColumnDefinition Width="22"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Column="0" Grid.Row="0" Text="Tour 2" Background="Yellow" FontWeight="Bold" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="1" Grid.Row="0" Text="Pt" Background="Yellow" FontWeight="Bold" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="2" Grid.Row="0" Text="Av" Background="Yellow" FontWeight="Bold" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="3" Grid.Row="0" Text="Pen" Background="Yellow" FontWeight="Bold" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="4" Grid.Row="0" Text="Sub" Background="Yellow" FontWeight="Bold" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="0" Grid.Row="1" x:Name="nom_combattant_b2" Text="EYTHAN" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="1" Grid.Row="1" x:Name="point_combattant_b2" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="2" Grid.Row="1" x:Name="av_combattant_b2" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="3" Grid.Row="1" x:Name="pen_combattant_b2" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="4" Grid.Row="1" x:Name="sub_combattant_b2" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="0" Grid.Row="2" x:Name="nom_combattant_d2" Text="ABRAHAMA" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="1" Grid.Row="2" x:Name="point_combattant_d2" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="2" Grid.Row="2" x:Name="av_combattant_d2" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="3" Grid.Row="2" x:Name="pen_combattant_d2" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="4" Grid.Row="2" x:Name="sub_combattant_d2" Text="0" Background="White" TextAlignment="Center"/>
+                </Grid>
+                <Grid Grid.Row="1" x:Name="Grid6"  Margin="350,34,497,-5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="90"/>
+                        <ColumnDefinition Width="22"/>
+                        <ColumnDefinition Width="22"/>
+                        <ColumnDefinition Width="22"/>
+                        <ColumnDefinition Width="22"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Column="0" Grid.Row="0" Text="Tour 2" Background="Yellow" FontWeight="Bold" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="1" Grid.Row="0" Text="Pt" Background="Yellow" FontWeight="Bold" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="2" Grid.Row="0" Text="Av" Background="Yellow" FontWeight="Bold" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="3" Grid.Row="0" Text="Pen" Background="Yellow" FontWeight="Bold" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="4" Grid.Row="0" Text="Sub" Background="Yellow" FontWeight="Bold" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="0" Grid.Row="1" Text="EYTHAN" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="1" Grid.Row="1" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="2" Grid.Row="1" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="3" Grid.Row="1" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="4" Grid.Row="1" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="0" Grid.Row="2" Text="ABRAHAMA" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="1" Grid.Row="2" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="2" Grid.Row="2" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="3" Grid.Row="2" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="4" Grid.Row="2" Text="0" Background="White" TextAlignment="Center"/>
+                </Grid>
+                <Grid Grid.Row="1" x:Name="Grid7"  Margin="573,-80,497,-5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="90"/>
+                        <ColumnDefinition Width="22"/>
+                        <ColumnDefinition Width="22"/>
+                        <ColumnDefinition Width="22"/>
+                        <ColumnDefinition Width="22"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Column="0" Grid.Row="0" Text="Tour 3" Background="Yellow" FontWeight="Bold" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="1" Grid.Row="0" Text="Pt" Background="Yellow" FontWeight="Bold" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="2" Grid.Row="0" Text="Av" Background="Yellow" FontWeight="Bold" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="3" Grid.Row="0" Text="Pen" Background="Yellow" FontWeight="Bold" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="4" Grid.Row="0" Text="Sub" Background="Yellow" FontWeight="Bold" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="0" Grid.Row="1" x:Name="nom_combattant_a3" Text="JEAN YVES" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="1" Grid.Row="1" x:Name="point_combattant_a3" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="2" Grid.Row="1" x:Name="av_combattant_a3" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="3" Grid.Row="1" x:Name="pen_combattant_a3" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="4" Grid.Row="1" x:Name="sub_combattant_a3" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="0" Grid.Row="2" x:Name="nom_combattant_d3" Text="EYTHAN" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="1" Grid.Row="2" x:Name="point_combattant_d3" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="2" Grid.Row="2" x:Name="av_combattant_d3" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="3" Grid.Row="2" x:Name="pen_combattant_d3" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="4" Grid.Row="2" x:Name="sub_combattant_d3" Text="0" Background="White" TextAlignment="Center"/>
+                </Grid>
+                <Grid Grid.Row="1" x:Name="Grid8" Margin="573,-23,497,-5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="90"/>
+                        <ColumnDefinition Width="22"/>
+                        <ColumnDefinition Width="22"/>
+                        <ColumnDefinition Width="22"/>
+                        <ColumnDefinition Width="22"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Column="0" Grid.Row="0" Text="Tour 3" Background="Yellow" FontWeight="Bold" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="1" Grid.Row="0" Text="Pt" Background="Yellow" FontWeight="Bold" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="2" Grid.Row="0" Text="Av" Background="Yellow" FontWeight="Bold" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="3" Grid.Row="0" Text="Pen" Background="Yellow" FontWeight="Bold" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="4" Grid.Row="0" Text="Sub" Background="Yellow" FontWeight="Bold" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="0" Grid.Row="1" x:Name="nom_combattant_b3" Text="AR'AINA" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="1" Grid.Row="1" x:Name="point_combattant_b3" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="2" Grid.Row="1" x:Name="av_combattant_b3" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="3" Grid.Row="1" x:Name="pen_combattant_b3" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="4" Grid.Row="1" x:Name="sub_combattant_b3" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="0" Grid.Row="2" x:Name="nom_combattant_c3" Text="ABRAHAMA" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="1" Grid.Row="2" x:Name="point_combattant_c3" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="2" Grid.Row="2" x:Name="av_combattant_c3" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="3" Grid.Row="2" x:Name="pen_combattant_c3" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="4" Grid.Row="2" x:Name="sub_combattant_c3" Text="0" Background="White" TextAlignment="Center"/>
+                </Grid>
+                <Grid Grid.Row="1" x:Name="Grid9" Margin="573,34,497,-5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="90"/>
+                        <ColumnDefinition Width="22"/>
+                        <ColumnDefinition Width="22"/>
+                        <ColumnDefinition Width="22"/>
+                        <ColumnDefinition Width="22"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Column="0" Grid.Row="0" Text="Tour 3" Background="Yellow" FontWeight="Bold" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="1" Grid.Row="0" Text="Pt" Background="Yellow" FontWeight="Bold" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="2" Grid.Row="0" Text="Av" Background="Yellow" FontWeight="Bold" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="3" Grid.Row="0" Text="Pen" Background="Yellow" FontWeight="Bold" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="4" Grid.Row="0" Text="Sub" Background="Yellow" FontWeight="Bold" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="0" Grid.Row="1" Text="AR'AINA" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="1" Grid.Row="1" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="2" Grid.Row="1" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="3" Grid.Row="1" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="4" Grid.Row="1" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="0" Grid.Row="2" Text="ABRAHAMA" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="1" Grid.Row="2" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="2" Grid.Row="2" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="3" Grid.Row="2" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="4" Grid.Row="2" Text="0" Background="White" TextAlignment="Center"/>
+                </Grid>
+            </Grid>
+
+            <!--Poule B-->
+            <Grid Margin="0,418,0,-12" Grid.RowSpan="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Row="1" Text="Poule B" FontSize="20" Margin="0,0,0,494"/>
+                <DataGrid Grid.Row="1" Style="{DynamicResource DataGridStyle1}" Margin="0,30,0,200" Height="220" SelectionMode="Extended" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" x:Name="classement2"   VerticalAlignment="Top">
+                    <DataGrid.Columns>
+                        <DataGridCheckBoxColumn CanUserResize="False" Width="auto" ElementStyle="{DynamicResource CheckBoxStyle1}">
+                            <DataGridCheckBoxColumn.HeaderTemplate>
+                                <DataTemplate>
+                                    <CheckBox Style="{DynamicResource CheckBoxStyle1}"  />
+                                </DataTemplate>
+                            </DataGridCheckBoxColumn.HeaderTemplate>
+                        </DataGridCheckBoxColumn>
+
+                        <DataGridTextColumn Header="Rang" IsReadOnly="True" CanUserResize="false" Binding="{Binding Position}" Width="0.5*"/>
+                        <DataGridTextColumn Header="Nom" IsReadOnly="True" Width="1*" Binding="{Binding Nom}"/>
+                        <DataGridTextColumn Header="Prénom" IsReadOnly="True" Width="1*" Binding="{Binding Prenom}"/>
+                        <DataGridTextColumn Header="Club" IsReadOnly="True" Width="1*" Binding="{Binding Club}"/>
+                        <DataGridTextColumn Header="Points" IsReadOnly="True" Width="1*" Binding="{Binding Points}"/>
 
 
+                        <DataGridTemplateColumn Header="Opération" IsReadOnly="True" Width="*">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button Style="{StaticResource gridEditButton}" >
+                                            <Icon:PackIconMaterial Kind="PencilOutline" Style="{StaticResource gridButtonIcon}"/>
+                                        </Button>
+                                        <Button Style="{StaticResource gridRemoveButton}" Margin="5 0 0 0" >
+                                            <Icon:PackIconMaterial Kind="DeleteOutline" Style="{StaticResource gridButtonIcon}"/>
+                                        </Button>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
 
-    </Grid>
+                </DataGrid>
+
+                <Grid Grid.Row="1" x:Name="Grid10" Margin="27,250,461,48">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="90"/>
+                        <ColumnDefinition Width="22"/>
+                        <ColumnDefinition Width="22"/>
+                        <ColumnDefinition Width="22"/>
+                        <ColumnDefinition Width="22"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Column="0" Grid.Row="0" Text="Tour 1" Background="Yellow" FontWeight="Bold" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="1" Grid.Row="0" Text="Pt" Background="Yellow" FontWeight="Bold" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="2" Grid.Row="0" Text="Av" Background="Yellow" FontWeight="Bold" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="3" Grid.Row="0" Text="Pen" Background="Yellow" FontWeight="Bold" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="4" Grid.Row="0" Text="Sub" Background="Yellow" FontWeight="Bold" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="0" Grid.Row="1" x:Name="nom_combattant_a1_b"  Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="1" Grid.Row="1" x:Name="point_combattant_a1_b" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="2" Grid.Row="1" x:Name="av_combattant_a1_b" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="3" Grid.Row="1" x:Name="pen_combattant_a1_b" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="4" Grid.Row="1" x:Name="sub_combattant_a1_b" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="0" Grid.Row="2" x:Name="nom_combattant_b1_b" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="1" Grid.Row="2" x:Name="point_combattant_b1_b" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="2" Grid.Row="2" x:Name="av_combattant_b1_b" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="3" Grid.Row="2" x:Name="pen_combattant_b1_b" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="4" Grid.Row="2" x:Name="sub_combattant_b1_b" Text="0" Background="White" TextAlignment="Center"/>
+                </Grid>
+                <Grid Grid.Row="1" x:Name="Grid11" Margin="27,307,461,-5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="90"/>
+                        <ColumnDefinition Width="22"/>
+                        <ColumnDefinition Width="22"/>
+                        <ColumnDefinition Width="22"/>
+                        <ColumnDefinition Width="22"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Column="0" Grid.Row="0" Text="Tour 1" Background="Yellow" FontWeight="Bold" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="1" Grid.Row="0" Text="Pt" Background="Yellow" FontWeight="Bold" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="2" Grid.Row="0" Text="Av" Background="Yellow" FontWeight="Bold" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="3" Grid.Row="0" Text="Pen" Background="Yellow" FontWeight="Bold" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="4" Grid.Row="0" Text="Sub" Background="Yellow" FontWeight="Bold" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="0" Grid.Row="1" x:Name="nom_combattant_c1_b" Text="AR'AINA" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="1" Grid.Row="1" x:Name="point_combattant_c1_b" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="2" Grid.Row="1" x:Name="av_combattant_c1_b" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="3" Grid.Row="1" x:Name="pen_combattant_c1_b" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="4" Grid.Row="1" x:Name="sub_combattant_c1_b" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="0" Grid.Row="2" x:Name="nom_combattant_d1_b" Text="EYTHAN" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="1" Grid.Row="2" x:Name="point_combattant_d1_b" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="2" Grid.Row="2" x:Name="av_combattant_d1_b" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="3" Grid.Row="2" x:Name="pen_combattant_d1_b" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="4" Grid.Row="2" x:Name="sub_combattant_d1_b" Text="0" Background="White" TextAlignment="Center"/>
+                </Grid>
+                <Grid Grid.Row="1" x:Name="Grid12" Margin="250,250,497,-5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="90"/>
+                        <ColumnDefinition Width="22"/>
+                        <ColumnDefinition Width="22"/>
+                        <ColumnDefinition Width="22"/>
+                        <ColumnDefinition Width="22"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Column="0" Grid.Row="0" Text="Tour 2" Background="Yellow" FontWeight="Bold" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="1" Grid.Row="0" Text="Pt" Background="Yellow" FontWeight="Bold" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="2" Grid.Row="0" Text="Av" Background="Yellow" FontWeight="Bold" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="3" Grid.Row="0" Text="Pen" Background="Yellow" FontWeight="Bold" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="4" Grid.Row="0" Text="Sub" Background="Yellow" FontWeight="Bold" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="0" Grid.Row="1" x:Name="nom_combattant_a2_b" Text="JEAN YVES" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="1" Grid.Row="1" x:Name="point_combattant_a2_b" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="2" Grid.Row="1" x:Name="av_combattant_a2_b" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="3" Grid.Row="1" x:Name="pen_combattant_a2_b" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="4" Grid.Row="1" x:Name="sub_combattant_a2_b" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="0" Grid.Row="2" x:Name="nom_combattant_c2_b" Text="AR'AINA" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="1" Grid.Row="2" x:Name="point_combattant_c2_b" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="2" Grid.Row="2" x:Name="av_combattant_c2_b" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="3" Grid.Row="2" x:Name="pen_combattant_c2_b" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="4" Grid.Row="2" x:Name="sub_combattant_c2_b" Text="0" Background="White" TextAlignment="Center"/>
+                </Grid>
+                <Grid Grid.Row="1" x:Name="Grid13" Margin="250,307,497,-5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="90"/>
+                        <ColumnDefinition Width="22"/>
+                        <ColumnDefinition Width="22"/>
+                        <ColumnDefinition Width="22"/>
+                        <ColumnDefinition Width="22"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Column="0" Grid.Row="0" Text="Tour 2" Background="Yellow" FontWeight="Bold" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="1" Grid.Row="0" Text="Pt" Background="Yellow" FontWeight="Bold" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="2" Grid.Row="0" Text="Av" Background="Yellow" FontWeight="Bold" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="3" Grid.Row="0" Text="Pen" Background="Yellow" FontWeight="Bold" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="4" Grid.Row="0" Text="Sub" Background="Yellow" FontWeight="Bold" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="0" Grid.Row="1" x:Name="nom_combattant_b2_b" Text="EYTHAN" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="1" Grid.Row="1" x:Name="point_combattant_b2_b" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="2" Grid.Row="1" x:Name="av_combattant_b2_b" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="3" Grid.Row="1" x:Name="pen_combattant_b2_b" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="4" Grid.Row="1" x:Name="sub_combattant_b2_b" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="0" Grid.Row="2" x:Name="nom_combattant_d2_b" Text="ABRAHAMA" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="1" Grid.Row="2" x:Name="point_combattant_d2_b" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="2" Grid.Row="2" x:Name="av_combattant_d2_b" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="3" Grid.Row="2" x:Name="pen_combattant_d2_b" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="4" Grid.Row="2" x:Name="sub_combattant_d2_b" Text="0" Background="White" TextAlignment="Center"/>
+                </Grid>
+
+                <Grid Grid.Row="1" x:Name="Grid14" Margin="473,250,497,-5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="90"/>
+                        <ColumnDefinition Width="22"/>
+                        <ColumnDefinition Width="22"/>
+                        <ColumnDefinition Width="22"/>
+                        <ColumnDefinition Width="22"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Column="0" Grid.Row="0" Text="Tour 3" Background="Yellow" FontWeight="Bold" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="1" Grid.Row="0" Text="Pt" Background="Yellow" FontWeight="Bold" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="2" Grid.Row="0" Text="Av" Background="Yellow" FontWeight="Bold" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="3" Grid.Row="0" Text="Pen" Background="Yellow" FontWeight="Bold" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="4" Grid.Row="0" Text="Sub" Background="Yellow" FontWeight="Bold" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="0" Grid.Row="1" x:Name="nom_combattant_a3_b" Text="JEAN YVES" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="1" Grid.Row="1" x:Name="point_combattant_a3_b" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="2" Grid.Row="1" x:Name="av_combattant_a3_b" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="3" Grid.Row="1" x:Name="pen_combattant_a3_b" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="4" Grid.Row="1" x:Name="sub_combattant_a3_b" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="0" Grid.Row="2" x:Name="nom_combattant_d3_b" Text="EYTHAN" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="1" Grid.Row="2" x:Name="point_combattant_d3_b" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="2" Grid.Row="2" x:Name="av_combattant_d3_b" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="3" Grid.Row="2" x:Name="pen_combattant_d3_b" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="4" Grid.Row="2" x:Name="sub_combattant_d3_b" Text="0" Background="White" TextAlignment="Center"/>
+                </Grid>
+                <Grid Grid.Row="1" x:Name="Grid15"  Margin="473,307,497,-5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="90"/>
+                        <ColumnDefinition Width="22"/>
+                        <ColumnDefinition Width="22"/>
+                        <ColumnDefinition Width="22"/>
+                        <ColumnDefinition Width="22"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Column="0" Grid.Row="0" Text="Tour 3" Background="Yellow" FontWeight="Bold" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="1" Grid.Row="0" Text="Pt" Background="Yellow" FontWeight="Bold" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="2" Grid.Row="0" Text="Av" Background="Yellow" FontWeight="Bold" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="3" Grid.Row="0" Text="Pen" Background="Yellow" FontWeight="Bold" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="4" Grid.Row="0" Text="Sub" Background="Yellow" FontWeight="Bold" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="0" Grid.Row="1" x:Name="nom_combattant_b3_b" Text="AR'AINA" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="1" Grid.Row="1" x:Name="point_combattant_b3_b" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="2" Grid.Row="1" x:Name="av_combattant_b3_b" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="3" Grid.Row="1" x:Name="pen_combattant_b3_b" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="4" Grid.Row="1" x:Name="sub_combattant_b3_b" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="0" Grid.Row="2" x:Name="nom_combattant_c3_b" Text="ABRAHAMA" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="1" Grid.Row="2" x:Name="point_combattant_c3_b" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="2" Grid.Row="2" x:Name="av_combattant_c3_b" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="3" Grid.Row="2" x:Name="pen_combattant_c3_b" Text="0" Background="White" TextAlignment="Center"/>
+                    <TextBlock Grid.Column="4" Grid.Row="2" x:Name="sub_combattant_c3_b" Text="0" Background="White" TextAlignment="Center"/>
+                </Grid>
+            </Grid>
+        </Grid>
+
+    </ScrollViewer>
+
 </Window>

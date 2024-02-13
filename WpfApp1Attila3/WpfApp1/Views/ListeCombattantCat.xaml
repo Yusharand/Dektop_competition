@@ -67,13 +67,19 @@
 
         </DataGrid>
 
-        <Button Style="{StaticResource addButton}" Margin="0,0,20,10"  Background="#cc2721" Grid.Row="0" Height="35" Click="CreerPoule_Click" VerticalAlignment="Bottom">
+        <Button Style="{StaticResource addButton}" Margin="0,0,20,10"  Background="#cc2721" Grid.Row="0" Height="35"  VerticalAlignment="Bottom" x:Name="Creer_PouleB" Click="Creer_PouleB_Click">
             <StackPanel Orientation="Horizontal">
                 <Icon:PackIconMaterial Kind="Application" VerticalAlignment="Center" Width="11" Height="11" Margin="0 1 8 0"/>
-                <TextBlock Text="Poule"/>
+                <TextBlock Text="Poule B"/>
             </StackPanel>
         </Button>
 
+        <Button Style="{StaticResource addButton}" Margin="0,0,192,10"  Background="#cc2721" Grid.Row="0" Height="35" x:Name="Creer_PouleA" VerticalAlignment="Bottom" Click="Creer_PouleA_Click">
+            <StackPanel Orientation="Horizontal">
+                <Icon:PackIconMaterial Kind="Application" VerticalAlignment="Center" Width="11" Height="11" Margin="0 1 8 0"/>
+                <TextBlock Text="Poule A"/>
+            </StackPanel>
+        </Button>
 
     </Grid>
 </Window>

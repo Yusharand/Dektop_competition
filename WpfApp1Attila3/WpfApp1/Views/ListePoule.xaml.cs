@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Data.SqlClient;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -12,6 +15,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WpfApp1.Models;
 
 namespace WpfApp1.Views
 {
@@ -20,20 +24,19 @@ namespace WpfApp1.Views
     /// </summary>
     public partial class ListePoule : Window
     {
-        public ObservableCollection<CombattantViewModel> Classement1 { get; set; }
-        public ObservableCollection<CombattantViewModel> Classement2 { get; set; }
-       
+        public ObservableCollection<CombattantViewModel_1> Classement1;
+        public ObservableCollection<CombattantViewModel_1> Classement2;
+        private int Id;
 
 
-        public ListePoule(List<Poule> poules)
+        public ListePoule(int id)
         {
             InitializeComponent();
-
-            if (poules != null && poules.Count >= 2)
-            {
-                classement1.ItemsSource = poules[0].Combattants;
-                classement2.ItemsSource = poules[1].Combattants;
-            }
+            this.Id = id;
+            Charger();
+            Charger_Match_Poule();
+            
+            
 
             // Initialisation des données (vous devriez récupérer ces données de votre modèle réel)
             /*Classement1 = new ObservableCollection<CombattantViewModel>
@@ -56,12 +59,101 @@ namespace WpfApp1.Views
             classement2ListView.ItemsSource = Classement2;*/
         }
 
-        public ListePoule(ICollection<Poule> poules)
+        public void Charger_Match_Poule()
         {
+
+        }
+
+        public void Charger()
+        {
+            ConnexionBD connection1 = new ConnexionBD();
+            ConnexionBD connection2 = new ConnexionBD();
+            Classement1 = new ObservableCollection<CombattantViewModel_1>();
+            Classement2 = new ObservableCollection<CombattantViewModel_1>();
+            SqlDataReader reader1 = connection1.Select("SELECT * FROM Combattants JOIN Poules ON Combattants.ID_Poule = Poules.ID_Poule WHERE Poules.Nom_poule = 'Poule A' AND Combattants.ID_Categorie= " + this.Id);
+            SqlDataReader reader2 = connection2.Select("SELECT * FROM Combattants JOIN Poules ON Combattants.ID_Poule = Poules.ID_Poule WHERE Poules.Nom_poule = 'Poule B' AND Combattants.ID_Categorie= " + this.Id);
+            
+            //Classement 1
+            int i = 1;
+            while (reader1.Read())
+            {
+                
+                    
+                    string club1 = reader1["Club_Combattant"].ToString();
+                    string nom1 = reader1["Nom_Combattant"].ToString();
+                    string prenom1 = reader1["Prenom_Combattant"].ToString();
+
+
+                    Classement1.Add(new CombattantViewModel_1 { Position = i, Nom = nom1, Prenom = prenom1, Club = club1, Points = 0 });
+                    
+
+                if (Classement1 == null)
+                {
+                    Console.WriteLine("Pas de liste");
+                }
+
+
+
+                i += 1;
+
+            }
+            connection1.Close();
+
+            classement1.ItemsSource = Classement1;
+
+            //Classement 2
+            int j = 1;
+            while (reader2.Read())
+            {
+
+                string club2 = reader2["Club_Combattant"].ToString();
+                string nom2 = reader2["Nom_Combattant"].ToString();
+                string prenom2 = reader2["Prenom_Combattant"].ToString();
+
+                Classement2.Add(new CombattantViewModel_1 { Position = j, Nom = nom2, Prenom = prenom2, Club = club2, Points = 0 });
+
+                if (Classement1 == null)
+                {
+                    Console.WriteLine("Pas de liste");
+                }
+
+
+
+                j += 1;
+
+            }
+            connection2.Close();
+
+            classement2.ItemsSource = Classement2;
+        }
+
+        private void RemovePouleButton_Click(object sender, RoutedEventArgs e)
+        {
+            
+            ConnexionBD connection = new ConnexionBD();
+            ConnexionBD connection2 = new ConnexionBD();
+            connection2.Update("UPDATE Combattants JOIN Poules ON Combattants.ID_Poule = Poules.ID_Poule WHERE Poules.Nom_poule = 'Poule A' AND Combattants.ID_Categorie= " + this.Id  + " SET ID_Poule = NULL");
+            connection2.Close();
+            connection.Delete("DELETE FROM Poules WHERE Nom_Poule = 'Poule A' AND ID_Categorie= " + this.Id);
+            connection.Close();
+            Charger();
+        }
+
+        private void RemovePouleButton_2_Click(object sender, RoutedEventArgs e)
+        {
+            ConnexionBD connection = new ConnexionBD();
+            ConnexionBD connection2 = new ConnexionBD();
+            connection2.Update("UPDATE Combattants JOIN Poules ON Combattants.ID_Poule = Poules.ID_Poule WHERE Poules.Nom_poule = 'Poule B' AND Combattants.ID_Categorie= " + this.Id + " SET ID_Poule = NULL");
+            connection2.Close();
+            connection.Delete("DELETE FROM Poules WHERE Nom_Poule = 'Poule B' AND ID_Categorie= " +this.Id);
+            connection.Close();
+            Charger();
         }
     }
 
-    public class CombattantViewModel
+
+
+    public class CombattantViewModel_1
     {
         public int Position { get; set; }
         public string Nom { get; set; }
@@ -70,6 +162,17 @@ namespace WpfApp1.Views
         public string Poids { get; set; }
         public int Points { get; set; }
     }
+
+    public class CombattantViewModel_2
+    {
+        public string _nom { get; set; }
+        public int _points { get; set; }
+        public int _av { get; set; }
+        public int _pen { get; set; }
+        public int _sub { get; set; }
+
+    }
+
 }
 
 

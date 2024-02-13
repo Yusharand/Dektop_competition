@@ -251,3 +251,5 @@ C:\Users\Yusha\source\repos\WpfApp1Attila3\WpfApp1\obj\Debug\WpfApp1.csproj.Core
 C:\Users\Yusha\source\repos\WpfApp1Attila3\WpfApp1\obj\Debug\WpfApp1.csproj.CopyComplete
 C:\Users\Yusha\source\repos\WpfApp1Attila3\WpfApp1\obj\Debug\WpfApp1.exe
 C:\Users\Yusha\source\repos\WpfApp1Attila3\WpfApp1\obj\Debug\WpfApp1.pdb
+C:\Users\Yusha\source\repos\WpfApp1Attila3\WpfApp1\obj\Debug\Views\UserControls\UCListeCombat.g.cs
+C:\Users\Yusha\source\repos\WpfApp1Attila3\WpfApp1\obj\Debug\Views\UserControls\UCListeCombat.baml

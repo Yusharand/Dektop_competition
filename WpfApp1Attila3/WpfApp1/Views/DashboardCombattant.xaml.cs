@@ -278,6 +278,15 @@ namespace WpfApp1.Views
             }
         }
 
+        private void BtnListeCombats_Click(object sender, RoutedEventArgs e)
+        {
+            UCListeCombat ucListeCombat = new UCListeCombat();
+            ListeCombat listeCombat = new ListeCombat();
+            this.DataContext = listeCombat;
+            combattantsDataGrid.Children.Clear();
+            combattantsDataGrid.Children.Add(ucListeCombat);
+        }
+
         /*private void CombatEnCours_Click(object sender, RoutedEventArgs e)
         {
             UCListeCombatEncours UcListeCombatEncours = new UCListeCombatEncours(); //User controle de Liste des Combat en cours

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="Competition_JJBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+<Schema Namespace="dbCompet.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityType Name="Categories">
     <Key>
       <PropertyRef Name="ID_Categorie" />
@@ -28,6 +28,10 @@
     <Property Name="Penalites_Combattant2" Type="int" />
     <Property Name="Duree_combat" Type="nvarchar" MaxLength="20" />
     <Property Name="Date_Heure" Type="datetime" />
+    <Property Name="ID_Combattant1" Type="int" />
+    <Property Name="ID_Combattant2" Type="int" />
+    <Property Name="ID_Categorie" Type="int" />
+    <Property Name="ID_Poule" Type="int" />
   </EntityType>
   <EntityType Name="Combattants">
     <Key>
@@ -45,6 +49,7 @@
     <Property Name="ID_Categorie" Type="int" />
     <Property Name="Pointspoules" Type="int" />
     <Property Name="ID_Poule" Type="int" />
+    <Property Name="Index_Poule" Type="nvarchar" MaxLength="5" />
   </EntityType>
   <EntityType Name="Competition_Detail">
     <Key>
@@ -177,7 +182,55 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="Competition_JJBModelStoreContainer">
+  <Association Name="FK_ID_Categorie">
+    <End Role="Categories" Type="Self.Categories" Multiplicity="0..1" />
+    <End Role="Combats" Type="Self.Combats" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Categories">
+        <PropertyRef Name="ID_Categorie" />
+      </Principal>
+      <Dependent Role="Combats">
+        <PropertyRef Name="ID_Categorie" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ID_Combattant1">
+    <End Role="Combattants" Type="Self.Combattants" Multiplicity="0..1" />
+    <End Role="Combats" Type="Self.Combats" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Combattants">
+        <PropertyRef Name="ID_Combattant" />
+      </Principal>
+      <Dependent Role="Combats">
+        <PropertyRef Name="ID_Combattant1" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ID_Combattant2">
+    <End Role="Combattants" Type="Self.Combattants" Multiplicity="0..1" />
+    <End Role="Combats" Type="Self.Combats" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Combattants">
+        <PropertyRef Name="ID_Combattant" />
+      </Principal>
+      <Dependent Role="Combats">
+        <PropertyRef Name="ID_Combattant2" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ID_Poule">
+    <End Role="Poules" Type="Self.Poules" Multiplicity="0..1" />
+    <End Role="Combats" Type="Self.Combats" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Poules">
+        <PropertyRef Name="ID_Poule" />
+      </Principal>
+      <Dependent Role="Combats">
+        <PropertyRef Name="ID_Poule" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="dbCompetStoreContainer">
     <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Clubs" EntityType="Self.Clubs" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Combats" EntityType="Self.Combats" Schema="dbo" store:Type="Tables" />
@@ -216,6 +269,22 @@
     <AssociationSet Name="FK__Poules__ID_Categ__2B0A656D" Association="Self.FK__Poules__ID_Categ__2B0A656D">
       <End Role="Categories" EntitySet="Categories" />
       <End Role="Poules" EntitySet="Poules" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ID_Categorie" Association="Self.FK_ID_Categorie">
+      <End Role="Categories" EntitySet="Categories" />
+      <End Role="Combats" EntitySet="Combats" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ID_Combattant1" Association="Self.FK_ID_Combattant1">
+      <End Role="Combattants" EntitySet="Combattants" />
+      <End Role="Combats" EntitySet="Combats" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ID_Combattant2" Association="Self.FK_ID_Combattant2">
+      <End Role="Combattants" EntitySet="Combattants" />
+      <End Role="Combats" EntitySet="Combats" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ID_Poule" Association="Self.FK_ID_Poule">
+      <End Role="Poules" EntitySet="Poules" />
+      <End Role="Combats" EntitySet="Combats" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

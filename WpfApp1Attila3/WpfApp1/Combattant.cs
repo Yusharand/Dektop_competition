@@ -17,6 +17,8 @@ namespace WpfApp1
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Combattant()
         {
+            this.Combats = new HashSet<Combat>();
+            this.Combats1 = new HashSet<Combat>();
             this.Competition_Detail = new HashSet<Competition_Detail>();
         }
     
@@ -32,8 +34,13 @@ namespace WpfApp1
         public Nullable<int> ID_Categorie { get; set; }
         public Nullable<int> Pointspoules { get; set; }
         public Nullable<int> ID_Poule { get; set; }
+        public string Index_Poule { get; set; }
     
         public virtual Category Category { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Combat> Combats { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Combat> Combats1 { get; set; }
         public virtual Poule Poule { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Competition_Detail> Competition_Detail { get; set; }

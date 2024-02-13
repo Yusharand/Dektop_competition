@@ -137,7 +137,7 @@ namespace WpfApp1.Models
         }
     }
 
-    public class ListeCombatEnCours
+    public class ListeCombat
     {
         public string Entete { get; set; }
 
@@ -145,27 +145,14 @@ namespace WpfApp1.Models
         public int id;
         public int cpt;
 
-        public ListeCombatEnCours()
+        public ListeCombat()
         {
-            Entete = "Liste des combats en cours";
+            Entete = "Liste des combats";
 
         }
     }
 
-    public class ListeCombatEnregistres
-    {
-        public string Entete { get; set; }
-
-
-        public int id;
-        public int cpt;
-
-        public ListeCombatEnregistres()
-        {
-            Entete = "Liste des combats enregistrés";
-
-        }
-    }
+    
 
     public class UserAction
     {

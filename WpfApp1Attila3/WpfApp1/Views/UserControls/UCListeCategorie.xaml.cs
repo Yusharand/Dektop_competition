@@ -57,9 +57,12 @@ namespace WpfApp1.Views.UserControls
             Category selectedMember = (Category)ListeCategoriesDataGrid.SelectedItem;
             int id = selectedMember.ID_Categorie;
             ConnexionBD connection = new ConnexionBD();
-            ConnexionBD connection2 = new ConnexionBD(); ;
+            ConnexionBD connection2 = new ConnexionBD();
+            ConnexionBD connection3 = new ConnexionBD();
             connection2.Update("UPDATE Combattants SET ID_Categorie = NULL WHERE ID_Categorie = " + id);
             connection2.Close();
+            connection3.Update("UPDATE Combattants SET ID_Poule = NULL WHERE ID_Categorie = " + id);
+            connection3.Close();
             connection.Delete("DELETE FROM Categories WHERE ID_Categorie = " + id);
             connection.Close();
 
@@ -83,9 +86,8 @@ namespace WpfApp1.Views.UserControls
         private void Bracket_Click(object sender, RoutedEventArgs e)
         {
             Category selectedMember = (Category)ListeCategoriesDataGrid.SelectedItem;
-            
-
-            Brackets brackets = new Brackets(selectedMember);
+            int id = selectedMember.ID_Categorie;
+            Brackets brackets = new Brackets(id);
             brackets.Show();
         }
 
@@ -101,9 +103,9 @@ namespace WpfApp1.Views.UserControls
         private void Poule_Click(object sender, RoutedEventArgs e)
         {
             Category categorieSelectionnee = (Category)ListeCategoriesDataGrid.SelectedItem;
-            
+            int id = categorieSelectionnee.ID_Categorie;
 
-            ListePoule listePoule = new ListePoule(categorieSelectionnee.Poules);
+            ListePoule listePoule = new ListePoule(id);
             listePoule.Show();
         }
     }

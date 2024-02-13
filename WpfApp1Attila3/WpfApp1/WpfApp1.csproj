@@ -267,6 +267,9 @@
     <Compile Include="Views\UserControls\UCListeCategorie.xaml.cs">
       <DependentUpon>UCListeCategorie.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\UserControls\UCListeCombat.xaml.cs">
+      <DependentUpon>UCListeCombat.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\UserControls\UCListeCombattant.xaml.cs">
       <DependentUpon>UCListeCombattant.xaml</DependentUpon>
     </Compile>
@@ -381,6 +384,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\UserControls\UCListeCombat.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\UserControls\UCListeCombattant.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -470,8 +477,8 @@
     <Resource Include="Images\1697039318276.jpg" />
     <Content Include="dbCompet.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>dbCompet.Context.cs</LastGenOutput>
       <DependentUpon>dbCompet.edmx</DependentUpon>
+      <LastGenOutput>dbCompet.Context.cs</LastGenOutput>
     </Content>
     <Content Include="dbCompet.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

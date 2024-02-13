@@ -62,8 +62,8 @@
                                     <TextBlock Text="Participants"/>
                                 </StackPanel>
                             </Button>
-                            <Button Style="{StaticResource menuButton}" >
-                                <StackPanel Orientation="Horizontal">
+                            <Button Style="{StaticResource menuButton}" x:Name="btnListeCombats" Click="BtnListeCombats_Click" >
+                            <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="ClockTimeFiveOutline" Style="{StaticResource menuButtonIcon}"/>
                                     <TextBlock Text="Matchs"/>
                                 </StackPanel>
