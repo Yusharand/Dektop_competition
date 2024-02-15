@@ -34,6 +34,7 @@ namespace WpfApp1
         public Nullable<int> ID_Combattant2 { get; set; }
         public Nullable<int> ID_Categorie { get; set; }
         public Nullable<int> ID_Poule { get; set; }
+        public string Tour_Match { get; set; }
     
         public virtual Category Category { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

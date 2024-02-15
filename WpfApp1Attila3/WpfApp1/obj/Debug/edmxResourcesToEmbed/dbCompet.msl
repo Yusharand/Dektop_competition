@@ -34,6 +34,7 @@
           <ScalarProperty Name="ID_Combattant2" ColumnName="ID_Combattant2" />
           <ScalarProperty Name="ID_Categorie" ColumnName="ID_Categorie" />
           <ScalarProperty Name="ID_Poule" ColumnName="ID_Poule" />
+          <ScalarProperty Name="Tour_Match" ColumnName="Tour_Match" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -53,6 +54,14 @@
           <ScalarProperty Name="Pointspoules" ColumnName="Pointspoules" />
           <ScalarProperty Name="ID_Poule" ColumnName="ID_Poule" />
           <ScalarProperty Name="Index_Poule" ColumnName="Index_Poule" />
+          <ScalarProperty Name="Points_Marque" ColumnName="Points_Marque" />
+          <ScalarProperty Name="Points_Concede" ColumnName="Points_Concede" />
+          <ScalarProperty Name="Avantage_Marque" ColumnName="Avantage_Marque" />
+          <ScalarProperty Name="Avantage_Concede" ColumnName="Avantage_Concede" />
+          <ScalarProperty Name="Penalite_Marque" ColumnName="Penalite_Marque" />
+          <ScalarProperty Name="Penalite_Concede" ColumnName="Penalite_Concede" />
+          <ScalarProperty Name="Sub_Marque" ColumnName="Sub_Marque" />
+          <ScalarProperty Name="Sub_Concede" ColumnName="Sub_Concede" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

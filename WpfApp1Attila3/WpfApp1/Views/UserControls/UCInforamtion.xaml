@@ -59,7 +59,7 @@
 
             <Grid HorizontalAlignment="Left" Grid.Row="3" Grid.Column="0" Height="157" Margin="10,0,0,0" VerticalAlignment="Top" Width="382">
                 <Icon:PackIconMaterial Kind="AirConditioner" HorizontalAlignment="Left" Height="40" Margin="10,10,0,0" VerticalAlignment="Top" Width="40"/>
-                <Label Content="Conditioin de la pesée" FontSize="20" FontWeight="DemiBold" Foreground="#575251"  HorizontalAlignment="Left" Height="40" Margin="72,12,0,0" VerticalAlignment="Top" Width="216"/>
+                <Label Content="Condition de la pesée" FontSize="20" FontWeight="DemiBold" Foreground="#575251"  HorizontalAlignment="Left" Height="40" Margin="72,12,0,0" VerticalAlignment="Top" Width="216"/>
                 <TextBox HorizontalAlignment="Left" Height="89" Style="{StaticResource styleinfo}" x:Name="txtCondiPese" Margin="66,58,0,0" TextWrapping="Wrap" BorderThickness="0" Text="" VerticalAlignment="Top" Width="278"/>
 
             </Grid>

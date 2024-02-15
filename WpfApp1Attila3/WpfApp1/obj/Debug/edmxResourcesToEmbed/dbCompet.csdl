@@ -36,6 +36,7 @@
     <Property Name="ID_Combattant2" Type="Int32" />
     <Property Name="ID_Categorie" Type="Int32" />
     <Property Name="ID_Poule" Type="Int32" />
+    <Property Name="Tour_Match" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Category" Relationship="Self.FK_ID_Categorie" FromRole="Combats" ToRole="Categories" />
     <NavigationProperty Name="Competition_Detail" Relationship="Self.FK__Competiti__ID_Co__40F9A68C" FromRole="Combats" ToRole="Competition_Detail" />
     <NavigationProperty Name="Combattant" Relationship="Self.FK_ID_Combattant1" FromRole="Combats" ToRole="Combattants" />
@@ -59,6 +60,14 @@
     <Property Name="Pointspoules" Type="Int32" />
     <Property Name="ID_Poule" Type="Int32" />
     <Property Name="Index_Poule" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="Points_Marque" Type="Int32" />
+    <Property Name="Points_Concede" Type="Int32" />
+    <Property Name="Avantage_Marque" Type="Int32" />
+    <Property Name="Avantage_Concede" Type="Int32" />
+    <Property Name="Penalite_Marque" Type="Int32" />
+    <Property Name="Penalite_Concede" Type="Int32" />
+    <Property Name="Sub_Marque" Type="Int32" />
+    <Property Name="Sub_Concede" Type="Int32" />
     <NavigationProperty Name="Category" Relationship="Self.FK__Combattan__ID_Ca__04E4BC85" FromRole="Combattants" ToRole="Categories" />
     <NavigationProperty Name="Combats" Relationship="Self.FK_ID_Combattant1" FromRole="Combattants" ToRole="Combats" />
     <NavigationProperty Name="Combats1" Relationship="Self.FK_ID_Combattant2" FromRole="Combattants" ToRole="Combats" />

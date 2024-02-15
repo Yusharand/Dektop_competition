@@ -74,11 +74,18 @@ namespace WpfApp1.Views
 
         private void BtnValider_Click(object sender, RoutedEventArgs e)
         {
-            Competition selectedMember = (Competition)ListesCompetitionDataGrid.SelectedItem;
-            int id = selectedMember.ID_Competition;
-            DashboardCombattant dashboardCombattant = new DashboardCombattant(id);
-            dashboardCombattant.Show();
-            this.Close();
+            try
+            {
+                Competition selectedMember = (Competition)ListesCompetitionDataGrid.SelectedItem;
+                int id = selectedMember.ID_Competition;
+                DashboardCombattant dashboardCombattant = new DashboardCombattant(id);
+                dashboardCombattant.Show();
+                this.Close();
+            }
+            catch
+            {
+                MessageBox.Show("Veuillez choisir une compétition!");
+            }
         }
     }
 }

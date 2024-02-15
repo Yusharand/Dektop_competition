@@ -4,14 +4,14 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="701ca21065914db485e9bccd6e866bd0" Name="Diagram1">
-        <EntityTypeShape EntityType="dbCompet.Category" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
+      <Diagram DiagramId="555a197c49554004989993fd8256eaee" Name="Diagram1">
+        <EntityTypeShape EntityType="dbCompet.Category" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="dbCompet.Club" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="dbCompet.Combat" Width="1.5" PointX="7.5" PointY="5.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="dbCompet.Combattant" Width="1.5" PointX="5.25" PointY="5.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="dbCompet.Competition_Detail" Width="1.5" PointX="9.75" PointY="6.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="dbCompet.Competition" Width="1.5" PointX="7.5" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="dbCompet.Poule" Width="1.5" PointX="3" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbCompet.Combat" Width="1.5" PointX="7.5" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbCompet.Combattant" Width="1.5" PointX="5.25" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbCompet.Competition_Detail" Width="1.5" PointX="9.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbCompet.Competition" Width="1.5" PointX="7.5" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbCompet.Poule" Width="1.5" PointX="3" PointY="11.375" IsExpanded="true" />
         <AssociationConnector Association="dbCompet.FK__Combattan__ID_Ca__04E4BC85" ManuallyRouted="false" />
         <AssociationConnector Association="dbCompet.FK__Competiti__ID_Ca__40058253" ManuallyRouted="false" />
         <AssociationConnector Association="dbCompet.FK__Poules__ID_Categ__2B0A656D" ManuallyRouted="false" />

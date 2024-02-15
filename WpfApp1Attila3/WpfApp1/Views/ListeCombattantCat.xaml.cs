@@ -126,11 +126,72 @@ namespace WpfApp1.Views
 
         private void Creer_PouleA_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                var combattantsSelectionnes = ListeCombattantsCatDataGrid.SelectedItems.Cast<Combattant>().ToList();
+                Poule pouleselectionne = ObtenirPoule("Poule A");
+                string[] index = { "a", "b", "c", "d", "e" };
+                int ind = 0;
+                foreach (var combattant in combattantsSelectionnes)
+                {
+                    combattant.ID_Poule = pouleselectionne.ID_Poule;
+                    combattant.ID_Categorie = this.Id;
+                    combattant.Index_Poule = index[ind];
+                    context.Combattants.Attach(combattant);
+                    context.Entry(combattant).State = EntityState.Modified;
+                    ListeCombattantsCat.Remove(combattant);
+                    ind++;
+                }
+
+                List<Combat> combats = new List<Combat>();
+                for (int i = 0; i < combattantsSelectionnes.Count - 1; i++)
+                {
+                    for (int j = i + 1; j < combattantsSelectionnes.Count; j++)
+                    {
+                        Combat combat = new Combat
+                        {
+                            // Assigner les propriétés du combat
+                            Nom_Combat = $"Combat {combattantsSelectionnes[i].Prenom_Combattant } vs {combattantsSelectionnes[j].Prenom_Combattant}",
+                            ID_Categorie = this.Id,
+                            ID_Poule = pouleselectionne.ID_Poule,
+                            Points_Combattant1 = 0,
+                            Points_Combattant2 = 0,
+                            Avantages_Combattant1 = 0,
+                            Avantages_Combattant2 = 0,
+                            Penalites_Combattant1 = 0,
+                            Penalites_Combattant2 = 0,
+                            ID_Combattant1 = combattantsSelectionnes[i].ID_Combattant,
+                            ID_Combattant2 = combattantsSelectionnes[j].ID_Combattant,
+                            Tour_Match = "Tour " + i,
+                            // Vous pouvez également initialiser d'autres propriétés du combat selon vos besoins
+                        };
+
+                        // Ajouter le combat à la liste des combats
+                        combats.Add(combat);
+                        context.Combats.Attach(combat);
+                        context.Entry(combat).State = EntityState.Added;
+                    }
+                }
+
+
+                context.SaveChanges();
+
+                MessageBox.Show("Poule créée avec succès");
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Erreur : " + ex.Message + "Choisissez d'abord votre bracket de combat");
+            }
+
+        }
+
+        private void Creer_PouleB_Click(object sender, RoutedEventArgs e)
+        {
             var combattantsSelectionnes = ListeCombattantsCatDataGrid.SelectedItems.Cast<Combattant>().ToList();
-            Poule pouleselectionne = ObtenirPoule("Poule A");
-            string[] index = { "a", "b", "c",  "d", "e"};
+            Poule pouleselectionne = ObtenirPoule("Poule B");
+            string[] index = { "a", "b", "c", "d", "e" };
             int ind = 0;
-            foreach(var combattant in combattantsSelectionnes)
+            foreach (var combattant in combattantsSelectionnes)
             {
                 combattant.ID_Poule = pouleselectionne.ID_Poule;
                 combattant.ID_Categorie = this.Id;
@@ -142,14 +203,14 @@ namespace WpfApp1.Views
             }
 
             List<Combat> combats = new List<Combat>();
-            for(int i = 0; i < combattantsSelectionnes.Count - 1; i++)
-            {  
-                for(int j = i+1; j < combattantsSelectionnes.Count; j++)
+            for (int i = 0; i < combattantsSelectionnes.Count - 1; i++)
+            {
+                for (int j = i + 1; j < combattantsSelectionnes.Count; j++)
                 {
                     Combat combat = new Combat
                     {
                         // Assigner les propriétés du combat
-                        Nom_Combat = $"Combat {i + 1} vs {j + 1}",
+                        Nom_Combat = $"Combat {combattantsSelectionnes[i].Prenom_Combattant } vs {combattantsSelectionnes[j].Prenom_Combattant}",
                         ID_Categorie = this.Id,
                         ID_Poule = pouleselectionne.ID_Poule,
                         Points_Combattant1 = 0,
@@ -173,23 +234,6 @@ namespace WpfApp1.Views
 
             context.SaveChanges();
 
-            MessageBox.Show("Poule créée avec succès");
-
-        }
-
-        private void Creer_PouleB_Click(object sender, RoutedEventArgs e)
-        {
-            var combattantsSelectionnes = ListeCombattantsCatDataGrid.SelectedItems.Cast<Combattant>().ToList();
-            Poule pouleselectionne = ObtenirPoule("Poule B");
-            foreach (var combattant in combattantsSelectionnes)
-            {
-                combattant.ID_Poule = pouleselectionne.ID_Poule;
-                combattant.ID_Categorie = this.Id;
-                context.Combattants.Attach(combattant);
-                context.Entry(combattant).State = EntityState.Modified;
-                ListeCombattantsCat.Remove(combattant);
-            }
-            context.SaveChanges();
             MessageBox.Show("Poule créée avec succès");
         }
     }

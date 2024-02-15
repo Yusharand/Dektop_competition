@@ -32,6 +32,7 @@
     <Property Name="ID_Combattant2" Type="int" />
     <Property Name="ID_Categorie" Type="int" />
     <Property Name="ID_Poule" Type="int" />
+    <Property Name="Tour_Match" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="Combattants">
     <Key>
@@ -50,6 +51,14 @@
     <Property Name="Pointspoules" Type="int" />
     <Property Name="ID_Poule" Type="int" />
     <Property Name="Index_Poule" Type="nvarchar" MaxLength="5" />
+    <Property Name="Points_Marque" Type="int" />
+    <Property Name="Points_Concede" Type="int" />
+    <Property Name="Avantage_Marque" Type="int" />
+    <Property Name="Avantage_Concede" Type="int" />
+    <Property Name="Penalite_Marque" Type="int" />
+    <Property Name="Penalite_Concede" Type="int" />
+    <Property Name="Sub_Marque" Type="int" />
+    <Property Name="Sub_Concede" Type="int" />
   </EntityType>
   <EntityType Name="Competition_Detail">
     <Key>

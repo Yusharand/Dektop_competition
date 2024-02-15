@@ -35,6 +35,14 @@ namespace WpfApp1
         public Nullable<int> Pointspoules { get; set; }
         public Nullable<int> ID_Poule { get; set; }
         public string Index_Poule { get; set; }
+        public Nullable<int> Points_Marque { get; set; }
+        public Nullable<int> Points_Concede { get; set; }
+        public Nullable<int> Avantage_Marque { get; set; }
+        public Nullable<int> Avantage_Concede { get; set; }
+        public Nullable<int> Penalite_Marque { get; set; }
+        public Nullable<int> Penalite_Concede { get; set; }
+        public Nullable<int> Sub_Marque { get; set; }
+        public Nullable<int> Sub_Concede { get; set; }
     
         public virtual Category Category { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

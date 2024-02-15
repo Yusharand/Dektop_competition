@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -232,5 +233,52 @@ namespace WpfApp1.Models
         }
     }
 
+    public class ComViewModel : INotifyPropertyChanged
+    {
+        private Competition_JJBEntities context = new Competition_JJBEntities();
 
+        public string PrenomCombattant1 { get; set; }
+        public string PrenomCombattant2 { get; set; }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public ComViewModel()
+        {
+            LoadCombatInfo();
+        }
+
+        public string GetPrenomCombattant(int idCombattant)
+        {
+            
+            var combattant = context.Combattants.FirstOrDefault(c => c.ID_Combattant == idCombattant);
+
+            if (combattant != null)
+            {
+                return combattant.Prenom_Combattant;
+            }
+            else
+            {
+                return "Combattant inconnu";
+            }
+            
+        }
+
+        public void LoadCombatInfo()
+        {
+            ConnexionBD connexion = new ConnexionBD();
+            SqlDataReader reader = connexion.Select("SELECT * FROM Combats");
+
+            while (reader.Read())
+            {
+                int idCombattant1 = Convert.ToInt32(reader["ID_Combattant1"]);
+                int idCombattant2 = Convert.ToInt32(reader["ID_Combattant2"]);
+                PrenomCombattant1 = GetPrenomCombattant(idCombattant1);
+                PrenomCombattant2 = GetPrenomCombattant(idCombattant2);
+
+            }
+             
+            // Récupérer les prénoms des combattants en utilisant leurs ID
+            
+        }
+    }
 }
