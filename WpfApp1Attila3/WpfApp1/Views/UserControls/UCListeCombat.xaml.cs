@@ -26,9 +26,11 @@ namespace WpfApp1.Views.UserControls
     {
         public ObservableCollection<CombatInfo> ListeCombats;
         public Competition_JJBEntities context;
-        public UCListeCombat()
+        private int Id;
+        public UCListeCombat(int id)
         {
             InitializeComponent();
+            this.Id = id;
             Charger();        
         }
 
@@ -69,13 +71,13 @@ namespace WpfApp1.Views.UserControls
                     var combattant1 = context.Combattants.FirstOrDefault(c => c.ID_Combattant == combat.ID_Combattant1);
                     string nom1 = combattant1 != null ? combattant1.Nom_Combattant : "";
                     string prenom1 = combattant1 != null ? combattant1.Prenom_Combattant : "";
-                    string club1 = combattant1 != null ? combattant1.Club_Combattant : "";
+                    string club1 = combattant1 != null ? combattant1.Club?.Nom_Club : "";
                     string point1 = combat.Points_Combattant1.ToString();
                     // Récupérez le prénom du combattant 2
                     var combattant2 = context.Combattants.FirstOrDefault(c => c.ID_Combattant == combat.ID_Combattant2);
-                    string nom2 = combattant1 != null ? combattant1.Nom_Combattant : "";
+                    string nom2 = combattant2 != null ? combattant2.Nom_Combattant : "";
                     string prenom2 = combattant2 != null ? combattant2.Prenom_Combattant : "";
-                    string club2 = combattant1 != null ? combattant1.Club_Combattant : "";
+                    string club2 = combattant1 != null ? combattant1.Club?.Nom_Club : "";
                     string point2 = combat.Points_Combattant2.ToString();
                     // Ajoutez les informations sur le combat à la liste
                     listeCombatInfo.Add(new CombatInfo
@@ -105,12 +107,34 @@ namespace WpfApp1.Views.UserControls
 
         private void DeleteMatch_Click(object sender, RoutedEventArgs e)
         {
-            Combat combatSelectionnee = (Combat)ListeCombatsDataGrid.SelectedItem;
-            int id = combatSelectionnee.ID_Combat;
+            CombatInfo combatInfoSelectionnee = (CombatInfo)ListeCombatsDataGrid.SelectedItem;
+            int id = combatInfoSelectionnee.ID_Combat;
             ConnexionBD connexion = new ConnexionBD();
-            connexion.Delete("DELETE FROM Combat WHERE ID_Combat = " + id);
+            connexion.Delete("DELETE FROM Combats WHERE ID_Combat = " + id);
             connexion.Close();
             Charger();
+        }
+
+        private void PlayMatch_Click(object sender, RoutedEventArgs e)
+        {
+            CombatInfo combatInfoSelectionne = (CombatInfo)ListeCombatsDataGrid.SelectedItem;
+            int id = combatInfoSelectionne.ID_Combat;
+            context = new Competition_JJBEntities();
+            var competition = context.Competitions.FirstOrDefault(c => c.ID_Competition == this.Id);
+            string nom1 = combatInfoSelectionne.Nom_Combattant1;
+            string nom2 = combatInfoSelectionne.Nom_Combattant2;
+            string prenom1 = combatInfoSelectionne.Prenom_Combattant1;
+            string prenom2 = combatInfoSelectionne.Prenom_Combattant2;
+            string club1 = combatInfoSelectionne.Club_Combattant1;
+            string club2 = combatInfoSelectionne.Club_Combattant2;
+            string tour = combatInfoSelectionne.Tour_Match;
+            string categorie = combatInfoSelectionne.Categorie_Combat;
+            string fondscoreboard = competition.FondScoreboard_Competition.ToString();
+            MainWindow mainWindow = new MainWindow();
+            DashboardCombattant dashboardCombattant = new DashboardCombattant(this.Id);
+            mainWindow.Load_Data(nom1, nom2, prenom1, prenom2, club1, club2, tour, categorie, fondscoreboard);
+            mainWindow.Show();
+            dashboardCombattant.Close();
         }
     }
 }

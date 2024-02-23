@@ -508,3 +508,5 @@ E:\ATTILA\Dektop_competition\WpfApp1Attila3\WpfApp1\obj\Debug\WpfApp1.Properties
 E:\ATTILA\Dektop_competition\WpfApp1Attila3\WpfApp1\obj\Debug\WpfApp1.csproj.GenerateResource.cache
 E:\ATTILA\Dektop_competition\WpfApp1Attila3\WpfApp1\obj\Debug\WpfApp1.csproj.CoreCompileInputs.cache
 E:\ATTILA\Dektop_competition\WpfApp1Attila3\WpfApp1\obj\Debug\WpfApp1.csproj.CopyComplete
+E:\ATTILA\Dektop_competition\WpfApp1Attila3\WpfApp1\obj\Debug\Views\UserControls\UCListeClubs.g.cs
+E:\ATTILA\Dektop_competition\WpfApp1Attila3\WpfApp1\obj\Debug\Views\UserControls\UCListeClubs.baml

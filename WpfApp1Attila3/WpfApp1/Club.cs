@@ -14,7 +14,19 @@ namespace WpfApp1
     
     public partial class Club
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Club()
+        {
+            this.Combattants = new HashSet<Combattant>();
+        }
+    
+        public int ID_Club { get; set; }
         public string Nom_Club { get; set; }
         public byte[] Logo_Club { get; set; }
+        public Nullable<int> ID_Competition { get; set; }
+    
+        public virtual Competition Competition { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Combattant> Combattants { get; set; }
     }
 }

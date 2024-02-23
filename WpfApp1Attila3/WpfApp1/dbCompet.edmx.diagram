@@ -4,26 +4,29 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="555a197c49554004989993fd8256eaee" Name="Diagram1">
-        <EntityTypeShape EntityType="dbCompet.Category" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="dbCompet.Club" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="dbCompet.Combat" Width="1.5" PointX="7.5" PointY="6.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="dbCompet.Combattant" Width="1.5" PointX="5.25" PointY="6.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="dbCompet.Competition_Detail" Width="1.5" PointX="9.75" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="dbCompet.Competition" Width="1.5" PointX="7.5" PointY="2.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="dbCompet.Poule" Width="1.5" PointX="3" PointY="11.375" IsExpanded="true" />
+      <Diagram DiagramId="9298df0de340435fa65a2283c84ddbbf" Name="Diagram1">
+        <EntityTypeShape EntityType="dbCompet.Category" Width="1.5" PointX="3" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbCompet.Club" Width="1.5" PointX="3" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbCompet.Combat" Width="1.5" PointX="10.5" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbCompet.Combattant" Width="1.5" PointX="8.25" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbCompet.Competition_Detail" Width="1.5" PointX="5.25" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbCompet.Competition" Width="1.5" PointX="0.75" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbCompet.Poule" Width="1.5" PointX="5.25" PointY="5.25" IsExpanded="true" />
+        <AssociationConnector Association="dbCompet.FK__Categorie__ID_Co__0D44F85C" ManuallyRouted="false" />
         <AssociationConnector Association="dbCompet.FK__Combattan__ID_Ca__04E4BC85" ManuallyRouted="false" />
         <AssociationConnector Association="dbCompet.FK__Competiti__ID_Ca__40058253" ManuallyRouted="false" />
         <AssociationConnector Association="dbCompet.FK__Poules__ID_Categ__2B0A656D" ManuallyRouted="false" />
         <AssociationConnector Association="dbCompet.FK_ID_Categorie" ManuallyRouted="false" />
+        <AssociationConnector Association="dbCompet.FK__Clubs__ID_Compet__2CBDA3B5" ManuallyRouted="false" />
+        <AssociationConnector Association="dbCompet.FK__Combattan__ID_Cl__1B9317B3" ManuallyRouted="false" />
+        <AssociationConnector Association="dbCompet.FK__Combats__ID_Comp__0F2D40CE" ManuallyRouted="false" />
         <AssociationConnector Association="dbCompet.FK__Competiti__ID_Co__40F9A68C" ManuallyRouted="false" />
-        <AssociationConnector Association="dbCompet.FK_ID_Combattant1" ManuallyRouted="false" />
-        <AssociationConnector Association="dbCompet.FK_ID_Combattant2" ManuallyRouted="false" />
         <AssociationConnector Association="dbCompet.FK_ID_Poule" ManuallyRouted="false" />
+        <AssociationConnector Association="dbCompet.FK__Combattan__ID_Co__0A688BB1" ManuallyRouted="false" />
         <AssociationConnector Association="dbCompet.FK__Combattan__ID_Po__2BFE89A6" ManuallyRouted="false" />
-        <AssociationConnector Association="dbCompet.FK__Competiti__ID_Co__3F115E1A" ManuallyRouted="false" />
         <AssociationConnector Association="dbCompet.FK__Competiti__ID_Co__3E1D39E1" ManuallyRouted="false" />
         <AssociationConnector Association="dbCompet.FK__Competiti__ID_Po__41EDCAC5" ManuallyRouted="false" />
+        <AssociationConnector Association="dbCompet.FK__Poules__ID_Compe__10216507" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

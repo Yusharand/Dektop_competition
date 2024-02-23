@@ -44,7 +44,7 @@
 
                 <DataGridTextColumn Header="#" IsReadOnly="True" CanUserResize="false" Width="auto" Binding="{Binding ID_Combattant}"/>
 
-                <DataGridTextColumn Header="Club" IsReadOnly="True" Width="*" Binding="{Binding Club_Combattant}"/>
+                <DataGridTextColumn Header="Club" IsReadOnly="True" Width="*" Binding="{Binding Nom_Club}"/>
                 <DataGridTextColumn Header="Nom" IsReadOnly="True" Width="2*" Binding="{Binding Nom_Combattant}"/>
                 <DataGridTextColumn Header="Prenom" IsReadOnly="True" Width="1.5*" Binding="{Binding Prenom_Combattant}"/>
                 <DataGridTextColumn Header="Genre" IsReadOnly="True" Width="*"  Binding="{Binding Genre_Combattant}"/>

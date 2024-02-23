@@ -267,6 +267,9 @@
     <Compile Include="Views\UserControls\UCListeCategorie.xaml.cs">
       <DependentUpon>UCListeCategorie.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\UserControls\UCListeClubs.xaml.cs">
+      <DependentUpon>UCListeClubs.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\UserControls\UCListeCombat.xaml.cs">
       <DependentUpon>UCListeCombat.xaml</DependentUpon>
     </Compile>
@@ -381,6 +384,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\UserControls\UCListeCategorie.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\UCListeClubs.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

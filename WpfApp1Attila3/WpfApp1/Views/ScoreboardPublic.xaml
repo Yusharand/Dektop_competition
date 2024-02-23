@@ -109,8 +109,8 @@
 
                             </Border>
                             <!--Partie avantage et pénalité-->
-                            <Border BorderThickness="0" BorderBrush="Black" Height="246" VerticalAlignment="Top" Margin="49,0,267,-6" Grid.ColumnSpan="2">
-                                <Grid Background="White" Margin="22,0,0,0">
+                            <Border BorderThickness="0" BorderBrush="Black" Height="246" VerticalAlignment="Top" Margin="0,0,267,-6" Grid.ColumnSpan="2">
+                                <Grid Background="Transparent">
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="*"/>
                                         <RowDefinition Height="2*"/>
@@ -227,7 +227,7 @@
                             </Border>
                             <!--Partie avantage et pénalité-->
                             <Border BorderThickness="0" BorderBrush="Black" Margin="81,-1,0,0">
-                                <Grid Background="White">
+                                <Grid Background="Transparent">
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="*"/>
                                         <RowDefinition Height="2*"/>

@@ -70,16 +70,25 @@ namespace WpfApp1.Views
             ConnexionBD connection2 = new ConnexionBD();
             Classement1 = new ObservableCollection<CombattantViewModel_1>();
             Classement2 = new ObservableCollection<CombattantViewModel_1>();
-            SqlDataReader reader1 = connection1.Select("SELECT * FROM Combattants JOIN Poules ON Combattants.ID_Poule = Poules.ID_Poule WHERE Poules.Nom_poule = 'Poule A' AND Combattants.ID_Categorie= " + this.Id);
-            SqlDataReader reader2 = connection2.Select("SELECT * FROM Combattants JOIN Poules ON Combattants.ID_Poule = Poules.ID_Poule WHERE Poules.Nom_poule = 'Poule B' AND Combattants.ID_Categorie= " + this.Id);
-            
+            SqlDataReader reader1 = connection1.Select("SELECT Combattants.*, Poules.*, Clubs.Nom_Club " +
+                                          "FROM Combattants " +
+                                          "JOIN Poules ON Combattants.ID_Poule = Poules.ID_Poule " +
+                                          "JOIN Clubs ON Combattants.ID_Club = Clubs.ID_Club " +
+                                          "WHERE Poules.Nom_poule = 'Poule A' AND Combattants.ID_Categorie = " + this.Id);
+
+            SqlDataReader reader2 = connection2.Select("SELECT Combattants.*, Poules.*, Clubs.nom_club " +
+                                          "FROM Combattants " +
+                                          "JOIN Poules ON Combattants.ID_Poule = Poules.ID_Poule " +
+                                          "JOIN Clubs ON Combattants.ID_Club = Clubs.id_club " +
+                                          "WHERE Poules.Nom_poule = 'Poule B' AND Combattants.ID_Categorie = " + this.Id);
+
             //Classement 1
             int i = 1;
             while (reader1.Read())
             {
                 
                     
-                    string club1 = reader1["Club_Combattant"].ToString();
+                    string club1 = reader1["Nom_Club"].ToString();
                     string nom1 = reader1["Nom_Combattant"].ToString();
                     string prenom1 = reader1["Prenom_Combattant"].ToString();
 
@@ -106,7 +115,7 @@ namespace WpfApp1.Views
             while (reader2.Read())
             {
 
-                string club2 = reader2["Club_Combattant"].ToString();
+                string club2 = reader2["Nm_Club"].ToString();
                 string nom2 = reader2["Nom_Combattant"].ToString();
                 string prenom2 = reader2["Prenom_Combattant"].ToString();
 

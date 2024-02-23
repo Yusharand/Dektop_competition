@@ -54,10 +54,10 @@
                                 <Image Height="50" Width="50" HorizontalAlignment="Left" VerticalAlignment="Top" x:Name="imageclub1"/>
                             </Viewbox>
                             <Viewbox Margin="200,11,0,8" HorizontalAlignment="Left" Width="92" Grid.Row="1">
-                                <TextBlock Text="" x:Name="textblockClub3" Style="{StaticResource styleclub}" Height="85" VerticalAlignment="Top" TextWrapping="Wrap"/>
+                                <TextBlock Text="MAD" x:Name="textblockClub3" Style="{StaticResource styleclub}" Height="85" VerticalAlignment="Top" TextWrapping="Wrap"/>
                             </Viewbox>
                             <Viewbox HorizontalAlignment="Left" Height="38" Margin="295,10,0,0" VerticalAlignment="Top" Width="51" Grid.Row="1">
-                                <Image Height="38" Width="51" x:Name="imagepays1"/>
+                                <Image Height="38" Width="51" x:Name="imagepays1" Source="/Images/téléchargement (36).png"/>
                             </Viewbox>
 
                             <Grid x:Name="btnContent1" Margin="32,59,133,19" Grid.Row="1" Grid.RowSpan="2">
@@ -184,10 +184,10 @@
                                 <Image Height="50" Width="50" HorizontalAlignment="Left" VerticalAlignment="Top" x:Name="imageclub2"/>
                             </Viewbox>
                             <Viewbox HorizontalAlignment="Left" Height="43" Margin="202,7,0,0" VerticalAlignment="Top" Width="92" Grid.Row="1">
-                                <TextBlock Text="" x:Name="textblockClub4" Style="{StaticResource styleclub}" TextWrapping="Wrap"/>
+                                <TextBlock Text="MAD" x:Name="textblockClub4" Style="{StaticResource styleclub}" TextWrapping="Wrap"/>
                             </Viewbox>
                             <Viewbox HorizontalAlignment="Left" Height="38" Margin="299,10,0,0" VerticalAlignment="Top" Width="51" Grid.Row="1">
-                                <Image Height="38" Width="51" x:Name="imagepays2"/>
+                                <Image Height="38" Width="51" x:Name="imagepays2" Source="/Images/téléchargement (36).png"/>
                             </Viewbox>
                             <Grid x:Name="btnContent2" Margin="32,4,0,0" Grid.Row="2" HorizontalAlignment="Left" Width="374">
                                 <StackPanel Margin="0,0,-32,0" x:Name="getbouton2">
@@ -284,12 +284,17 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <!--Fin de match-->
-                <StackPanel Margin="77,60,133,10">
-                    <Button Content="QUITTER" Style="{StaticResource boutonfin}" Height="78" Width="150" Margin="-175 0 0 0" Click="Button_Click_RetourForm"/>
-                    <Button Content="FIN DE MATCH" Name="finDeMatch" Style="{StaticResource boutonfin}" Height="78" Width="150" Margin="170 -77 0 0" Click="Button_Click_FinMatch"/>
-                    <Button Content="ENREGISTRER" Style="{StaticResource boutonfin}" Height="78"  Margin="207,0,3,0"/>
-                    <Button Content="SWITCH" Style="{StaticResource boutonfin}" Height="78" Click="Switch_Click" Margin="119,-79,116,0"/>
-                    <Button Content="UNDO" Style="{StaticResource boutonfin}" Height="78"  Margin="0,-78,204,0" Click="Undo_Click"/>
+                <StackPanel Margin="77,60,133,10" Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal">
+                        <Button Content="QUITTER" Style="{StaticResource boutonfin}" Height="78" Width="150"  Click="Button_Click_RetourForm"/>
+                        <Button Content="FIN DE MATCH" Name="finDeMatch" Style="{StaticResource boutonfin}" Height="78" Width="171"  Click="Button_Click_FinMatch"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Button Content="ENREGISTRER" Style="{StaticResource boutonfin}" Height="78" Width="130" />
+                        <Button Content="SWITCH" Style="{StaticResource boutonfin}" Height="78" Width="80" Click="Switch_Click" />
+                        <Button Content="UNDO" Style="{StaticResource boutonfin}" Height="78" Width="114"  Click="Undo_Click"/>
+                    </StackPanel>
+                    
                 </StackPanel>
 
                 <!--Chrono-->
@@ -346,7 +351,7 @@
 
                     </Grid>
                 </Border>
-                <TextBlock Grid.ColumnSpan="2" Margin="435,62,452,105" TextAlignment="Center" Text="" Name="tb_Phase" Foreground="AntiqueWhite" FontWeight="Bold" FontSize="40" TextWrapping="Wrap"/>
+                <TextBlock Grid.ColumnSpan="2" Margin="459,62,428,105" TextAlignment="Center" Text="" Name="tb_Phase" Foreground="AntiqueWhite" FontWeight="Bold" FontSize="40" TextWrapping="Wrap"/>
                 <TextBlock Grid.ColumnSpan="2" Margin="457,142,426,9" Text="" TextAlignment="Center" Name="tb_Categorie" FontSize="35" FontWeight="Bold" Foreground="AntiqueWhite" TextWrapping="Wrap"/>
 
 

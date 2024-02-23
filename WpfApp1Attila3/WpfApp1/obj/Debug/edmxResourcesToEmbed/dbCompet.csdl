@@ -6,6 +6,8 @@
     </Key>
     <Property Name="ID_Categorie" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Nom_Categorie" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ID_Competition" Type="Int32" />
+    <NavigationProperty Name="Competition" Relationship="Self.FK__Categorie__ID_Co__0D44F85C" FromRole="Categories" ToRole="Competitions" />
     <NavigationProperty Name="Combattants" Relationship="Self.FK__Combattan__ID_Ca__04E4BC85" FromRole="Categories" ToRole="Combattants" />
     <NavigationProperty Name="Competition_Detail" Relationship="Self.FK__Competiti__ID_Ca__40058253" FromRole="Categories" ToRole="Competition_Detail" />
     <NavigationProperty Name="Poules" Relationship="Self.FK__Poules__ID_Categ__2B0A656D" FromRole="Categories" ToRole="Poules" />
@@ -13,10 +15,14 @@
   </EntityType>
   <EntityType Name="Club">
     <Key>
-      <PropertyRef Name="Nom_Club" />
+      <PropertyRef Name="ID_Club" />
     </Key>
-    <Property Name="Nom_Club" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ID_Club" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nom_Club" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Logo_Club" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="ID_Competition" Type="Int32" />
+    <NavigationProperty Name="Competition" Relationship="Self.FK__Clubs__ID_Compet__2CBDA3B5" FromRole="Clubs" ToRole="Competitions" />
+    <NavigationProperty Name="Combattants" Relationship="Self.FK__Combattan__ID_Cl__1B9317B3" FromRole="Clubs" ToRole="Combattants" />
   </EntityType>
   <EntityType Name="Combat">
     <Key>
@@ -37,18 +43,16 @@
     <Property Name="ID_Categorie" Type="Int32" />
     <Property Name="ID_Poule" Type="Int32" />
     <Property Name="Tour_Match" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ID_Competition" Type="Int32" />
     <NavigationProperty Name="Category" Relationship="Self.FK_ID_Categorie" FromRole="Combats" ToRole="Categories" />
+    <NavigationProperty Name="Competition" Relationship="Self.FK__Combats__ID_Comp__0F2D40CE" FromRole="Combats" ToRole="Competitions" />
     <NavigationProperty Name="Competition_Detail" Relationship="Self.FK__Competiti__ID_Co__40F9A68C" FromRole="Combats" ToRole="Competition_Detail" />
-    <NavigationProperty Name="Combattant" Relationship="Self.FK_ID_Combattant1" FromRole="Combats" ToRole="Combattants" />
-    <NavigationProperty Name="Combattant1" Relationship="Self.FK_ID_Combattant2" FromRole="Combats" ToRole="Combattants" />
     <NavigationProperty Name="Poule" Relationship="Self.FK_ID_Poule" FromRole="Combats" ToRole="Poules" />
   </EntityType>
   <EntityType Name="Combattant">
     <Key>
       <PropertyRef Name="ID_Combattant" />
     </Key>
-    <Property Name="ID_Combattant" Type="Int32" Nullable="false" />
-    <Property Name="Club_Combattant" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Nom_Combattant" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Prenom_Combattant" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Genre_Combattant" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
@@ -68,11 +72,14 @@
     <Property Name="Penalite_Concede" Type="Int32" />
     <Property Name="Sub_Marque" Type="Int32" />
     <Property Name="Sub_Concede" Type="Int32" />
+    <Property Name="ID_Combattant" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID_Competition" Type="Int32" />
+    <Property Name="ID_Club" Type="Int32" />
+    <Property Name="Nom_Club" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Category" Relationship="Self.FK__Combattan__ID_Ca__04E4BC85" FromRole="Combattants" ToRole="Categories" />
-    <NavigationProperty Name="Combats" Relationship="Self.FK_ID_Combattant1" FromRole="Combattants" ToRole="Combats" />
-    <NavigationProperty Name="Combats1" Relationship="Self.FK_ID_Combattant2" FromRole="Combattants" ToRole="Combats" />
+    <NavigationProperty Name="Club" Relationship="Self.FK__Combattan__ID_Cl__1B9317B3" FromRole="Combattants" ToRole="Clubs" />
+    <NavigationProperty Name="Competition" Relationship="Self.FK__Combattan__ID_Co__0A688BB1" FromRole="Combattants" ToRole="Competitions" />
     <NavigationProperty Name="Poule" Relationship="Self.FK__Combattan__ID_Po__2BFE89A6" FromRole="Combattants" ToRole="Poules" />
-    <NavigationProperty Name="Competition_Detail" Relationship="Self.FK__Competiti__ID_Co__3F115E1A" FromRole="Combattants" ToRole="Competition_Detail" />
   </EntityType>
   <EntityType Name="Competition_Detail">
     <Key>
@@ -86,7 +93,6 @@
     <Property Name="ID_Poule" Type="Int32" />
     <NavigationProperty Name="Category" Relationship="Self.FK__Competiti__ID_Ca__40058253" FromRole="Competition_Detail" ToRole="Categories" />
     <NavigationProperty Name="Combat" Relationship="Self.FK__Competiti__ID_Co__40F9A68C" FromRole="Competition_Detail" ToRole="Combats" />
-    <NavigationProperty Name="Combattant" Relationship="Self.FK__Competiti__ID_Co__3F115E1A" FromRole="Competition_Detail" ToRole="Combattants" />
     <NavigationProperty Name="Competition" Relationship="Self.FK__Competiti__ID_Co__3E1D39E1" FromRole="Competition_Detail" ToRole="Competitions" />
     <NavigationProperty Name="Poule" Relationship="Self.FK__Competiti__ID_Po__41EDCAC5" FromRole="Competition_Detail" ToRole="Poules" />
   </EntityType>
@@ -105,7 +111,12 @@
     <Property Name="Condition_Pese" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="DroitCombattant" Type="Int32" />
     <Property Name="Remboursement" Type="Int32" />
+    <NavigationProperty Name="Categories" Relationship="Self.FK__Categorie__ID_Co__0D44F85C" FromRole="Competitions" ToRole="Categories" />
+    <NavigationProperty Name="Clubs" Relationship="Self.FK__Clubs__ID_Compet__2CBDA3B5" FromRole="Competitions" ToRole="Clubs" />
+    <NavigationProperty Name="Combats" Relationship="Self.FK__Combats__ID_Comp__0F2D40CE" FromRole="Competitions" ToRole="Combats" />
+    <NavigationProperty Name="Combattants" Relationship="Self.FK__Combattan__ID_Co__0A688BB1" FromRole="Competitions" ToRole="Combattants" />
     <NavigationProperty Name="Competition_Detail" Relationship="Self.FK__Competiti__ID_Co__3E1D39E1" FromRole="Competitions" ToRole="Competition_Detail" />
+    <NavigationProperty Name="Poules" Relationship="Self.FK__Poules__ID_Compe__10216507" FromRole="Competitions" ToRole="Poules" />
   </EntityType>
   <EntityType Name="Poule">
     <Key>
@@ -114,11 +125,25 @@
     <Property Name="ID_Poule" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Nom_poule" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="ID_Categorie" Type="Int32" />
+    <Property Name="ID_Competition" Type="Int32" />
     <NavigationProperty Name="Category" Relationship="Self.FK__Poules__ID_Categ__2B0A656D" FromRole="Poules" ToRole="Categories" />
     <NavigationProperty Name="Combats" Relationship="Self.FK_ID_Poule" FromRole="Poules" ToRole="Combats" />
     <NavigationProperty Name="Combattants" Relationship="Self.FK__Combattan__ID_Po__2BFE89A6" FromRole="Poules" ToRole="Combattants" />
     <NavigationProperty Name="Competition_Detail" Relationship="Self.FK__Competiti__ID_Po__41EDCAC5" FromRole="Poules" ToRole="Competition_Detail" />
+    <NavigationProperty Name="Competition" Relationship="Self.FK__Poules__ID_Compe__10216507" FromRole="Poules" ToRole="Competitions" />
   </EntityType>
+  <Association Name="FK__Categorie__ID_Co__0D44F85C">
+    <End Role="Competitions" Type="Self.Competition" Multiplicity="0..1" />
+    <End Role="Categories" Type="Self.Category" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Competitions">
+        <PropertyRef Name="ID_Competition" />
+      </Principal>
+      <Dependent Role="Categories">
+        <PropertyRef Name="ID_Competition" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK__Combattan__ID_Ca__04E4BC85">
     <End Role="Categories" Type="Self.Category" Multiplicity="0..1" />
     <End Role="Combattants" Type="Self.Combattant" Multiplicity="*" />
@@ -167,6 +192,42 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK__Clubs__ID_Compet__2CBDA3B5">
+    <End Role="Competitions" Type="Self.Competition" Multiplicity="0..1" />
+    <End Role="Clubs" Type="Self.Club" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Competitions">
+        <PropertyRef Name="ID_Competition" />
+      </Principal>
+      <Dependent Role="Clubs">
+        <PropertyRef Name="ID_Competition" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Combattan__ID_Cl__1B9317B3">
+    <End Role="Clubs" Type="Self.Club" Multiplicity="0..1" />
+    <End Role="Combattants" Type="Self.Combattant" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Clubs">
+        <PropertyRef Name="ID_Club" />
+      </Principal>
+      <Dependent Role="Combattants">
+        <PropertyRef Name="ID_Club" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Combats__ID_Comp__0F2D40CE">
+    <End Role="Competitions" Type="Self.Competition" Multiplicity="0..1" />
+    <End Role="Combats" Type="Self.Combat" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Competitions">
+        <PropertyRef Name="ID_Competition" />
+      </Principal>
+      <Dependent Role="Combats">
+        <PropertyRef Name="ID_Competition" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK__Competiti__ID_Co__40F9A68C">
     <End Role="Combats" Type="Self.Combat" Multiplicity="0..1" />
     <End Role="Competition_Detail" Type="Self.Competition_Detail" Multiplicity="*" />
@@ -176,30 +237,6 @@
       </Principal>
       <Dependent Role="Competition_Detail">
         <PropertyRef Name="ID_Combat" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_ID_Combattant1">
-    <End Role="Combattants" Type="Self.Combattant" Multiplicity="0..1" />
-    <End Role="Combats" Type="Self.Combat" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Combattants">
-        <PropertyRef Name="ID_Combattant" />
-      </Principal>
-      <Dependent Role="Combats">
-        <PropertyRef Name="ID_Combattant1" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_ID_Combattant2">
-    <End Role="Combattants" Type="Self.Combattant" Multiplicity="0..1" />
-    <End Role="Combats" Type="Self.Combat" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Combattants">
-        <PropertyRef Name="ID_Combattant" />
-      </Principal>
-      <Dependent Role="Combats">
-        <PropertyRef Name="ID_Combattant2" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -215,6 +252,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK__Combattan__ID_Co__0A688BB1">
+    <End Role="Competitions" Type="Self.Competition" Multiplicity="0..1" />
+    <End Role="Combattants" Type="Self.Combattant" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Competitions">
+        <PropertyRef Name="ID_Competition" />
+      </Principal>
+      <Dependent Role="Combattants">
+        <PropertyRef Name="ID_Competition" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK__Combattan__ID_Po__2BFE89A6">
     <End Role="Poules" Type="Self.Poule" Multiplicity="0..1" />
     <End Role="Combattants" Type="Self.Combattant" Multiplicity="*" />
@@ -224,18 +273,6 @@
       </Principal>
       <Dependent Role="Combattants">
         <PropertyRef Name="ID_Poule" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__Competiti__ID_Co__3F115E1A">
-    <End Role="Combattants" Type="Self.Combattant" Multiplicity="0..1" />
-    <End Role="Competition_Detail" Type="Self.Competition_Detail" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Combattants">
-        <PropertyRef Name="ID_Combattant" />
-      </Principal>
-      <Dependent Role="Competition_Detail">
-        <PropertyRef Name="ID_Combattant" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -263,6 +300,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK__Poules__ID_Compe__10216507">
+    <End Role="Competitions" Type="Self.Competition" Multiplicity="0..1" />
+    <End Role="Poules" Type="Self.Poule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Competitions">
+        <PropertyRef Name="ID_Competition" />
+      </Principal>
+      <Dependent Role="Poules">
+        <PropertyRef Name="ID_Competition" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="Competition_JJBEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Categories" EntityType="Self.Category" />
     <EntitySet Name="Clubs" EntityType="Self.Club" />
@@ -271,6 +320,10 @@
     <EntitySet Name="Competition_Detail" EntityType="Self.Competition_Detail" />
     <EntitySet Name="Competitions" EntityType="Self.Competition" />
     <EntitySet Name="Poules" EntityType="Self.Poule" />
+    <AssociationSet Name="FK__Categorie__ID_Co__0D44F85C" Association="Self.FK__Categorie__ID_Co__0D44F85C">
+      <End Role="Competitions" EntitySet="Competitions" />
+      <End Role="Categories" EntitySet="Categories" />
+    </AssociationSet>
     <AssociationSet Name="FK__Combattan__ID_Ca__04E4BC85" Association="Self.FK__Combattan__ID_Ca__04E4BC85">
       <End Role="Categories" EntitySet="Categories" />
       <End Role="Combattants" EntitySet="Combattants" />
@@ -287,29 +340,33 @@
       <End Role="Categories" EntitySet="Categories" />
       <End Role="Combats" EntitySet="Combats" />
     </AssociationSet>
+    <AssociationSet Name="FK__Clubs__ID_Compet__2CBDA3B5" Association="Self.FK__Clubs__ID_Compet__2CBDA3B5">
+      <End Role="Competitions" EntitySet="Competitions" />
+      <End Role="Clubs" EntitySet="Clubs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Combattan__ID_Cl__1B9317B3" Association="Self.FK__Combattan__ID_Cl__1B9317B3">
+      <End Role="Clubs" EntitySet="Clubs" />
+      <End Role="Combattants" EntitySet="Combattants" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Combats__ID_Comp__0F2D40CE" Association="Self.FK__Combats__ID_Comp__0F2D40CE">
+      <End Role="Competitions" EntitySet="Competitions" />
+      <End Role="Combats" EntitySet="Combats" />
+    </AssociationSet>
     <AssociationSet Name="FK__Competiti__ID_Co__40F9A68C" Association="Self.FK__Competiti__ID_Co__40F9A68C">
       <End Role="Combats" EntitySet="Combats" />
       <End Role="Competition_Detail" EntitySet="Competition_Detail" />
-    </AssociationSet>
-    <AssociationSet Name="FK_ID_Combattant1" Association="Self.FK_ID_Combattant1">
-      <End Role="Combattants" EntitySet="Combattants" />
-      <End Role="Combats" EntitySet="Combats" />
-    </AssociationSet>
-    <AssociationSet Name="FK_ID_Combattant2" Association="Self.FK_ID_Combattant2">
-      <End Role="Combattants" EntitySet="Combattants" />
-      <End Role="Combats" EntitySet="Combats" />
     </AssociationSet>
     <AssociationSet Name="FK_ID_Poule" Association="Self.FK_ID_Poule">
       <End Role="Poules" EntitySet="Poules" />
       <End Role="Combats" EntitySet="Combats" />
     </AssociationSet>
+    <AssociationSet Name="FK__Combattan__ID_Co__0A688BB1" Association="Self.FK__Combattan__ID_Co__0A688BB1">
+      <End Role="Competitions" EntitySet="Competitions" />
+      <End Role="Combattants" EntitySet="Combattants" />
+    </AssociationSet>
     <AssociationSet Name="FK__Combattan__ID_Po__2BFE89A6" Association="Self.FK__Combattan__ID_Po__2BFE89A6">
       <End Role="Poules" EntitySet="Poules" />
       <End Role="Combattants" EntitySet="Combattants" />
-    </AssociationSet>
-    <AssociationSet Name="FK__Competiti__ID_Co__3F115E1A" Association="Self.FK__Competiti__ID_Co__3F115E1A">
-      <End Role="Combattants" EntitySet="Combattants" />
-      <End Role="Competition_Detail" EntitySet="Competition_Detail" />
     </AssociationSet>
     <AssociationSet Name="FK__Competiti__ID_Co__3E1D39E1" Association="Self.FK__Competiti__ID_Co__3E1D39E1">
       <End Role="Competitions" EntitySet="Competitions" />
@@ -318,6 +375,10 @@
     <AssociationSet Name="FK__Competiti__ID_Po__41EDCAC5" Association="Self.FK__Competiti__ID_Po__41EDCAC5">
       <End Role="Poules" EntitySet="Poules" />
       <End Role="Competition_Detail" EntitySet="Competition_Detail" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Poules__ID_Compe__10216507" Association="Self.FK__Poules__ID_Compe__10216507">
+      <End Role="Competitions" EntitySet="Competitions" />
+      <End Role="Poules" EntitySet="Poules" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

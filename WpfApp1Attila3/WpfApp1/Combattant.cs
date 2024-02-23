@@ -14,16 +14,6 @@ namespace WpfApp1
     
     public partial class Combattant
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Combattant()
-        {
-            this.Combats = new HashSet<Combat>();
-            this.Combats1 = new HashSet<Combat>();
-            this.Competition_Detail = new HashSet<Competition_Detail>();
-        }
-    
-        public int ID_Combattant { get; set; }
-        public string Club_Combattant { get; set; }
         public string Nom_Combattant { get; set; }
         public string Prenom_Combattant { get; set; }
         public string Genre_Combattant { get; set; }
@@ -43,14 +33,14 @@ namespace WpfApp1
         public Nullable<int> Penalite_Concede { get; set; }
         public Nullable<int> Sub_Marque { get; set; }
         public Nullable<int> Sub_Concede { get; set; }
+        public int ID_Combattant { get; set; }
+        public Nullable<int> ID_Competition { get; set; }
+        public Nullable<int> ID_Club { get; set; }
+        public string Nom_Club { get; set; }
     
         public virtual Category Category { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Combat> Combats { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Combat> Combats1 { get; set; }
+        public virtual Club Club { get; set; }
+        public virtual Competition Competition { get; set; }
         public virtual Poule Poule { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Competition_Detail> Competition_Detail { get; set; }
     }
 }

@@ -25,7 +25,9 @@ namespace WpfApp1
     
         public int ID_Categorie { get; set; }
         public string Nom_Categorie { get; set; }
+        public Nullable<int> ID_Competition { get; set; }
     
+        public virtual Competition Competition { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Combattant> Combattants { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

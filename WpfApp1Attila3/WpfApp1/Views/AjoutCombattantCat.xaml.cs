@@ -26,7 +26,8 @@ namespace WpfApp1.Views
     /// </summary>
     public partial class AjoutCombattantCat : Window
     {
-        int Id;
+        private int Id_compet;
+        private int Id_cat;
         public ObservableCollection<Combattant> items;
         private ObservableCollection<Combattant> listecombattant;
         private ObservableCollection<Combattant> ListeCombattants;
@@ -35,10 +36,11 @@ namespace WpfApp1.Views
         private Combattant combattant;
         private Competition_JJBEntities context = new Competition_JJBEntities();
 
-        public AjoutCombattantCat(int id)
+        public AjoutCombattantCat(int id_compet, int id_cat)
         {
             InitializeComponent();
-            this.Id = id;
+            this.Id_compet = id_compet;
+            this.Id_cat = id_cat;
             Charger();
 
         }
@@ -51,14 +53,18 @@ namespace WpfApp1.Views
                 ConnexionBD connection1 = new ConnexionBD();
                 string categorie;
                 ListeCombattants = new ObservableCollection<Combattant>();
-                SqlDataReader reader = connection.Select("SELECT * FROM Combattants");
+                SqlDataReader reader = connection.Select("SELECT c.ID_Combattant, c.ID_Categorie, c.ID_Club, c.Nom_Combattant, c.Prenom_Combattant, c.Genre_Combattant, c.Date_Naiss, c.Age, c.Grade, c.Poids, cl.Nom_Club " +
+                                         "FROM Combattants c " +
+                                         "JOIN Clubs cl ON c.ID_Club = cl.ID_Club " +
+                                         "WHERE c.ID_Competition = " + this.Id_compet);
 
                 while (reader.Read())
                 {
                     if (reader["ID_Categorie"].ToString() == "")
                     {
                         string numero = reader["ID_Combattant"].ToString();
-                        string club = reader["Club_Combattant"].ToString();
+                        string Id_Club = reader["ID_Club"].ToString();
+                        string club = reader["Nom_Club"].ToString();
                         string nom = reader["Nom_Combattant"].ToString();
                         string prenom = reader["Prenom_Combattant"].ToString();
                         string genre = reader["Genre_Combattant"].ToString();
@@ -67,7 +73,8 @@ namespace WpfApp1.Views
                         string grade = reader["Grade"].ToString();
                         string poids = reader["Poids"].ToString();
 
-                        ListeCombattants.Add(new Combattant { ID_Combattant = int.Parse(numero), Club_Combattant = club, Nom_Combattant = nom, Prenom_Combattant = prenom, Genre_Combattant = genre, Date_Naiss = DateTime.Parse(date), Age = int.Parse(age), Grade = grade, Poids = double.Parse(poids) });
+
+                        ListeCombattants.Add(new Combattant { ID_Combattant = int.Parse(numero), ID_Club = int.Parse(Id_Club), Nom_Club = club, Nom_Combattant = nom, Prenom_Combattant = prenom, Genre_Combattant = genre, Date_Naiss = DateTime.Parse(date), Age = int.Parse(age), Grade = grade, Poids = double.Parse(poids) });
                     }
 
 
@@ -85,7 +92,7 @@ namespace WpfApp1.Views
                 connection.Close();
 
                 ListeCombattantsDataGrid.ItemsSource = ListeCombattants;
-                listecombattant = ListeCombattants;
+                
             }
             catch (Exception ex)
             {
@@ -159,19 +166,19 @@ namespace WpfApp1.Views
             foreach (var combattant in combattantsSelectionnes)
             {
                 //nouvelleCategorie.Combattants.Add(combattant);
-                combattant.ID_Categorie = this.Id;
+                combattant.ID_Categorie = this.Id_cat;
+                combattant.ID_Competition = this.Id_compet;
                 context.Combattants.Attach(combattant);
                 context.Entry(combattant).State = EntityState.Modified;
-                ListeCombattants.Remove(combattant);
+                
 
             }
-
-
-
+            
             // Ajouter la catégorie à la base de données via Entity Framework
 
 
             context.SaveChanges();
+            Charger();
 
             MessageBox.Show("Ajout avec succès");
             /*}

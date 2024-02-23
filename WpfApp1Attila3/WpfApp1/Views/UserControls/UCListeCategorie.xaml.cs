@@ -22,9 +22,11 @@ namespace WpfApp1.Views.UserControls
     /// </summary>
     public partial class UCListeCategorie : UserControl
     {
-        public UCListeCategorie()
+        private int Id;
+        public UCListeCategorie(int id)
         {
             InitializeComponent();
+            this.Id = id;
             Charger();
         }
 
@@ -32,7 +34,7 @@ namespace WpfApp1.Views.UserControls
         {
             ConnexionBD connection = new ConnexionBD();
             ObservableCollection<Category> ListeCategories = new ObservableCollection<Category>();
-            SqlDataReader reader = connection.Select("SELECT * FROM Categories ");
+            SqlDataReader reader = connection.Select("SELECT * FROM Categories WHERE ID_Competition = " +this.Id);
             while (reader.Read())
             {
                 string id = reader["ID_Categorie"].ToString();
@@ -59,10 +61,13 @@ namespace WpfApp1.Views.UserControls
             ConnexionBD connection = new ConnexionBD();
             ConnexionBD connection2 = new ConnexionBD();
             ConnexionBD connection3 = new ConnexionBD();
+            ConnexionBD connection4 = new ConnexionBD();
             connection2.Update("UPDATE Combattants SET ID_Categorie = NULL WHERE ID_Categorie = " + id);
             connection2.Close();
             connection3.Update("UPDATE Combattants SET ID_Poule = NULL WHERE ID_Categorie = " + id);
             connection3.Close();
+            connection4.Update("UPDATE Poules SET ID_Categorie = NULL WHERE ID_Categorie = " + id);
+            connection4.Close();
             connection.Delete("DELETE FROM Categories WHERE ID_Categorie = " + id);
             connection.Close();
 
@@ -87,17 +92,25 @@ namespace WpfApp1.Views.UserControls
         {
             Category selectedMember = (Category)ListeCategoriesDataGrid.SelectedItem;
             int id = selectedMember.ID_Categorie;
-            Brackets brackets = new Brackets(id);
+            Brackets brackets = new Brackets(this.Id,id);
             brackets.Show();
         }
 
         private void ListeCategoriesDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Category selectedMember = (Category)ListeCategoriesDataGrid.SelectedItem;
-            int id = selectedMember.ID_Categorie;
+            try
+            {
+                Category selectedMember = (Category)ListeCategoriesDataGrid.SelectedItem;
+                int id = selectedMember.ID_Categorie;
 
-            ListeCombattantCat listeCombattantCat = new ListeCombattantCat(id);
-            listeCombattantCat.Show();
+                ListeCombattantCat listeCombattantCat = new ListeCombattantCat(this.Id, id);
+                listeCombattantCat.Show();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
         }
 
         private void Poule_Click(object sender, RoutedEventArgs e)

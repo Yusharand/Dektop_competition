@@ -60,7 +60,7 @@ namespace WpfApp1.Views
 
                 Image img = new Image();
                 img.Source = bitmapImage;
-                imageLogoDash.Fill = new ImageBrush(img.Source);*/
+                imageLogoDash.Fill = new ImageBrush(img.Source);
                 /* BitmapImage imglogo = new BitmapImage(new Uri(logo, UriKind.RelativeOrAbsolute));
                  imageLogoDash.ImageSource = imglogo;*/
 
@@ -220,7 +220,7 @@ namespace WpfApp1.Views
 
         private void ListeCategorie_Click(object sender, RoutedEventArgs e)
         {
-            UCListeCategorie UcListeCategorie = new UCListeCategorie(); //User controle de Liste des Catégories
+            UCListeCategorie UcListeCategorie = new UCListeCategorie(this.Id); //User controle de Liste des Catégories
 
 
             //int cpt = UcListeCombattant.compteurData(0, this.Id);
@@ -280,11 +280,20 @@ namespace WpfApp1.Views
 
         private void BtnListeCombats_Click(object sender, RoutedEventArgs e)
         {
-            UCListeCombat ucListeCombat = new UCListeCombat();
+            UCListeCombat ucListeCombat = new UCListeCombat(this.Id);
             ListeCombat listeCombat = new ListeCombat();
             this.DataContext = listeCombat;
             combattantsDataGrid.Children.Clear();
             combattantsDataGrid.Children.Add(ucListeCombat);
+        }
+
+        private void BtnListeClub_Click(object sender, RoutedEventArgs e)
+        {
+            UCListeClubs uCListeClubs = new UCListeClubs(this.Id);
+            ListeClubs listeClubs = new ListeClubs();
+            this.DataContext = listeClubs;
+            combattantsDataGrid.Children.Clear();
+            combattantsDataGrid.Children.Add(uCListeClubs);
         }
 
         /*private void CombatEnCours_Click(object sender, RoutedEventArgs e)

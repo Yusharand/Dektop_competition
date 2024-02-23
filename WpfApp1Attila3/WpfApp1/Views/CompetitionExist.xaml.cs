@@ -56,13 +56,36 @@ namespace WpfApp1.Views
 
         private void DeleteCat_Click(object sender, RoutedEventArgs e)
         {
-            Competition selectedMember = (Competition)ListesCompetitionDataGrid.SelectedItem;
-            int id = selectedMember.ID_Competition;
+            try
+            {
+                Competition selectedMember = (Competition)ListesCompetitionDataGrid.SelectedItem;
+                int id = selectedMember.ID_Competition;
 
-            ConnexionBD connection = new ConnexionBD();
-            connection.Delete("DELETE FROM Competitions WHERE ID_Competition = " + id);
-            connection.Close();
-            Charger();
+                ConnexionBD connection = new ConnexionBD();
+                ConnexionBD connection1 = new ConnexionBD();
+                ConnexionBD connection2 = new ConnexionBD();
+                ConnexionBD connection3 = new ConnexionBD();
+                ConnexionBD connection4 = new ConnexionBD();
+                ConnexionBD connection5 = new ConnexionBD();
+
+                connection.Delete("DELETE FROM Combats WHERE ID_Competition = " + id);
+                connection1.Delete("DELETE FROM Poules WHERE ID_Competition = " + id);
+                connection2.Delete("DELETE FROM Combattants WHERE ID_Competition = " + id);
+                connection3.Delete("DELETE FROM Clubs WHERE ID_Competition = " + id);
+                connection4.Delete("DELETE FROM Categories WHERE ID_Competition = " + id);
+                connection5.Delete("DELETE FROM Competitions WHERE ID_Competition = " + id);
+                connection.Close();
+                connection1.Close();
+                connection2.Close();
+                connection3.Close();
+                connection4.Close();
+                connection5.Close();
+                Charger();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
 
         }
         private void BtnRetour_Click(object sender, RoutedEventArgs e)
@@ -82,9 +105,9 @@ namespace WpfApp1.Views
                 dashboardCombattant.Show();
                 this.Close();
             }
-            catch
+            catch(Exception ex)
             {
-                MessageBox.Show("Veuillez choisir une compétition!");
+                MessageBox.Show(ex.Message);
             }
         }
     }

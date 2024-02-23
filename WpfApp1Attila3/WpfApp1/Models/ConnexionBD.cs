@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.IO;
 using System.Text;
+using System.Windows;
 
 namespace WpfApp1.Models
 {
@@ -48,9 +49,17 @@ namespace WpfApp1.Models
 
         public void Delete(string requete)
         {
-            Con.Open();
-            SqlCommand command = new SqlCommand(requete, Con);
-            command.ExecuteNonQuery();
+            try
+            {
+                Con.Open();
+                SqlCommand command = new SqlCommand(requete, Con);
+                command.ExecuteNonQuery();
+            }
+            catch(Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+            
             //Con.Close();
         }
 

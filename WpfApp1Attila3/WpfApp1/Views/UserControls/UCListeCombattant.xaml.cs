@@ -91,14 +91,18 @@ namespace WpfApp1.Views.UserControls
                 ConnexionBD connection1 = new ConnexionBD();
                 string categorie;
                 ListeCombattants = new ObservableCollection<Combattant>();
-                SqlDataReader reader = connection.Select("SELECT * FROM Combattants");
+                SqlDataReader reader = connection.Select("SELECT c.ID_Combattant, c.ID_Categorie, c.ID_Club, c.Nom_Combattant, c.Prenom_Combattant, c.Genre_Combattant, c.Date_Naiss, c.Age, c.Grade, c.Poids, cl.Nom_Club " +
+                                         "FROM Combattants c " +
+                                         "JOIN Clubs cl ON c.ID_Club = cl.ID_Club " +
+                                         "WHERE c.ID_Competition = " + this.Id);
 
                 while (reader.Read())
                 {
                     if (reader["ID_Categorie"].ToString() == "")
                     {
                         string numero = reader["ID_Combattant"].ToString();
-                        string club = reader["Club_Combattant"].ToString();
+                        string Id_Club = reader["ID_Club"].ToString();
+                        string club = reader["Nom_Club"].ToString();
                         string nom = reader["Nom_Combattant"].ToString();
                         string prenom = reader["Prenom_Combattant"].ToString();
                         string genre = reader["Genre_Combattant"].ToString();
@@ -106,8 +110,9 @@ namespace WpfApp1.Views.UserControls
                         string age = reader["Age"].ToString();
                         string grade = reader["Grade"].ToString();
                         string poids = reader["Poids"].ToString();
+                        
 
-                        ListeCombattants.Add(new Combattant { ID_Combattant = int.Parse(numero), Club_Combattant = club, Nom_Combattant = nom, Prenom_Combattant = prenom, Genre_Combattant = genre, Date_Naiss = DateTime.Parse(date), Age = int.Parse(age), Grade = grade, Poids = double.Parse(poids) });
+                        ListeCombattants.Add(new Combattant { ID_Combattant = int.Parse(numero), ID_Club = int.Parse(Id_Club), Nom_Club = club, Nom_Combattant = nom, Prenom_Combattant = prenom, Genre_Combattant = genre, Date_Naiss = DateTime.Parse(date), Age = int.Parse(age), Grade = grade, Poids = double.Parse(poids) });
                     }
 
 
@@ -125,7 +130,7 @@ namespace WpfApp1.Views.UserControls
                 connection.Close();
 
                 ListeCombattantsDataGrid.ItemsSource = ListeCombattants;
-                listecombattant = ListeCombattants;
+                
             }
             catch (Exception ex)
             {
@@ -151,8 +156,8 @@ namespace WpfApp1.Views.UserControls
         private void ImportExcelDataToSqlServer(string excelFilePath)
         {
             ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
-            try
-            {
+            /*try
+            {*/
                 string filepath = @"E:\connexion.txt";
                 using (var package = new ExcelPackage(new FileInfo(excelFilePath)))
                 {
@@ -163,13 +168,44 @@ namespace WpfApp1.Views.UserControls
                     using (SqlConnection connection = new SqlConnection(connectionString))
                     {
                         connection.Open();
-                        SqlCommand cmd = new SqlCommand("INSERT INTO Combattants (ID_Combattant, Club_Combattant, Nom_Combattant, Prenom_Combattant, Genre_Combattant, Date_Naiss, Age, Grade, Poids) VALUES (@Colonne1, @Colonne2, @Colonne3, @Colonne4, @Colonne5,@Colonne6, @Colonne7, @Colonne8, @Colonne9)", connection);
-
+                        string club_actuel = "";
+                        
+                        SqlCommand cmd1 = new SqlCommand("INSERT INTO Clubs (Nom_Club, ID_Competition) VALUES (@Colonne2, @Compet)", connection);
                         for (int row = 2; row <= rowCount; row++)
                         {
+                            if(club_actuel != worksheet.Cells[row, 2].Value.ToString())
+                            {
+                                cmd1.Parameters.Clear();
+                                cmd1.Parameters.AddWithValue("@Colonne2", worksheet.Cells[row, 2].Value);
+                                cmd1.Parameters.AddWithValue("@Compet", this.Id);
+
+                                cmd1.ExecuteNonQuery();
+                                club_actuel = worksheet.Cells[row, 2].Value.ToString();
+                            }
+                            row++;    
+                        }
+
+
+
+                    SqlCommand cmd = new SqlCommand("INSERT INTO Combattants (ID_Club, Nom_Combattant, Prenom_Combattant, Genre_Combattant, Date_Naiss, Age, Grade, Poids, ID_Competition) " +
+                                                         "VALUES (@IdClub, @Colonne3, @Colonne4, @Colonne5, @Colonne6, @Colonne7, @Colonne8, @Colonne9, @Compet)", connection);
+                    for (int row = 2; row <= rowCount; row++)
+                        {
+                            string nomClub = worksheet.Cells[row, 2].Value.ToString();
+
+                            // Requête pour obtenir l'id_club correspondant au nom du club
+                            SqlCommand getIdClubCmd = new SqlCommand("SELECT ID_Club FROM Clubs WHERE Nom_Club = @NomClub", connection);
+                            getIdClubCmd.Parameters.AddWithValue("@NomClub", nomClub);
+
+
+                            // Exécuter la commande pour obtenir l'id_club
+                            int idClub = Convert.ToInt32(getIdClubCmd.ExecuteScalar());
+
+                            // Maintenant que vous avez l'id_club, vous pouvez l'utiliser dans votre commande d'insertion
+                            
+
                             cmd.Parameters.Clear();
-                            cmd.Parameters.AddWithValue("@Colonne1", worksheet.Cells[row, 1].Value);
-                            cmd.Parameters.AddWithValue("@Colonne2", worksheet.Cells[row, 2].Value);
+                            cmd.Parameters.AddWithValue("@IdClub", idClub);
                             cmd.Parameters.AddWithValue("@Colonne3", worksheet.Cells[row, 3].Value);
                             cmd.Parameters.AddWithValue("@Colonne4", worksheet.Cells[row, 4].Value);
                             cmd.Parameters.AddWithValue("@Colonne5", worksheet.Cells[row, 5].Value);
@@ -177,7 +213,7 @@ namespace WpfApp1.Views.UserControls
                             cmd.Parameters.AddWithValue("@Colonne7", worksheet.Cells[row, 7].Value);
                             cmd.Parameters.AddWithValue("@Colonne8", worksheet.Cells[row, 8].Value);
                             cmd.Parameters.AddWithValue("@Colonne9", worksheet.Cells[row, 9].Value);
-
+                            cmd.Parameters.AddWithValue("@Compet", this.Id);
 
                             cmd.ExecuteNonQuery();
                         }
@@ -189,16 +225,16 @@ namespace WpfApp1.Views.UserControls
 
                     MessageBox.Show("Données Excel importées avec succès dans la base de données.");
                 }
-            }
+            /*}
             catch (Exception ex)
             {
                 MessageBox.Show("Erreur: " + ex.Message);
-            }
+            }*/
         }
 
         private void ListeCategorie_Click(object sender, RoutedEventArgs e)
         {
-            UCListeCategorie UcListeCategorie = new UCListeCategorie(); //User controle de Liste des Catégories
+            UCListeCategorie UcListeCategorie = new UCListeCategorie(this.Id); //User controle de Liste des Catégories
 
 
             //int cpt = UcListeCombattant.compteurData(0, this.Id);
@@ -241,7 +277,8 @@ namespace WpfApp1.Views.UserControls
                     // Créer une nouvelle catégorie
                     Category nouvelleCategorie = new Category
                     {
-                        Nom_Categorie = nomCategorie
+                        Nom_Categorie = nomCategorie,
+                        ID_Competition = this.Id,
                     };
                     context.Categories.Add(nouvelleCategorie);
 
@@ -252,7 +289,7 @@ namespace WpfApp1.Views.UserControls
                         combattant.ID_Categorie = nouvelleCategorie.ID_Categorie;
                         context.Combattants.Attach(combattant);
                         context.Entry(combattant).State = EntityState.Modified;
-                        ListeCombattants.Remove(combattant);
+                        
 
                     }
 
@@ -262,7 +299,7 @@ namespace WpfApp1.Views.UserControls
 
 
                     context.SaveChanges();
-
+                    Charger();
                     MessageBox.Show("Catégorie créée avec succès!");
                 }
                 else

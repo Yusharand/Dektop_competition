@@ -23,7 +23,6 @@ namespace WpfApp1
     
         public virtual Category Category { get; set; }
         public virtual Combat Combat { get; set; }
-        public virtual Combattant Combattant { get; set; }
         public virtual Competition Competition { get; set; }
         public virtual Poule Poule { get; set; }
     }

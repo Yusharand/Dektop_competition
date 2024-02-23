@@ -26,14 +26,15 @@ namespace WpfApp1.Views
     {
         public UCListeCombattant UCListeC;
         public ObservableCollection<Combattant> ListeCombattantsCat;
-        public int Id;
+        public int Id_compet;
+        public int Id_cat;
         private Competition_JJBEntities context = new Competition_JJBEntities();
 
-        public ListeCombattantCat(int id)
+        public ListeCombattantCat(int id_compet, int id_cat)
         {
             InitializeComponent();
-            this.Id = id;
-
+            this.Id_compet = id_compet;
+            this.Id_cat = id_cat;
             Charger();
         }
 
@@ -41,13 +42,17 @@ namespace WpfApp1.Views
         {
             ConnexionBD connection = new ConnexionBD();
             ListeCombattantsCat = new ObservableCollection<Combattant>();
-            SqlDataReader reader = connection.Select("SELECT * FROM Combattants WHERE ID_Categorie= " + this.Id);
+            SqlDataReader reader = connection.Select("SELECT c.ID_Combattant, c.ID_Categorie, c.ID_Club, c.Nom_Combattant, c.Prenom_Combattant, c.Genre_Combattant, c.Date_Naiss, c.Age, c.Grade, c.Poids, c.ID_Poule, cl.Nom_Club " +
+                                        "FROM Combattants c " +
+                                        "JOIN Clubs cl ON c.ID_Club = cl.ID_Club " +
+                                        "WHERE c.ID_Categorie = " + this.Id_cat);
             while (reader.Read())
             {
                 if(reader["ID_Poule"].ToString() == "")
                 {
                     string numero = reader["ID_Combattant"].ToString();
-                    string club = reader["Club_Combattant"].ToString();
+                    string club = reader["Nom_Club"].ToString();
+                    string id_club = reader["ID_Club"].ToString();
                     string nom = reader["Nom_Combattant"].ToString();
                     string prenom = reader["Prenom_Combattant"].ToString();
                     string genre = reader["Genre_Combattant"].ToString();
@@ -56,7 +61,7 @@ namespace WpfApp1.Views
                     string grade = reader["Grade"].ToString();
                     string poids = reader["Poids"].ToString();
 
-                    ListeCombattantsCat.Add(new Combattant { ID_Combattant = int.Parse(numero), Club_Combattant = club, Nom_Combattant = nom, Prenom_Combattant = prenom, Genre_Combattant = genre, Date_Naiss = DateTime.Parse(date), Age = int.Parse(age), Grade = grade, Poids = double.Parse(poids) });
+                    ListeCombattantsCat.Add(new Combattant { ID_Combattant = int.Parse(numero), Nom_Club = club, ID_Club = int.Parse(id_club), Nom_Combattant = nom, Prenom_Combattant = prenom, Genre_Combattant = genre, Date_Naiss = DateTime.Parse(date), Age = int.Parse(age), Grade = grade, Poids = double.Parse(poids) });
 
                 
                 }
@@ -88,7 +93,7 @@ namespace WpfApp1.Views
                 combattant.ID_Categorie = null;
                 context.Combattants.Attach(combattant);
                 context.Entry(combattant).State = EntityState.Modified;
-                ListeCombattantsCat.Remove(combattant);
+                
 
             }
 
@@ -98,14 +103,14 @@ namespace WpfApp1.Views
 
 
             context.SaveChanges();
-
+            Charger();
         }
 
         
 
         private void AjoutCombattant_Click(object sender, RoutedEventArgs e)
         {
-            AjoutCombattantCat ajoutCombattantCat = new AjoutCombattantCat(this.Id);
+            AjoutCombattantCat ajoutCombattantCat = new AjoutCombattantCat(this.Id_compet, this.Id_cat);
             ajoutCombattantCat.Show();
 
         }
@@ -135,14 +140,16 @@ namespace WpfApp1.Views
                 foreach (var combattant in combattantsSelectionnes)
                 {
                     combattant.ID_Poule = pouleselectionne.ID_Poule;
-                    combattant.ID_Categorie = this.Id;
+                    combattant.ID_Categorie = this.Id_cat;
+                    combattant.ID_Categorie = this.Id_compet;
                     combattant.Index_Poule = index[ind];
                     context.Combattants.Attach(combattant);
                     context.Entry(combattant).State = EntityState.Modified;
-                    ListeCombattantsCat.Remove(combattant);
+                    
                     ind++;
                 }
 
+                
                 List<Combat> combats = new List<Combat>();
                 for (int i = 0; i < combattantsSelectionnes.Count - 1; i++)
                 {
@@ -152,7 +159,8 @@ namespace WpfApp1.Views
                         {
                             // Assigner les propriétés du combat
                             Nom_Combat = $"Combat {combattantsSelectionnes[i].Prenom_Combattant } vs {combattantsSelectionnes[j].Prenom_Combattant}",
-                            ID_Categorie = this.Id,
+                            ID_Categorie = this.Id_cat,
+                            ID_Competition = this.Id_compet,
                             ID_Poule = pouleselectionne.ID_Poule,
                             Points_Combattant1 = 0,
                             Points_Combattant2 = 0,
@@ -162,7 +170,7 @@ namespace WpfApp1.Views
                             Penalites_Combattant2 = 0,
                             ID_Combattant1 = combattantsSelectionnes[i].ID_Combattant,
                             ID_Combattant2 = combattantsSelectionnes[j].ID_Combattant,
-                            Tour_Match = "Tour " + i,
+                            Tour_Match = "Tour " + j,
                             // Vous pouvez également initialiser d'autres propriétés du combat selon vos besoins
                         };
 
@@ -175,7 +183,7 @@ namespace WpfApp1.Views
 
 
                 context.SaveChanges();
-
+                Charger();
                 MessageBox.Show("Poule créée avec succès");
             }
             catch(Exception ex)
@@ -194,14 +202,15 @@ namespace WpfApp1.Views
             foreach (var combattant in combattantsSelectionnes)
             {
                 combattant.ID_Poule = pouleselectionne.ID_Poule;
-                combattant.ID_Categorie = this.Id;
+                combattant.ID_Categorie = this.Id_cat;
+                combattant.ID_Competition = this.Id_compet;
                 combattant.Index_Poule = index[ind];
                 context.Combattants.Attach(combattant);
                 context.Entry(combattant).State = EntityState.Modified;
-                ListeCombattantsCat.Remove(combattant);
                 ind++;
             }
 
+            
             List<Combat> combats = new List<Combat>();
             for (int i = 0; i < combattantsSelectionnes.Count - 1; i++)
             {
@@ -211,7 +220,8 @@ namespace WpfApp1.Views
                     {
                         // Assigner les propriétés du combat
                         Nom_Combat = $"Combat {combattantsSelectionnes[i].Prenom_Combattant } vs {combattantsSelectionnes[j].Prenom_Combattant}",
-                        ID_Categorie = this.Id,
+                        ID_Categorie = this.Id_cat,
+                        ID_Competition = this.Id_compet,
                         ID_Poule = pouleselectionne.ID_Poule,
                         Points_Combattant1 = 0,
                         Points_Combattant2 = 0,
@@ -221,6 +231,7 @@ namespace WpfApp1.Views
                         Penalites_Combattant2 = 0,
                         ID_Combattant1 = combattantsSelectionnes[i].ID_Combattant,
                         ID_Combattant2 = combattantsSelectionnes[j].ID_Combattant,
+                        Tour_Match = "Tour " + j,
                         // Vous pouvez également initialiser d'autres propriétés du combat selon vos besoins
                     };
 
@@ -233,7 +244,7 @@ namespace WpfApp1.Views
 
 
             context.SaveChanges();
-
+            Charger();
             MessageBox.Show("Poule créée avec succès");
         }
     }

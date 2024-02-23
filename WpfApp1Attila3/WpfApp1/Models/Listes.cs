@@ -153,7 +153,21 @@ namespace WpfApp1.Models
         }
     }
 
-    
+    public class ListeClubs
+    {
+        public string Entete { get; set; }
+
+
+        public int id;
+        public int cpt;
+
+        public ListeClubs()
+        {
+            Entete = "Liste des clubs participants";
+
+        }
+    }
+
 
     public class UserAction
     {
@@ -198,6 +212,20 @@ namespace WpfApp1.Models
 
     }
 
+    public class CombattantAvecNomClub
+    {
+        public int ID_Combattant { get; set; }
+        public int ID_Categorie { get; set; }
+        public int ID_Club { get; set; }
+        public string Nom_Combattant { get; set; }
+        public string Prenom_Combattant { get; set; }
+        public string Genre_Combattant { get; set; }
+        public DateTime Date_Naiss { get; set; }
+        public int Age { get; set; }
+        public string Grade { get; set; }
+        public double Poids { get; set; }
+        public string Nom_Club { get; set; } // Ajout du nom du club
+    }
 
     public class AgeRange
     {

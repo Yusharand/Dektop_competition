@@ -6,14 +6,17 @@
         <MappingFragment StoreEntitySet="Categories">
           <ScalarProperty Name="ID_Categorie" ColumnName="ID_Categorie" />
           <ScalarProperty Name="Nom_Categorie" ColumnName="Nom_Categorie" />
+          <ScalarProperty Name="ID_Competition" ColumnName="ID_Competition" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Clubs">
       <EntityTypeMapping TypeName="dbCompet.Club">
         <MappingFragment StoreEntitySet="Clubs">
+          <ScalarProperty Name="ID_Club" ColumnName="ID_Club" />
           <ScalarProperty Name="Nom_Club" ColumnName="Nom_Club" />
           <ScalarProperty Name="Logo_Club" ColumnName="Logo_Club" />
+          <ScalarProperty Name="ID_Competition" ColumnName="ID_Competition" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -35,14 +38,13 @@
           <ScalarProperty Name="ID_Categorie" ColumnName="ID_Categorie" />
           <ScalarProperty Name="ID_Poule" ColumnName="ID_Poule" />
           <ScalarProperty Name="Tour_Match" ColumnName="Tour_Match" />
+          <ScalarProperty Name="ID_Competition" ColumnName="ID_Competition" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Combattants">
       <EntityTypeMapping TypeName="dbCompet.Combattant">
         <MappingFragment StoreEntitySet="Combattants">
-          <ScalarProperty Name="ID_Combattant" ColumnName="ID_Combattant" />
-          <ScalarProperty Name="Club_Combattant" ColumnName="Club_Combattant" />
           <ScalarProperty Name="Nom_Combattant" ColumnName="Nom_Combattant" />
           <ScalarProperty Name="Prenom_Combattant" ColumnName="Prenom_Combattant" />
           <ScalarProperty Name="Genre_Combattant" ColumnName="Genre_Combattant" />
@@ -62,6 +64,10 @@
           <ScalarProperty Name="Penalite_Concede" ColumnName="Penalite_Concede" />
           <ScalarProperty Name="Sub_Marque" ColumnName="Sub_Marque" />
           <ScalarProperty Name="Sub_Concede" ColumnName="Sub_Concede" />
+          <ScalarProperty Name="ID_Combattant" ColumnName="ID_Combattant" />
+          <ScalarProperty Name="ID_Competition" ColumnName="ID_Competition" />
+          <ScalarProperty Name="ID_Club" ColumnName="ID_Club" />
+          <ScalarProperty Name="Nom_Club" ColumnName="Nom_Club" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -100,6 +106,7 @@
           <ScalarProperty Name="ID_Poule" ColumnName="ID_Poule" />
           <ScalarProperty Name="Nom_poule" ColumnName="Nom_poule" />
           <ScalarProperty Name="ID_Categorie" ColumnName="ID_Categorie" />
+          <ScalarProperty Name="ID_Competition" ColumnName="ID_Competition" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

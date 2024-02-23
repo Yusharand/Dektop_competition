@@ -41,7 +41,7 @@
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
 
-                                <Button Style="{StaticResource gridEditButton}">
+                                <Button Style="{StaticResource gridEditButton}" x:Name="PlayMatch" Click="PlayMatch_Click">
                                     <Icon:PackIconMaterial Kind="Play" Style="{StaticResource gridButtonIcon}"/>
                                 </Button>
                                 <Button Style="{StaticResource gridRemoveButton}" Margin="5 0 0 0" x:Name="DeleteMatch" Click="DeleteMatch_Click">

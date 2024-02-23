@@ -15,7 +15,7 @@
         </Border>
         <StackPanel Margin="158,252,174,71" Orientation="Vertical">
             <Button Content="NOUVELLE COMPETITION" Style="{StaticResource removeButton}" Background="#042a63" Height="78" Margin="0,0,255,0" Click="NewCompet_Click" Width="198" HorizontalAlignment="Right"/>
-            <Button Content="CHARGER COMPETTION" Name="finDeMatch" Style="{StaticResource removeButton}" Click="ChargeCompet_Click" Background="#042a63" Height="78" Margin="0,-77,0,0"  Width="198"/>
+            <Button Content="CHARGER COMPETITION" Name="finDeMatch" Style="{StaticResource removeButton}" Click="ChargeCompet_Click" Background="#042a63" Height="78" Margin="0,-77,0,0"  Width="198"/>
 
         </StackPanel>
 
