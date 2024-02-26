@@ -41,9 +41,16 @@ namespace WpfApp1.Models
 
         public void Insert(string requete)
         {
-            Con.Open();
-            SqlCommand command = new SqlCommand(requete, Con);
-            command.ExecuteNonQuery();
+            try
+            {
+                Con.Open();
+                SqlCommand command = new SqlCommand(requete, Con);
+                command.ExecuteNonQuery();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
             //Con.Close();
         }
 

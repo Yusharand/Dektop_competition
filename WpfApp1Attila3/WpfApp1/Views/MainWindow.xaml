@@ -290,7 +290,7 @@
                         <Button Content="FIN DE MATCH" Name="finDeMatch" Style="{StaticResource boutonfin}" Height="78" Width="171"  Click="Button_Click_FinMatch"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
-                        <Button Content="ENREGISTRER" Style="{StaticResource boutonfin}" Height="78" Width="130" />
+                        <Button Content="ENREGISTRER" Style="{StaticResource boutonfin}" x:Name="Save_Match" Click="Save_Match_Click" Height="78" Width="130" />
                         <Button Content="SWITCH" Style="{StaticResource boutonfin}" Height="78" Width="80" Click="Switch_Click" />
                         <Button Content="UNDO" Style="{StaticResource boutonfin}" Height="78" Width="114"  Click="Undo_Click"/>
                     </StackPanel>

@@ -29,13 +29,13 @@ namespace WpfApp1
         public string Nom_Competition { get; set; }
         public string Lieu_Competition { get; set; }
         public Nullable<System.DateTime> Date_Competition { get; set; }
-        public byte[] FondScoreboard_Competition { get; set; }
-        public byte[] Logo_Competition { get; set; }
         public string LieuPese_Competition { get; set; }
         public Nullable<System.DateTime> Date_Pese { get; set; }
         public string Condition_Pese { get; set; }
         public Nullable<int> DroitCombattant { get; set; }
         public Nullable<int> Remboursement { get; set; }
+        public string FondScoreboard_Competition { get; set; }
+        public string Logo_Competition { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Category> Categories { get; set; }

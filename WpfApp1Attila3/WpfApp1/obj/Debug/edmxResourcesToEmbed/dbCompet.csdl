@@ -19,8 +19,8 @@
     </Key>
     <Property Name="ID_Club" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Nom_Club" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Logo_Club" Type="Binary" MaxLength="Max" FixedLength="false" />
     <Property Name="ID_Competition" Type="Int32" />
+    <Property Name="Logo_Club" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Competition" Relationship="Self.FK__Clubs__ID_Compet__2CBDA3B5" FromRole="Clubs" ToRole="Competitions" />
     <NavigationProperty Name="Combattants" Relationship="Self.FK__Combattan__ID_Cl__1B9317B3" FromRole="Clubs" ToRole="Combattants" />
   </EntityType>
@@ -104,13 +104,13 @@
     <Property Name="Nom_Competition" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Lieu_Competition" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Date_Competition" Type="DateTime" Precision="0" />
-    <Property Name="FondScoreboard_Competition" Type="Binary" MaxLength="Max" FixedLength="false" />
-    <Property Name="Logo_Competition" Type="Binary" MaxLength="Max" FixedLength="false" />
     <Property Name="LieuPese_Competition" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Date_Pese" Type="DateTime" Precision="0" />
     <Property Name="Condition_Pese" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="DroitCombattant" Type="Int32" />
     <Property Name="Remboursement" Type="Int32" />
+    <Property Name="FondScoreboard_Competition" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Logo_Competition" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Categories" Relationship="Self.FK__Categorie__ID_Co__0D44F85C" FromRole="Competitions" ToRole="Categories" />
     <NavigationProperty Name="Clubs" Relationship="Self.FK__Clubs__ID_Compet__2CBDA3B5" FromRole="Competitions" ToRole="Clubs" />
     <NavigationProperty Name="Combats" Relationship="Self.FK__Combats__ID_Comp__0F2D40CE" FromRole="Competitions" ToRole="Combats" />

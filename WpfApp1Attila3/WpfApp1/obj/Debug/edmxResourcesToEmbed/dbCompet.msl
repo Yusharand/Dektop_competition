@@ -15,8 +15,8 @@
         <MappingFragment StoreEntitySet="Clubs">
           <ScalarProperty Name="ID_Club" ColumnName="ID_Club" />
           <ScalarProperty Name="Nom_Club" ColumnName="Nom_Club" />
-          <ScalarProperty Name="Logo_Club" ColumnName="Logo_Club" />
           <ScalarProperty Name="ID_Competition" ColumnName="ID_Competition" />
+          <ScalarProperty Name="Logo_Club" ColumnName="Logo_Club" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -90,13 +90,13 @@
           <ScalarProperty Name="Nom_Competition" ColumnName="Nom_Competition" />
           <ScalarProperty Name="Lieu_Competition" ColumnName="Lieu_Competition" />
           <ScalarProperty Name="Date_Competition" ColumnName="Date_Competition" />
-          <ScalarProperty Name="FondScoreboard_Competition" ColumnName="FondScoreboard_Competition" />
-          <ScalarProperty Name="Logo_Competition" ColumnName="Logo_Competition" />
           <ScalarProperty Name="LieuPese_Competition" ColumnName="LieuPese_Competition" />
           <ScalarProperty Name="Date_Pese" ColumnName="Date_Pese" />
           <ScalarProperty Name="Condition_Pese" ColumnName="Condition_Pese" />
           <ScalarProperty Name="DroitCombattant" ColumnName="DroitCombattant" />
           <ScalarProperty Name="Remboursement" ColumnName="Remboursement" />
+          <ScalarProperty Name="FondScoreboard_Competition" ColumnName="FondScoreboard_Competition" />
+          <ScalarProperty Name="Logo_Competition" ColumnName="Logo_Competition" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

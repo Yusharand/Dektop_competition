@@ -97,6 +97,7 @@ namespace WpfApp1.Views
 
         private void BtnValider_Click(object sender, RoutedEventArgs e)
         {
+            
             try
             {
                 Competition selectedMember = (Competition)ListesCompetitionDataGrid.SelectedItem;
@@ -107,6 +108,7 @@ namespace WpfApp1.Views
             }
             catch(Exception ex)
             {
+                
                 MessageBox.Show(ex.Message);
             }
         }

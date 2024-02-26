@@ -14,8 +14,8 @@
     </Key>
     <Property Name="ID_Club" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Nom_Club" Type="nvarchar" MaxLength="50" />
-    <Property Name="Logo_Club" Type="image" />
     <Property Name="ID_Competition" Type="int" />
+    <Property Name="Logo_Club" Type="nvarchar" MaxLength="255" />
   </EntityType>
   <EntityType Name="Combats">
     <Key>
@@ -85,13 +85,13 @@
     <Property Name="Nom_Competition" Type="nvarchar" MaxLength="50" />
     <Property Name="Lieu_Competition" Type="nvarchar" MaxLength="50" />
     <Property Name="Date_Competition" Type="date" />
-    <Property Name="FondScoreboard_Competition" Type="image" />
-    <Property Name="Logo_Competition" Type="image" />
     <Property Name="LieuPese_Competition" Type="nvarchar" MaxLength="50" />
     <Property Name="Date_Pese" Type="date" />
     <Property Name="Condition_Pese" Type="nvarchar" MaxLength="50" />
     <Property Name="DroitCombattant" Type="int" />
     <Property Name="Remboursement" Type="int" />
+    <Property Name="FondScoreboard_Competition" Type="nvarchar" MaxLength="255" />
+    <Property Name="Logo_Competition" Type="nvarchar" MaxLength="255" />
   </EntityType>
   <EntityType Name="Poules">
     <Key>

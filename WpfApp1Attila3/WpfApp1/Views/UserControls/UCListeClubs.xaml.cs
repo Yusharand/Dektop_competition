@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data.SqlClient;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -39,7 +41,7 @@ namespace WpfApp1.Views.UserControls
             while (reader.Read())
             {
                 string nom = reader["Nom_Club"].ToString();
-                //byte[] logo = (byte[])reader["Logo_Club"];
+                string logo = reader["Logo_Club"].ToString();
 
                 if (ListeClubs == null)
                 {
@@ -47,11 +49,53 @@ namespace WpfApp1.Views.UserControls
                 }
                 else
                 {
-                    ListeClubs.Add(new Club { Nom_Club = nom });
+                    ListeClubs.Add(new Club { Nom_Club = nom, Logo_Club = logo});
                 }
             }
             connection.Close();
             ListeClubsDataGrid.ItemsSource = ListeClubs;
+        }
+
+        private void Insert_Logo_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Fichiers image (*.png;*.jpg;*.jpeg)|*.png;*.jpg;*.jpeg|Tous les fichiers|*.*";
+
+            if (openFileDialog.ShowDialog() == true)
+            {
+                // Charger l'image dans le contrôle Image
+                Uri fileUri = new Uri(openFileDialog.FileName);
+                BitmapImage bitmap = new BitmapImage(fileUri);
+                ConnexionBD connexionBD = new ConnexionBD();
+                string requete = "INSERT INTO Clubs(Logo_Club) VALUES ('" + bitmap + "')";
+                connexionBD.Insert(requete);
+                connexionBD.Close();
+                Charger();
+            }
+        }
+
+        public class ImagePathToBitmapConverter : IValueConverter
+        {
+            public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+            {
+                if (value is string imagePath && !string.IsNullOrEmpty(imagePath))
+                {
+                    BitmapImage image = new BitmapImage();
+                    image.BeginInit();
+                    image.CacheOption = BitmapCacheOption.OnLoad;
+                    image.UriSource = new Uri(imagePath, UriKind.RelativeOrAbsolute);
+                    image.EndInit();
+                    return image;
+                }
+                return null;
+            }
+
+            public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+            {
+                throw new NotImplementedException();
+            }
+
+           
         }
     }
 }

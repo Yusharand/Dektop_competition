@@ -1440,6 +1440,11 @@ namespace WpfApp1
             });
         }
 
+        private void Save_Match_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
         /*private void Tb_Minutes_TextChanged(object sender, TextChangedEventArgs e)
         {
             TextBox tb_Minutes_2 = ScoreboardPublic.Instance.txtboxmin();

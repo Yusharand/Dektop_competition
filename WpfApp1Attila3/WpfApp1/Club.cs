@@ -22,8 +22,8 @@ namespace WpfApp1
     
         public int ID_Club { get; set; }
         public string Nom_Club { get; set; }
-        public byte[] Logo_Club { get; set; }
         public Nullable<int> ID_Competition { get; set; }
+        public string Logo_Club { get; set; }
     
         public virtual Competition Competition { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

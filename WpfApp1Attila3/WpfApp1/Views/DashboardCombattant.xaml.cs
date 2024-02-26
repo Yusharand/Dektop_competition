@@ -43,34 +43,48 @@ namespace WpfApp1.Views
             InitializeComponent();
             this.Id = id;
             Information_Click(sender, e);
+            Charger_Information();         
+        }
 
+        public void Charger_Information()
+        {
             ConnexionBD connexionBD = new ConnexionBD();
 
             SqlDataReader reader = connexionBD.Select("SELECT * FROM Competitions WHERE ID_Competition = " + this.Id);
+
             while (reader.Read())
             {
                 string numero = reader["ID_Competition"].ToString();
                 string nom = reader["Nom_Competition"].ToString();
                 string lieu = reader["Lieu_Competition"].ToString();
-                byte[] logo = (byte[])reader["Logo_Competition"];
-                /*BitmapImage bitmapImage = new BitmapImage();
-                bitmapImage.BeginInit();
-                bitmapImage.StreamSource = new MemoryStream(logo);
-                bitmapImage.EndInit();
+                string logo = reader["Logo_Competition"].ToString();
 
-                Image img = new Image();
-                img.Source = bitmapImage;
-                imageLogoDash.Fill = new ImageBrush(img.Source);
-                /* BitmapImage imglogo = new BitmapImage(new Uri(logo, UriKind.RelativeOrAbsolute));
-                 imageLogoDash.ImageSource = imglogo;*/
+                
+                /*
+                if (logo != null)
+                {
+                    BitmapImage bitmapImage = new BitmapImage();
+                    bitmapImage.BeginInit();
+                    bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+                    bitmapImage.StreamSource = new MemoryStream(logo);
+                    bitmapImage.EndInit();
+
+                    Image img = new Image();
+                    img.Source = bitmapImage;
+                    imageLogoDash.Fill = new ImageBrush(img.Source);
+                }*/
+
+                 BitmapImage imglogo = new BitmapImage(new Uri(logo.ToString(), UriKind.RelativeOrAbsolute));
+                 imageLogoDash.Source = imglogo;
+
 
                 nomCompet.Text = nom;
                 lieuCompet.Text = lieu;
 
             }
-
         }
 
+        
 
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {

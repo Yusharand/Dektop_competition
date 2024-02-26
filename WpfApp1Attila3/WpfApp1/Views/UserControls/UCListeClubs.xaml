@@ -7,6 +7,9 @@
              xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <local:ImagePathToBitmapConverter x:Key="ImagePathConverter" />
+    </UserControl.Resources>
     <Grid>
         <DataGrid Style="{DynamicResource DataGridStyle1}" SelectionMode="Extended" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" x:Name="ListeClubsDataGrid"  Margin="0,78,0,59">
             <DataGrid.Columns>
@@ -19,13 +22,18 @@
                 </DataGridCheckBoxColumn>
 
                 <DataGridTextColumn Header="Nom Club" IsReadOnly="True" Width="1*" Binding="{Binding Nom_Club}"/>
-                <DataGridTextColumn Header="Logo Club" IsReadOnly="True" Width="1*" Binding="{Binding Logo_Club}"/>
-
+                <DataGridTemplateColumn Header="Logo Club">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Image Source="{Binding Logo_Club, Converter={StaticResource ImagePathConverter}}" Width="50" Height="50" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
                 <DataGridTemplateColumn Header="Opération" IsReadOnly="True" Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
-                                <Button Style="{StaticResource gridEditButton}" Content="Insérer logo" >
+                                <Button Style="{StaticResource gridEditButton}" x:Name="Insert_Logo" Click="Insert_Logo_Click" Content="Insérer logo" >
                                 </Button>
                             </StackPanel>
                         </DataTemplate>

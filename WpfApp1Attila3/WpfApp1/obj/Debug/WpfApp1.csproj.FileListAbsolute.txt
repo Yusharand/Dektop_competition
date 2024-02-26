@@ -510,3 +510,4 @@ E:\ATTILA\Dektop_competition\WpfApp1Attila3\WpfApp1\obj\Debug\WpfApp1.csproj.Cor
 E:\ATTILA\Dektop_competition\WpfApp1Attila3\WpfApp1\obj\Debug\WpfApp1.csproj.CopyComplete
 E:\ATTILA\Dektop_competition\WpfApp1Attila3\WpfApp1\obj\Debug\Views\UserControls\UCListeClubs.g.cs
 E:\ATTILA\Dektop_competition\WpfApp1Attila3\WpfApp1\obj\Debug\Views\UserControls\UCListeClubs.baml
+E:\ATTILA\Dektop_competition\WpfApp1Attila3\WpfApp1\obj\Debug\GeneratedInternalTypeHelper.g.cs
