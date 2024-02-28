@@ -151,37 +151,122 @@ namespace WpfApp1.Views
 
                 
                 List<Combat> combats = new List<Combat>();
-                for (int i = 0; i < combattantsSelectionnes.Count - 1; i++)
+                if(combattantsSelectionnes.Count <= 2 || combattantsSelectionnes.Count >= 5)
                 {
-                    for (int j = i + 1; j < combattantsSelectionnes.Count; j++)
+                    MessageBox.Show("Veuillez séléctionné 3 ou 4 combattants! ");
+                }
+                else
+                {
+                    if (combattantsSelectionnes.Count == 3)
                     {
-                        Combat combat = new Combat
+                        for (int i = 0; i < combattantsSelectionnes.Count - 1; i++)
                         {
-                            // Assigner les propriétés du combat
-                            Nom_Combat = $"Combat {combattantsSelectionnes[i].Prenom_Combattant } vs {combattantsSelectionnes[j].Prenom_Combattant}",
-                            ID_Categorie = this.Id_cat,
-                            ID_Competition = this.Id_compet,
-                            ID_Poule = pouleselectionne.ID_Poule,
-                            Points_Combattant1 = 0,
-                            Points_Combattant2 = 0,
-                            Avantages_Combattant1 = 0,
-                            Avantages_Combattant2 = 0,
-                            Penalites_Combattant1 = 0,
-                            Penalites_Combattant2 = 0,
-                            ID_Combattant1 = combattantsSelectionnes[i].ID_Combattant,
-                            ID_Combattant2 = combattantsSelectionnes[j].ID_Combattant,
-                            Tour_Match = "Tour " + j,
-                            // Vous pouvez également initialiser d'autres propriétés du combat selon vos besoins
-                        };
+                            for (int j = i + 1; j < combattantsSelectionnes.Count; j++)
+                            {
+                                if (i == combattantsSelectionnes.Count - 2)
+                                {
+                                    Combat combat = new Combat
+                                    {
+                                        // Assigner les propriétés du combat
+                                        Nom_Combat = $"Combat {combattantsSelectionnes[i].Prenom_Combattant } vs {combattantsSelectionnes[j].Prenom_Combattant}",
+                                        ID_Categorie = this.Id_cat,
+                                        ID_Competition = this.Id_compet,
+                                        ID_Poule = pouleselectionne.ID_Poule,
+                                        Points_Combattant1 = 0,
+                                        Points_Combattant2 = 0,
+                                        Avantages_Combattant1 = 0,
+                                        Avantages_Combattant2 = 0,
+                                        Penalites_Combattant1 = 0,
+                                        Penalites_Combattant2 = 0,
+                                        ID_Combattant1 = combattantsSelectionnes[i].ID_Combattant,
+                                        ID_Combattant2 = combattantsSelectionnes[j].ID_Combattant,
+                                        Tour_Match = "Tour " + j + 1,
+                                        // Vous pouvez également initialiser d'autres propriétés du combat selon vos besoins
+                                    };
+                                    combats.Add(combat);
+                                    context.Combats.Attach(combat);
+                                    context.Entry(combat).State = EntityState.Added;
+                                }
+                                else
+                                {
+                                    Combat combat = new Combat
+                                    {
+                                        // Assigner les propriétés du combat
+                                        Nom_Combat = $"Combat {combattantsSelectionnes[i].Prenom_Combattant } vs {combattantsSelectionnes[j].Prenom_Combattant}",
+                                        ID_Categorie = this.Id_cat,
+                                        ID_Competition = this.Id_compet,
+                                        ID_Poule = pouleselectionne.ID_Poule,
+                                        Points_Combattant1 = 0,
+                                        Points_Combattant2 = 0,
+                                        Avantages_Combattant1 = 0,
+                                        Avantages_Combattant2 = 0,
+                                        Penalites_Combattant1 = 0,
+                                        Penalites_Combattant2 = 0,
+                                        ID_Combattant1 = combattantsSelectionnes[i].ID_Combattant,
+                                        ID_Combattant2 = combattantsSelectionnes[j].ID_Combattant,
+                                        Tour_Match = "Tour " + j,
+                                        // Vous pouvez également initialiser d'autres propriétés du combat selon vos besoins
+                                    };
+                                    combats.Add(combat);
+                                    context.Combats.Attach(combat);
+                                    context.Entry(combat).State = EntityState.Added;
+                                }
 
-                        // Ajouter le combat à la liste des combats
-                        combats.Add(combat);
-                        context.Combats.Attach(combat);
-                        context.Entry(combat).State = EntityState.Added;
+
+                                // Ajouter le combat à la liste des combats
+
+                            }
+                        }
+
+
+                        context.SaveChanges();
+                        Charger();
+                        MessageBox.Show("Poule créée avec succès");
+                    }
+
+                    else
+                    {
+                        for (int i = 0; i < combattantsSelectionnes.Count - 1; i++)
+                        {
+                            for (int j = i + 1; j < combattantsSelectionnes.Count; j++)
+                            {
+                                int k = j;
+                                if (i == combattantsSelectionnes.Count - 2)
+                                {
+                                    k = 1;
+                                }
+                                Combat combat = new Combat
+                                {
+                                    // Assigner les propriétés du combat
+                                    Nom_Combat = $"Combat {combattantsSelectionnes[i].Prenom_Combattant } vs {combattantsSelectionnes[j].Prenom_Combattant}",
+                                    ID_Categorie = this.Id_cat,
+                                    ID_Competition = this.Id_compet,
+                                    ID_Poule = pouleselectionne.ID_Poule,
+                                    Points_Combattant1 = 0,
+                                    Points_Combattant2 = 0,
+                                    Avantages_Combattant1 = 0,
+                                    Avantages_Combattant2 = 0,
+                                    Penalites_Combattant1 = 0,
+                                    Penalites_Combattant2 = 0,
+                                    ID_Combattant1 = combattantsSelectionnes[i].ID_Combattant,
+                                    ID_Combattant2 = combattantsSelectionnes[j].ID_Combattant,
+                                    Tour_Match = "Tour " + k,
+                                    // Vous pouvez également initialiser d'autres propriétés du combat selon vos besoins
+                                };
+
+                                // Ajouter le combat à la liste des combats
+                                combats.Add(combat);
+                                context.Combats.Attach(combat);
+                                context.Entry(combat).State = EntityState.Added;
+                            }
+                        }
+                        context.SaveChanges();
+                        Charger();
+                        MessageBox.Show("Poule créée avec succès");
                     }
                 }
-
-
+                
+               
                 context.SaveChanges();
                 Charger();
                 MessageBox.Show("Poule créée avec succès");
@@ -212,33 +297,118 @@ namespace WpfApp1.Views
 
             
             List<Combat> combats = new List<Combat>();
-            for (int i = 0; i < combattantsSelectionnes.Count - 1; i++)
+            if (combattantsSelectionnes.Count <= 2 || combattantsSelectionnes.Count >= 5)
             {
-                for (int j = i + 1; j < combattantsSelectionnes.Count; j++)
+                MessageBox.Show("Veuillez séléctionné 3 ou 4 combattants! ");
+            }
+            else
+            {
+                if (combattantsSelectionnes.Count == 3)
                 {
-                    Combat combat = new Combat
+                    for (int i = 0; i < combattantsSelectionnes.Count - 1; i++)
                     {
-                        // Assigner les propriétés du combat
-                        Nom_Combat = $"Combat {combattantsSelectionnes[i].Prenom_Combattant } vs {combattantsSelectionnes[j].Prenom_Combattant}",
-                        ID_Categorie = this.Id_cat,
-                        ID_Competition = this.Id_compet,
-                        ID_Poule = pouleselectionne.ID_Poule,
-                        Points_Combattant1 = 0,
-                        Points_Combattant2 = 0,
-                        Avantages_Combattant1 = 0,
-                        Avantages_Combattant2 = 0,
-                        Penalites_Combattant1 = 0,
-                        Penalites_Combattant2 = 0,
-                        ID_Combattant1 = combattantsSelectionnes[i].ID_Combattant,
-                        ID_Combattant2 = combattantsSelectionnes[j].ID_Combattant,
-                        Tour_Match = "Tour " + j,
-                        // Vous pouvez également initialiser d'autres propriétés du combat selon vos besoins
-                    };
+                        for (int j = i + 1; j < combattantsSelectionnes.Count; j++)
+                        {
+                            if (i == combattantsSelectionnes.Count - 2)
+                            {
+                                Combat combat = new Combat
+                                {
+                                    // Assigner les propriétés du combat
+                                    Nom_Combat = $"Combat {combattantsSelectionnes[i].Prenom_Combattant } vs {combattantsSelectionnes[j].Prenom_Combattant}",
+                                    ID_Categorie = this.Id_cat,
+                                    ID_Competition = this.Id_compet,
+                                    ID_Poule = pouleselectionne.ID_Poule,
+                                    Points_Combattant1 = 0,
+                                    Points_Combattant2 = 0,
+                                    Avantages_Combattant1 = 0,
+                                    Avantages_Combattant2 = 0,
+                                    Penalites_Combattant1 = 0,
+                                    Penalites_Combattant2 = 0,
+                                    ID_Combattant1 = combattantsSelectionnes[i].ID_Combattant,
+                                    ID_Combattant2 = combattantsSelectionnes[j].ID_Combattant,
+                                    Tour_Match = "Tour " + j + 1,
+                                    // Vous pouvez également initialiser d'autres propriétés du combat selon vos besoins
+                                };
+                                combats.Add(combat);
+                                context.Combats.Attach(combat);
+                                context.Entry(combat).State = EntityState.Added;
+                            }
+                            else
+                            {
+                                Combat combat = new Combat
+                                {
+                                    // Assigner les propriétés du combat
+                                    Nom_Combat = $"Combat {combattantsSelectionnes[i].Prenom_Combattant } vs {combattantsSelectionnes[j].Prenom_Combattant}",
+                                    ID_Categorie = this.Id_cat,
+                                    ID_Competition = this.Id_compet,
+                                    ID_Poule = pouleselectionne.ID_Poule,
+                                    Points_Combattant1 = 0,
+                                    Points_Combattant2 = 0,
+                                    Avantages_Combattant1 = 0,
+                                    Avantages_Combattant2 = 0,
+                                    Penalites_Combattant1 = 0,
+                                    Penalites_Combattant2 = 0,
+                                    ID_Combattant1 = combattantsSelectionnes[i].ID_Combattant,
+                                    ID_Combattant2 = combattantsSelectionnes[j].ID_Combattant,
+                                    Tour_Match = "Tour " + j,
+                                    // Vous pouvez également initialiser d'autres propriétés du combat selon vos besoins
+                                };
+                                combats.Add(combat);
+                                context.Combats.Attach(combat);
+                                context.Entry(combat).State = EntityState.Added;
+                            }
 
-                    // Ajouter le combat à la liste des combats
-                    combats.Add(combat);
-                    context.Combats.Attach(combat);
-                    context.Entry(combat).State = EntityState.Added;
+
+                            // Ajouter le combat à la liste des combats
+
+                        }
+                    }
+
+
+                    context.SaveChanges();
+                    Charger();
+                    MessageBox.Show("Poule créée avec succès");
+                }
+
+                else
+                {
+                    for (int i = 0; i < combattantsSelectionnes.Count - 1; i++)
+                    {
+                        for (int j = i + 1; j < combattantsSelectionnes.Count; j++)
+                        {
+                            int k = j;
+                            if (i == combattantsSelectionnes.Count - 2)
+                            {
+                                k = 1;
+                            }
+                            Combat combat = new Combat
+                            {
+                                // Assigner les propriétés du combat
+                                Nom_Combat = $"Combat {combattantsSelectionnes[i].Prenom_Combattant } vs {combattantsSelectionnes[j].Prenom_Combattant}",
+                                ID_Categorie = this.Id_cat,
+                                ID_Competition = this.Id_compet,
+                                ID_Poule = pouleselectionne.ID_Poule,
+                                Points_Combattant1 = 0,
+                                Points_Combattant2 = 0,
+                                Avantages_Combattant1 = 0,
+                                Avantages_Combattant2 = 0,
+                                Penalites_Combattant1 = 0,
+                                Penalites_Combattant2 = 0,
+                                ID_Combattant1 = combattantsSelectionnes[i].ID_Combattant,
+                                ID_Combattant2 = combattantsSelectionnes[j].ID_Combattant,
+                                Tour_Match = "Tour " + k,
+                                // Vous pouvez également initialiser d'autres propriétés du combat selon vos besoins
+                            };
+
+                            // Ajouter le combat à la liste des combats
+                            combats.Add(combat);
+                            context.Combats.Attach(combat);
+                            context.Entry(combat).State = EntityState.Added;
+                        }
+                    }
+                    context.SaveChanges();
+                    Charger();
+                    MessageBox.Show("Poule créée avec succès");
                 }
             }
 

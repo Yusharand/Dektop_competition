@@ -7,10 +7,8 @@
              xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <UserControl.Resources>
-        <local:ImagePathToBitmapConverter x:Key="ImagePathConverter" />
-    </UserControl.Resources>
-    <Grid>
+    
+        <Grid>
         <DataGrid Style="{DynamicResource DataGridStyle1}" SelectionMode="Extended" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" x:Name="ListeClubsDataGrid"  Margin="0,78,0,59">
             <DataGrid.Columns>
                 <DataGridCheckBoxColumn CanUserResize="False" Width="auto" ElementStyle="{DynamicResource CheckBoxStyle1}">
@@ -25,7 +23,7 @@
                 <DataGridTemplateColumn Header="Logo Club">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Image Source="{Binding Logo_Club, Converter={StaticResource ImagePathConverter}}" Width="50" Height="50" />
+                            <Image  Width="50" Height="50" Source="{Binding LogoClubImage}"  />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

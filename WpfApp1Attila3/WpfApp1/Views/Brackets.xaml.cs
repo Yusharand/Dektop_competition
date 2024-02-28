@@ -191,6 +191,11 @@ namespace WpfApp1.Views
                 {
                     for (int j = i + 1; j < combattantscategorie.Count; j++)
                     {
+                        int k = j;
+                        if (j == combattantscategorie.Count - 1)
+                        {
+                            k = 1;
+                        }
                         Combat combat = new Combat
                         {
                             // Assigner les propriétés du combat
@@ -206,7 +211,7 @@ namespace WpfApp1.Views
                             Penalites_Combattant2 = 0,
                             ID_Combattant1 = combattantscategorie[i].ID_Combattant,
                             ID_Combattant2 = combattantscategorie[j].ID_Combattant,
-                            Tour_Match = "Tour " + j,
+                            Tour_Match = "Tour " + k,
                             // Vous pouvez également initialiser d'autres propriétés du combat selon vos besoins
                         };
 
@@ -259,6 +264,11 @@ namespace WpfApp1.Views
                 {
                     for (int j = i + 1; j < combattantscategorie.Count; j++)
                     {
+                        int k = j;
+                        if(i == combattantscategorie.Count - 2)
+                        {
+                            k = 1;
+                        }
                         Combat combat = new Combat
                         {
                             // Assigner les propriétés du combat
@@ -274,7 +284,7 @@ namespace WpfApp1.Views
                             Penalites_Combattant2 = 0,
                             ID_Combattant1 = combattantscategorie[i].ID_Combattant,
                             ID_Combattant2 = combattantscategorie[j].ID_Combattant,
-                            Tour_Match = "Tour " + j,
+                            Tour_Match = "Tour " + k,
                             // Vous pouvez également initialiser d'autres propriétés du combat selon vos besoins
                         };
 
@@ -327,29 +337,54 @@ namespace WpfApp1.Views
                 {
                     for (int j = i + 1; j < combattantscategorie.Count; j++)
                     {
-                        Combat combat = new Combat
-                        {
-                            // Assigner les propriétés du combat
-                            Nom_Combat = $"Combat {combattantscategorie[i].Prenom_Combattant } vs {combattantscategorie[j].Prenom_Combattant}",
-                            ID_Categorie = this.Id_cat,
-                            ID_Competition = this.Id_compet,
-                            ID_Poule = pouleselectionne.ID_Poule,
-                            Points_Combattant1 = 0,
-                            Points_Combattant2 = 0,
-                            Avantages_Combattant1 = 0,
-                            Avantages_Combattant2 = 0,
-                            Penalites_Combattant1 = 0,
-                            Penalites_Combattant2 = 0,
-                            ID_Combattant1 = combattantscategorie[i].ID_Combattant,
-                            ID_Combattant2 = combattantscategorie[j].ID_Combattant,
-                            Tour_Match = "Tour " + j,
-                            // Vous pouvez également initialiser d'autres propriétés du combat selon vos besoins
-                        };
-
-                        // Ajouter le combat à la liste des combats
-                        combats.Add(combat);
-                        context.Combats.Attach(combat);
-                        context.Entry(combat).State = EntityState.Added;
+                        if (i == combattantscategorie.Count - 2)
+                                {
+                                    Combat combat = new Combat
+                                    {
+                                        // Assigner les propriétés du combat
+                                        Nom_Combat = $"Combat {combattantscategorie[i].Prenom_Combattant } vs {combattantscategorie[j].Prenom_Combattant}",
+                                        ID_Categorie = this.Id_cat,
+                                        ID_Competition = this.Id_compet,
+                                        ID_Poule = pouleselectionne.ID_Poule,
+                                        Points_Combattant1 = 0,
+                                        Points_Combattant2 = 0,
+                                        Avantages_Combattant1 = 0,
+                                        Avantages_Combattant2 = 0,
+                                        Penalites_Combattant1 = 0,
+                                        Penalites_Combattant2 = 0,
+                                        ID_Combattant1 = combattantscategorie[i].ID_Combattant,
+                                        ID_Combattant2 = combattantscategorie[j].ID_Combattant,
+                                        Tour_Match = "Tour " + j + 1,
+                                        // Vous pouvez également initialiser d'autres propriétés du combat selon vos besoins
+                                    };
+                                    combats.Add(combat);
+                                    context.Combats.Attach(combat);
+                                    context.Entry(combat).State = EntityState.Added;
+                                }
+                                else
+                                {
+                                    Combat combat = new Combat
+                                    {
+                                        // Assigner les propriétés du combat
+                                        Nom_Combat = $"Combat {combattantscategorie[i].Prenom_Combattant } vs {combattantscategorie[j].Prenom_Combattant}",
+                                        ID_Categorie = this.Id_cat,
+                                        ID_Competition = this.Id_compet,
+                                        ID_Poule = pouleselectionne.ID_Poule,
+                                        Points_Combattant1 = 0,
+                                        Points_Combattant2 = 0,
+                                        Avantages_Combattant1 = 0,
+                                        Avantages_Combattant2 = 0,
+                                        Penalites_Combattant1 = 0,
+                                        Penalites_Combattant2 = 0,
+                                        ID_Combattant1 = combattantscategorie[i].ID_Combattant,
+                                        ID_Combattant2 = combattantscategorie[j].ID_Combattant,
+                                        Tour_Match = "Tour " + j,
+                                        // Vous pouvez également initialiser d'autres propriétés du combat selon vos besoins
+                                    };
+                                    combats.Add(combat);
+                                    context.Combats.Attach(combat);
+                                    context.Entry(combat).State = EntityState.Added;
+                                }
                     }
                 }
 

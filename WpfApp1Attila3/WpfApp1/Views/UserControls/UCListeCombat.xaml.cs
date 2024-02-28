@@ -77,7 +77,7 @@ namespace WpfApp1.Views.UserControls
                     var combattant2 = context.Combattants.FirstOrDefault(c => c.ID_Combattant == combat.ID_Combattant2);
                     string nom2 = combattant2 != null ? combattant2.Nom_Combattant : "";
                     string prenom2 = combattant2 != null ? combattant2.Prenom_Combattant : "";
-                    string club2 = combattant1 != null ? combattant1.Club?.Nom_Club : "";
+                    string club2 = combattant1 != null ? combattant2.Club?.Nom_Club : "";
                     string point2 = combat.Points_Combattant2.ToString();
                     // Ajoutez les informations sur le combat à la liste
                     listeCombatInfo.Add(new CombatInfo
@@ -130,13 +130,18 @@ namespace WpfApp1.Views.UserControls
             string prenom2 = combattant2.Prenom_Combattant;
             string club1 = combattant1.Club?.Nom_Club;
             string club2 = combattant2.Club?.Nom_Club;
+            string logoclub1 = combattant1.Club?.Logo_Club;
+            string logoclub2 = combattant2.Club?.Logo_Club;
             string tour = combat.Tour_Match;
             string categorie = combat.Category?.Nom_Categorie;
-            string fondscoreboard = competition.FondScoreboard_Competition.ToString();
-            MainWindow mainWindow = new MainWindow();
+            string fondscoreboard = competition.FondScoreboard_Competition;
+            MainWindow mainWindow = new MainWindow(this.Id);
+            ScoreboardPublic scoreboardPublic = new ScoreboardPublic(this.Id);
             DashboardCombattant dashboardCombattant = new DashboardCombattant(this.Id);
-            mainWindow.Load_Data(nom1, nom2, prenom1, prenom2, club1, club2, tour, categorie, fondscoreboard);
+            mainWindow.Load_Data(nom1, nom2, prenom1, prenom2, club1, club2, logoclub1, logoclub2, tour, categorie, fondscoreboard);
+            scoreboardPublic .Load_Data(nom1, nom2, prenom1, prenom2, club1, club2, logoclub1, logoclub2, tour, categorie, fondscoreboard);
             mainWindow.Show();
+            scoreboardPublic.Show();
             dashboardCombattant.Close();
         }
     }

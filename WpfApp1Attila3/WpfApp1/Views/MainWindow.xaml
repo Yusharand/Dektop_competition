@@ -313,7 +313,7 @@
                                     <ColumnDefinition Width="2*"/>
                                 </Grid.ColumnDefinitions>
                                 <Viewbox>
-                                    <TextBox Height="132" BorderThickness="0" Focusable="True" IsEnabled="True" Background="Transparent" Text="00" FontWeight="Bold" TextAlignment="Right" Foreground="White"  Name="tb_Minutes" FontSize="90"  Width="143" />
+                                    <TextBox Height="132" BorderThickness="0" Focusable="True" IsEnabled="True" Background="Transparent" Text="05" FontWeight="Bold" TextAlignment="Right" Foreground="White"  Name="tb_Minutes" FontSize="90"  Width="143" />
                                 </Viewbox>
                                 <Viewbox Grid.Column="1" HorizontalAlignment="Center" Height="134" VerticalAlignment="Center" Width="30">
                                     <TextBlock Height="146" Text=":" TextAlignment="Center" FontSize="95" Foreground="white" Name="tb_separator" TextWrapping="Wrap" Width="32"/>

@@ -47,7 +47,7 @@ namespace WpfApp1.Models
                 SqlCommand command = new SqlCommand(requete, Con);
                 command.ExecuteNonQuery();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -96,6 +96,10 @@ namespace WpfApp1.Models
         public void Close()
         {
             Con.Close();
+        }
+        public void Open()
+        {
+            Con.Open();
         }
     }
 }

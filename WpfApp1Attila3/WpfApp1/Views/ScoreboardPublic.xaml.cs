@@ -43,10 +43,10 @@ namespace WpfApp1.Views
         bool play2 = true;
         bool active = false;
         private string imagefndPath;
+        public int Id;
 
 
-
-        public ScoreboardPublic()
+        public ScoreboardPublic(int id)
         {
             InitializeComponent();
 
@@ -142,6 +142,24 @@ namespace WpfApp1.Views
                 actions[lastIndex](); // Exécute l'action d'annulation
                 actions.RemoveAt(lastIndex); // Supprime l'action de la liste
             }
+        }
+
+        public void Load_Data(string nom1, string nom2, string prenom1, string prenom2, string club1, string club2, string logoclub1, string logoclub2, string tour, string categorie, string fondscoreboard)
+        {
+            textblockNom1.Text = nom1;
+            textblockNom2.Text = nom2;
+            textblockPrenom1.Text = prenom1;
+            textblockPrenom2.Text = prenom2;
+            textblockClub1.Text = club1;
+            textblockClub2.Text = club2;
+            BitmapImage imgclub1 = new BitmapImage(new Uri(logoclub1, UriKind.RelativeOrAbsolute));
+            imageclub1.Source = imgclub1;
+            BitmapImage imgclub2 = new BitmapImage(new Uri(logoclub2, UriKind.RelativeOrAbsolute));
+            imageclub2.Source = imgclub2;
+            tb_Phase.Text = tour;
+            tb_Categorie.Text = categorie;
+            BitmapImage imgfond = new BitmapImage(new Uri(fondscoreboard, UriKind.RelativeOrAbsolute));
+            imgfnd.Source = imgfond;
         }
 
         public void SetImage(string textPath1, string imagePath1, string textPath2, string imagePath2, string selectedImagePath, string textPath3, string imagePath3, string textPath4, string imagePath4, string Nom1, string Prenom1, string Nom2, string Prenom2, string Couleur1, string Couleur2, string MinuteC, string PhaseC, string CategorieC)

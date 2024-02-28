@@ -256,7 +256,7 @@ namespace WpfApp1.Views
                     string prenom1 = textBoxPrenom1.SelectedItem.ToString();
                     string nom2 = textBoxNom2.SelectedItem.ToString();
                     string prenom2 = textBoxPrenom2.SelectedItem.ToString();
-                    MainWindow mainwindow = new MainWindow();
+                   /* MainWindow mainwindow = new MainWindow();
                     Application.Current.MainWindow = mainwindow;
                     mainwindow.SetImage(textPath1, imagePath1, textPath2, imagePath2, selectedImagePath, textPath3, imagePath3, textPath4, imagePath4, nom1, prenom1, nom2, prenom2, couleur1, couleur2, minuteC, phaseC, categorieC);
                     mainwindow.Show();
@@ -264,7 +264,7 @@ namespace WpfApp1.Views
                     ScoreboardPublic scoreboardPublic = new ScoreboardPublic();
                     Application.Current.MainWindow = scoreboardPublic;
                     scoreboardPublic.SetImage(textPath1, imagePath1, textPath2, imagePath2, selectedImagePath, textPath3, imagePath3, textPath4, imagePath4, nom1, prenom1, nom2, prenom2, couleur1, couleur2, minuteC, phaseC, categorieC);
-                    scoreboardPublic.Show();
+                    scoreboardPublic.Show();*/
 
                     this.Close();
 

@@ -95,14 +95,14 @@ namespace WpfApp1
         public event EventHandler RetourFormClicked;
         public event EventHandler UndoClicked;
 
+        public int Id;
 
 
 
-
-        public MainWindow()
+        public MainWindow(int id)
         {
             InitializeComponent();
-
+            this.Id = id;
 
 
             btn_Start.PreviewKeyDown += Windows_Keydown;
@@ -190,7 +190,7 @@ namespace WpfApp1
         string phaseC;
         string categorieC;
 
-        public void Load_Data(string nom1, string nom2, string prenom1, string prenom2, string club1, string club2, string tour, string categorie, string fondscoreboard)
+        public void Load_Data(string nom1, string nom2, string prenom1, string prenom2, string club1, string club2, string logoclub1, string logoclub2, string tour, string categorie, string fondscoreboard)
         {
             textblockNom1.Text = nom1;
             textblockNom2.Text = nom2;
@@ -198,6 +198,10 @@ namespace WpfApp1
             textblockPrenom2.Text = prenom2;
             textblockClub1.Text = club1;
             textblockClub2.Text = club2;
+            BitmapImage imgclub1 = new BitmapImage(new Uri(logoclub1, UriKind.RelativeOrAbsolute));
+            imageclub1.Source = imgclub1;
+            BitmapImage imgclub2 = new BitmapImage(new Uri(logoclub2, UriKind.RelativeOrAbsolute));
+            imageclub2.Source = imgclub2;
             tb_Phase.Text = tour;
             tb_Categorie.Text = categorie;
             BitmapImage imgfond = new BitmapImage(new Uri(fondscoreboard, UriKind.RelativeOrAbsolute));
@@ -1557,9 +1561,9 @@ namespace WpfApp1
             RetourFormClicked?.Invoke(this, EventArgs.Empty);
 
 
-            Formulaire form = new Formulaire();
-            Application.Current.MainWindow = form;
-            form.Show();
+            DashboardCombattant dashboardCombattant = new DashboardCombattant(this.Id);
+            Application.Current.MainWindow = dashboardCombattant;
+            dashboardCombattant.Show();
             this.Close();
         }
 

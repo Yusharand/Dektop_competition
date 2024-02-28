@@ -17,6 +17,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WpfApp1.Models;
+using WpfApp1.Views.UserControls;  
 
 namespace WpfApp1.Views.UserControls
 {
@@ -58,23 +59,34 @@ namespace WpfApp1.Views.UserControls
 
         private void Insert_Logo_Click(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Fichiers image (*.png;*.jpg;*.jpeg)|*.png;*.jpg;*.jpeg|Tous les fichiers|*.*";
-
-            if (openFileDialog.ShowDialog() == true)
+            try
             {
-                // Charger l'image dans le contrôle Image
-                Uri fileUri = new Uri(openFileDialog.FileName);
-                BitmapImage bitmap = new BitmapImage(fileUri);
-                ConnexionBD connexionBD = new ConnexionBD();
-                string requete = "INSERT INTO Clubs(Logo_Club) VALUES ('" + bitmap + "')";
-                connexionBD.Insert(requete);
-                connexionBD.Close();
-                Charger();
+                Club selectedClub = (Club)ListeClubsDataGrid.SelectedItem;
+                string nom = selectedClub.Nom_Club;
+                OpenFileDialog openFileDialog = new OpenFileDialog();
+                openFileDialog.Filter = "Fichiers image (*.png;*.jpg;*.jpeg)|*.png;*.jpg;*.jpeg|Tous les fichiers|*.*";
+
+                if (openFileDialog.ShowDialog() == true)
+                {
+                    // Charger l'image dans le contrôle Image
+                    string imagePath = openFileDialog.FileName;
+                    ConnexionBD connexionBD = new ConnexionBD();
+                    string requete = "UPDATE Clubs SET Logo_Club = '" + imagePath + "' WHERE Nom_Club = '" + nom + "'";
+
+
+                    connexionBD.Update(requete);
+                    connexionBD.Close();
+                    Charger();
+                }
+            MessageBox.Show("Logo inséré!");
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
-        public class ImagePathToBitmapConverter : IValueConverter
+        /*public class ImagePathToBitmapConverter : IValueConverter
         {
             public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
             {
@@ -96,6 +108,25 @@ namespace WpfApp1.Views.UserControls
             }
 
            
+        }*/
+        public class ImagePathToBitmapConverter : IValueConverter
+        {
+            public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+            {
+                string imagePath = value as string;
+                if (!string.IsNullOrEmpty(imagePath))
+                {
+                    return new BitmapImage(new Uri(imagePath));
+                }
+                return null;
+            }
+
+            public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+            {
+                throw new NotImplementedException();
+            }
         }
+
+        
     }
 }
