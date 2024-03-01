@@ -127,6 +127,9 @@ namespace WpfApp1.Views.UserControls
             }
         }
 
-        
+        private void Delete_Logo_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

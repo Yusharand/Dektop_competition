@@ -46,84 +46,13 @@
                     <TextBlock HorizontalAlignment="Left" Height="52" x:Name="selectedTextBlock1" Margin="9,9,0,0" Grid.RowSpan="2" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="100"/>
                     <Image HorizontalAlignment="Left" x:Name="selectedImage1" Height="52" Margin="452,9,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="68"/>
                     <Label Content="Nom" FontSize="16" Margin="140,27,300,61" Grid.RowSpan="2" Grid.Row="1"/>
-                    <ComboBox Margin="142,58,93,31" Text="" x:Name="textBoxNom1" FontSize="16"  Grid.Row="1"  Grid.RowSpan="2" IsEditable="True"  />
+                    <TextBox Margin="142,58,93,31" Text="" x:Name="textBoxNom1" FontSize="16"  Grid.Row="1"  Grid.RowSpan="2" />
                     <Label Content="Prénom" FontSize="16" Margin="143,60,297,27" Grid.Row="2" Grid.RowSpan="2"/>
-                    <ComboBox Text="" x:Name="textBoxPrenom1" Margin="142,41,92,38" Grid.Row="3" FontSize="16" IsEditable="True" SelectionChanged="TextBoxPrenom1_SelectionChanged"/>
+                    <TextBox Text="" x:Name="textBoxPrenom1" Margin="142,41,92,38" Grid.Row="3" FontSize="16" />
                     <Label Content="Club" FontSize="16" Margin="145,108,294,76" Grid.Row="3" Grid.RowSpan="2"/>
-                    <ComboBox Text="" x:Name="textBoxClub1" Margin="140,27,94,149" Grid.Row="4" FontSize="16">
-                        <ComboBoxItem IsSelected="True">
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="ATTILA"/>
-                                <Image Source="/Images/1691418727718.jpg" Width="20" Height="20"/>
-                            </StackPanel>
-                        </ComboBoxItem>
-                        <ComboBoxItem>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="CHECKMAT"/>
-                                <Image Source="/Images/1691418639629.jpg" Width="20" Height="20"/>
-                            </StackPanel>
-                        </ComboBoxItem>
-                        <ComboBoxItem>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="ONE TRIBE"/>
-                                <Image Source="/Images/1691418950430.jpg" Width="20" Height="20"/>
-                            </StackPanel>
-                        </ComboBoxItem>
-                        <ComboBoxItem>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="SOUTHSIDE"/>
-                                <Image Source="/Images/1691418924587.jpg" Width="20" Height="20"/>
-                            </StackPanel>
-                        </ComboBoxItem>
-                        <ComboBoxItem>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="EXCELSIOR BUDO"/>
-                                <Image Source="/Images/1697039318276.jpg" Width="20" Height="20"/>
-                            </StackPanel>
-                        </ComboBoxItem>
-                        <ComboBoxItem>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="FREE FIGHT MADA"/>
-                                <Image Source="/Images/received_2030279757355962.jpeg" Width="20" Height="20"/>
-                            </StackPanel>
-                        </ComboBoxItem>
-                        <ComboBoxItem>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="GUERREROS"/>
-                                <Image Source="/Images/1692807291608.jpg" Width="20" Height="20"/>
-                            </StackPanel>
-                        </ComboBoxItem>
-                        <ComboBoxItem>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="BASE"/>
-                                <Image Source="/Images/1696943391037.jpg" Width="20" Height="20"/>
-                            </StackPanel>
-                        </ComboBoxItem>
-                        <ComboBoxItem>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="BJJ ESCA"/>
-                                <Image Source="/Images/1692807445212.jpg" Width="20" Height="20"/>
-                            </StackPanel>
-                        </ComboBoxItem>
-                        <ComboBoxItem>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="COMBAT CLUB 101"/>
-                                <Image Source="/Images/1692807466643.jpg" Width="20" Height="20"/>
-                            </StackPanel>
-                        </ComboBoxItem>
-                        <ComboBoxItem>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="ESTRELLA"/>
-                                <Image Source="/Images/1692807501097.jpg" Width="20" Height="20"/>
-                            </StackPanel>
-                        </ComboBoxItem>
-                        <ComboBoxItem>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="YBI"/>
-                                <Image Source="/Images/1692807522011.jpg" Width="20" Height="20"/>
-                            </StackPanel>
-                        </ComboBoxItem>
-                    </ComboBox>
+                    <TextBox Text="" x:Name="textBoxClub1" Margin="140,27,94,149" Grid.Row="4" FontSize="16">
+                        
+                    </TextBox>
                     <Label Content="Pays" FontSize="16" Margin="145,105,294,10" Grid.Row="4" Grid.RowSpan="2"/>
                     <TextBlock HorizontalAlignment="Left" x:Name="selectedTextBlock3" Height="49" Margin="451,134,0,0" Grid.Row="4" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="48"/>
                     <Image HorizontalAlignment="Left" x:Name="selectedImage3" Height="36" Margin="40,139,0,0" Grid.Row="4" VerticalAlignment="Top" Width="49"/>
@@ -154,84 +83,13 @@
                     <TextBlock Grid.Column="1" HorizontalAlignment="Left" x:Name="selectedTextBlock2" Height="52" Margin="38,9,0,0" Grid.RowSpan="2" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="78"/>
                     <Image Grid.Column="1" HorizontalAlignment="Left" x:Name="selectedImage2" Height="52" Margin="448,9,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="72"/>
                     <Label Content="Nom" Grid.Column="1" FontSize="16" Margin="132,30,308,58" Grid.Row="1" Grid.RowSpan="2"/>
-                    <ComboBox Grid.Column="1" Text="" x:Name="textBoxNom2" FontSize="16" Margin="132,60,103,31" Grid.Row="1"  Grid.RowSpan="2"  IsEditable="True"/>
+                    <TextBox Grid.Column="1" Text="" x:Name="textBoxNom2" FontSize="16" Margin="132,60,103,31" Grid.Row="1"  Grid.RowSpan="2"  />
                     <Label Content="Prénom" Grid.Column="1" FontSize="16" Margin="134,16,306,22" Grid.Row="3"/>
-                    <ComboBox Grid.Column="1" Text="" x:Name="textBoxPrenom2" FontSize="16" Margin="132,45,104,34" Grid.Row="3" IsEditable="True" SelectionChanged="TextBoxPrenom2_SelectionChanged"/>
+                    <TextBox Grid.Column="1" Text="" x:Name="textBoxPrenom2" FontSize="16" Margin="132,45,104,34" Grid.Row="3" />
                     <Label Content="Club" FontSize="16" Grid.Column="1" Margin="136,109,305,80" Grid.Row="3" Grid.RowSpan="2"/>
-                    <ComboBox Text="" x:Name="textBoxClub2" Margin="132,29,104,149" Grid.Column="1" Grid.Row="4" FontSize="16">
-                        <ComboBoxItem IsSelected="True">
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="ATTILA"/>
-                                <Image Source="/Images/1691418727718.jpg" Width="20" Height="20"/>
-                            </StackPanel>
-                        </ComboBoxItem>
-                        <ComboBoxItem>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="CHECKMAT"/>
-                                <Image Source="/Images/1691418639629.jpg" Width="20" Height="20"/>
-                            </StackPanel>
-                        </ComboBoxItem>
-                        <ComboBoxItem>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="ONE TRIBE"/>
-                                <Image Source="/Images/1691418950430.jpg" Width="20" Height="20"/>
-                            </StackPanel>
-                        </ComboBoxItem>
-                        <ComboBoxItem>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="SOUTHSIDE"/>
-                                <Image Source="/Images/1691418924587.jpg" Width="20" Height="20"/>
-                            </StackPanel>
-                        </ComboBoxItem>
-                        <ComboBoxItem>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="EXCELSIOR BUDO"/>
-                                <Image Source="/Images/1697039318276.jpg" Width="20" Height="20"/>
-                            </StackPanel>
-                        </ComboBoxItem>
-                        <ComboBoxItem>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="FREE FIGHT MADA"/>
-                                <Image Source="/Images/received_2030279757355962.jpeg" Width="20" Height="20"/>
-                            </StackPanel>
-                        </ComboBoxItem>
-                        <ComboBoxItem>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="GUERREROS"/>
-                                <Image Source="/Images/1692807291608.jpg" Width="20" Height="20"/>
-                            </StackPanel>
-                        </ComboBoxItem>
-                        <ComboBoxItem>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="BASE"/>
-                                <Image Source="/Images/1696943391037.jpg" Width="20" Height="20"/>
-                            </StackPanel>
-                        </ComboBoxItem>
-                        <ComboBoxItem>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="BJJ ESCA"/>
-                                <Image Source="/Images/1692807445212.jpg" Width="20" Height="20"/>
-                            </StackPanel>
-                        </ComboBoxItem>
-                        <ComboBoxItem>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="COMBAT CLUB 101"/>
-                                <Image Source="/Images/1692807466643.jpg" Width="20" Height="20"/>
-                            </StackPanel>
-                        </ComboBoxItem>
-                        <ComboBoxItem>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="ESTRELLA"/>
-                                <Image Source="/Images/1692807501097.jpg" Width="20" Height="20"/>
-                            </StackPanel>
-                        </ComboBoxItem>
-                        <ComboBoxItem>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="YBI"/>
-                                <Image Source="/Images/1692807522011.jpg" Width="20" Height="20"/>
-                            </StackPanel>
-                        </ComboBoxItem>
-                    </ComboBox>
+                    <TextBox Text="" x:Name="textBoxClub2" Margin="132,29,104,149" Grid.Column="1" Grid.Row="4" FontSize="16">
+                        
+                    </TextBox>
                     <Label Content="Pays" FontSize="16" Grid.Column="1" Margin="134,105,306,64" Grid.Row="4" Grid.RowSpan="3"/>
                     <TextBlock Grid.Column="1" HorizontalAlignment="Left" x:Name="selectedTextBlock4" Height="44" Margin="52,139,0,0" Grid.Row="4" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="46"/>
                     <ComboBox Text="" x:Name="textBoxPays2" Grid.Column="1" FontSize="16" Margin="132,134,104,30" Grid.Row="4">
@@ -277,33 +135,11 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <Image x:Name="selectedImage5" HorizontalAlignment="Left" Height="74" Margin="25,38,0,0" Grid.RowSpan="2" Grid.Row="2" VerticalAlignment="Top" Width="66"/>
-                    <Label Content="Nom compétition" FontSize="16" Margin="140,37,240,17" Grid.Row="2"/>
-                    <ComboBox Margin="140,85,96,141" x:Name="cbx2" FontSize="16"  Grid.Row="2" RenderTransformOrigin="0.5,0.5" Grid.RowSpan="2">
-                        <ComboBoxItem>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="GOM"/>
-                                <Image Source="/Images/received_1021524152525347.jpg" Width="20" Height="20"/>
-                            </StackPanel>
-                        </ComboBoxItem>
-                        <ComboBoxItem IsSelected="True">
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="GT"/>
-                                <Image Source="/Images/1696961211991.jpg" Width="20" Height="20"/>
-                            </StackPanel>
-                        </ComboBoxItem>
-                    </ComboBox>
-                    <Label Content="Phase de Combat" FontSize="16" Margin="130,37,251,17" Grid.Row="2" Grid.Column="1"/>
-                    <ComboBox Margin="132,85,103,141" FontSize="16"  Grid.Row="2" RenderTransformOrigin="0.5,0.5" Grid.Column="1" Grid.RowSpan="2" x:Name="comboboxphase">
-                        <ComboBoxItem IsSelected="True">1ER TOUR</ComboBoxItem>
-                        <ComboBoxItem>2EME TOUR</ComboBoxItem>
-                        <ComboBoxItem>3EME TOUR</ComboBoxItem>
-                        <ComboBoxItem>4EME TOUR</ComboBoxItem>
-                        <ComboBoxItem>QUART DE FINALE</ComboBoxItem>
-                        <ComboBoxItem>DEMI-FINALE</ComboBoxItem>
-                        <ComboBoxItem>FINALE</ComboBoxItem>
-                        <ComboBoxItem>FINALE ALLER</ComboBoxItem>
-                        <ComboBoxItem>FINALE RETOUR</ComboBoxItem>
-                    </ComboBox>
+                    
+                    <Label Content="Phase de Combat" FontSize="16" Margin="130,37,251,17" Grid.Row="2" Grid.Column="0"/>
+                    <TextBox Margin="132,85,103,141" FontSize="16"  Grid.Row="2" RenderTransformOrigin="0.5,0.5" Grid.Column="0" Grid.RowSpan="2" x:Name="textBoxphase">
+                        
+                    </TextBox>
                     <Label Content="Minutes" FontSize="16" Margin="143,76,300,43" Grid.Row="3"/>
                     <ComboBox Text=""  Margin="142,115,92,24" Grid.Row="3" FontSize="16" x:Name="comboboxminutes">
                         <ComboBoxItem Content="00" />
@@ -329,8 +165,8 @@
                         <ComboBoxItem Content="20"/>
                     </ComboBox>
 
-                    <Label Content="Catégorie" Foreground="Yellow" FontWeight="ExtraBold" FontSize="16" Height="35" Margin="522,-542,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="94" Grid.ColumnSpan="2"/>
-                    <ComboBox Height="30" FontSize="16" Margin="460,-508,0,0" VerticalAlignment="Top" x:Name="comboboxcategorie" IsEditable="True" DisplayMemberPath="Nom_Categorie" SelectionChanged="Comboboxcategorie_SelectionChanged" HorizontalAlignment="Left" Width="224" Grid.ColumnSpan="2" />
+                    <!--<Label Content="Catégorie" Foreground="Yellow" FontWeight="ExtraBold" FontSize="16" Height="35" Margin="522,-542,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="94" Grid.ColumnSpan="2"/>
+                    <ComboBox Height="30" FontSize="16" Margin="460,-508,0,0" VerticalAlignment="Top" x:Name="comboboxcategorie" IsEditable="True" DisplayMemberPath="Nom_Categorie" SelectionChanged="Comboboxcategorie_SelectionChanged" HorizontalAlignment="Left" Width="224" Grid.ColumnSpan="2" />-->
 
 
 

@@ -20,6 +20,7 @@ using WpfApp1.Views;
 using System.Media;
 using System.ComponentModel;
 
+
 namespace WpfApp1
 {
     /// <summary>
@@ -32,9 +33,10 @@ namespace WpfApp1
         DispatcherTimer timer1 = new DispatcherTimer();
         DispatcherTimer timer2 = new DispatcherTimer();
 
-
+        public Competition_JJBEntities context;
 
         private int minutes, secondes, minutesMed1, secondesMed1, minutesMed2, secondesMed2;
+        public int minute_deb, seconde_deb, minute_fin, seconde_fin;
 
         string tmp1, tmp2, tmp3, tmp4, tmp5, tmp6, tmp7, tmp8;
 
@@ -46,6 +48,10 @@ namespace WpfApp1
         public static RougeFinCombat rougeFinCombat;
         public UserControl UC { get; set; }
 
+        public VPoint vpoint;
+        public VDecision vavantage;
+        public VDisqualification vdisqualification;
+        public VSoumission vsoumission;
         private List<UserAction> userActions = new List<UserAction>();
 
 
@@ -96,14 +102,14 @@ namespace WpfApp1
         public event EventHandler UndoClicked;
 
         public int Id;
+        public int Id_combat;
 
 
-
-        public MainWindow(int id)
+        public MainWindow(int id, int id_combat)
         {
             InitializeComponent();
             this.Id = id;
-
+            this.Id_combat = id_combat;
 
             btn_Start.PreviewKeyDown += Windows_Keydown;
             BleuMed.PreviewKeyDown += Windows_Keydown;
@@ -123,6 +129,8 @@ namespace WpfApp1
             timer2.Tick += new EventHandler(timer2_Tick);
             timer2.Interval = new TimeSpan(0, 0, 1);
 
+            minute_deb = int.Parse(tb_Minutes.Text);
+            seconde_deb = int.Parse(tb_Secondes.Text);
 
             valide = true;
 
@@ -190,7 +198,7 @@ namespace WpfApp1
         string phaseC;
         string categorieC;
 
-        public void Load_Data(string nom1, string nom2, string prenom1, string prenom2, string club1, string club2, string logoclub1, string logoclub2, string tour, string categorie, string fondscoreboard)
+        public void Load_Data(string nom1, string nom2, string prenom1, string prenom2, string club1, string club2, string logoclub1, string logoclub2, string tour, string categorie, string fondscoreboard, string couleur1, string couleur2, string minute)
         {
             textblockNom1.Text = nom1;
             textblockNom2.Text = nom2;
@@ -206,6 +214,11 @@ namespace WpfApp1
             tb_Categorie.Text = categorie;
             BitmapImage imgfond = new BitmapImage(new Uri(fondscoreboard, UriKind.RelativeOrAbsolute));
             imgfnd.Source = imgfond;
+
+            bordercl1.Background = (Brush)new System.Windows.Media.BrushConverter().ConvertFromString(couleur1);
+            bordercl2.Background = (Brush)new System.Windows.Media.BrushConverter().ConvertFromString(couleur2);
+
+            tb_Minutes.Text = minute;
         }
 
         public void SetImage(string textPath1, string imagePath1, string textPath2, string imagePath2, string selectedImagePath, string textPath3, string imagePath3, string textPath4, string imagePath4, string Nom1, string Prenom1, string Nom2, string Prenom2, string Couleur1, string Couleur2, string MinuteC, string PhaseC, string CategorieC)
@@ -485,7 +498,7 @@ namespace WpfApp1
             }
             if ((e.Key == Key.NumPad6))
             {
-                tb_Minutes.Text = "006";
+                tb_Minutes.Text = "06";
                 TextBox tb_Minutes_2 = ScoreboardPublic.Instance.txtboxmin();
                 tb_Minutes_2.Text = tb_Minutes.Text;
             }
@@ -514,6 +527,9 @@ namespace WpfApp1
         private void Button_Click_FinMatch(object sender, RoutedEventArgs e)
         {
             BoutonFinDeMatchClicked?.Invoke(this, EventArgs.Empty);
+            
+            minute_fin = int.Parse(tb_Minutes.Text);
+            seconde_fin = int.Parse(tb_Secondes.Text); 
             if (valide)
             {
                 timer.Stop();
@@ -1446,7 +1462,119 @@ namespace WpfApp1
 
         private void Save_Match_Click(object sender, RoutedEventArgs e)
         {
+            context = new Competition_JJBEntities();
+            var combat = context.Combats.FirstOrDefault(c => c.ID_Combat == this.Id_combat);
+            var combattant1 = context.Combattants.FirstOrDefault(c => c.ID_Combattant == combat.ID_Combattant1);
+            var combattant2 = context.Combattants.FirstOrDefault(c => c.ID_Combattant == combat.ID_Combattant2);
+            combat.Points_Combattant1 = scoreboardData.RougeScore;
+            combat.Points_Combattant2 = scoreboardData.BleuScore;
+            combat.Avantages_Combattant1 = scoreboardData.RougeAvantage;
+            combat.Avantages_Combattant1 = scoreboardData.BleuAvantage;
+            combat.Penalites_Combattant1 = scoreboardData.RougePenalite;
+            combat.Penalites_Combattant2 = scoreboardData.BleuPenalite;
+            combattant1.Points_Marque += combat.Points_Combattant1;
+            combattant1.Points_Concede += combat.Penalites_Combattant2;
+            combattant1.Penalite_Marque += combat.Penalites_Combattant1;
+            combattant1.Penalite_Concede += combat.Penalites_Combattant2;
+            combattant1.Sub_Marque += combat.Sub_Combattant1;
+            combattant1.Sub_Concede += combat.Sub_Combattant2;
+            combattant2.Points_Marque += combat.Points_Combattant2;
+            combattant2.Points_Concede += combat.Penalites_Combattant1;
+            combattant2.Penalite_Marque += combat.Penalites_Combattant2;
+            combattant2.Penalite_Concede += combat.Penalites_Combattant1;
+            combattant2.Sub_Marque += combat.Sub_Combattant2;
+            combattant2.Sub_Concede += combat.Sub_Combattant1;
+            int duree_seconde;
+            int duree_minute = minute_deb - minute_fin;
+            if(seconde_fin != 0)
+            {
+                 duree_seconde = seconde_deb - seconde_fin + 60;
+            }
+            else
+            {
+                 duree_seconde = seconde_deb - seconde_fin;
+            }
 
+            combat.Duree_combat = duree_minute.ToString() + ":" + duree_seconde.ToString();
+            if (EstUserControlDansGrid(vpoint, btnContent1))
+            {
+                combat.Victoire_Combattant1 = "Victoire par points";
+                if(combat.ID_Poule != null)
+                {
+                    combattant1.Pointspoules += 3;
+                }
+                
+            }
+            else if(EstUserControlDansGrid(vpoint, btnContent2))
+            {
+                combat.Victoire_Combattant2 = "Victoire par points";
+                if (combat.ID_Poule != null)
+                {
+                    combattant2.Pointspoules += 3;
+                }
+            }
+            else if (EstUserControlDansGrid(vavantage, btnContent1))
+            {
+                combat.Victoire_Combattant1 = "Victoire par avantage";
+                if (combat.ID_Poule != null)
+                {
+                    combattant1.Pointspoules += 1;
+                }
+            }
+            else if (EstUserControlDansGrid(vavantage, btnContent2))
+            {
+                combat.Victoire_Combattant2 = "Victoire par avantage";
+                if (combat.ID_Poule != null)
+                {
+                    combattant2.Pointspoules += 1;
+                }
+            }
+            else if (EstUserControlDansGrid(vdisqualification, btnContent1))
+            {
+                combat.Victoire_Combattant1 = "Victoire par disqualification";
+                if (combat.ID_Poule != null)
+                {
+                    combattant1.Pointspoules += 5;
+                }
+            }
+            else if (EstUserControlDansGrid(vdisqualification, btnContent2))
+            {
+                combat.Victoire_Combattant2 = "Victoire par disqualification";
+                if (combat.ID_Poule != null)
+                {
+                    combattant2.Pointspoules += 5;
+                }
+            }
+            else if (EstUserControlDansGrid(vsoumission, btnContent1))
+            {
+                combat.Victoire_Combattant1 = "Victoire par soumission";
+                if (combat.ID_Poule != null)
+                {
+                    combattant1.Pointspoules += 5;
+                }
+            }
+            else if (EstUserControlDansGrid(vsoumission, btnContent2))
+            {
+                combat.Victoire_Combattant2 = "Victoire par soumission";
+                if (combat.ID_Poule != null)
+                {
+                    combattant2.Pointspoules += 5;
+                }
+            }
+            context.SaveChanges();
+            MessageBox.Show("Enregistrement des données du match enregistrées avec succès!");
+        }
+
+        private bool EstUserControlDansGrid(UserControl userControl, Grid grid)
+        {
+            foreach (var child in grid.Children)
+            {
+                if (child is UserControl control && control == userControl)
+                {
+                    return true; // Le UserControl est dans le Grid
+                }
+            }
+            return false; // Le UserControl n'est pas dans le Grid
         }
 
         /*private void Tb_Minutes_TextChanged(object sender, TextChangedEventArgs e)

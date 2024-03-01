@@ -42,6 +42,10 @@
           <Property Name="ID_Poule" Type="int" />
           <Property Name="Tour_Match" Type="nvarchar" MaxLength="50" />
           <Property Name="ID_Competition" Type="int" />
+          <Property Name="Sub_Combattant2" Type="int" />
+          <Property Name="Sub_Combattant1" Type="int" />
+          <Property Name="Victoire_Combattant1" Type="nvarchar" MaxLength="100" />
+          <Property Name="Victoire_Combattant2" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="Combattants">
           <Key>
@@ -405,6 +409,10 @@
           <Property Name="ID_Poule" Type="Int32" />
           <Property Name="Tour_Match" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ID_Competition" Type="Int32" />
+          <Property Name="Sub_Combattant2" Type="Int32" />
+          <Property Name="Sub_Combattant1" Type="Int32" />
+          <Property Name="Victoire_Combattant1" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Victoire_Combattant2" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Category" Relationship="Self.FK_ID_Categorie" FromRole="Combats" ToRole="Categories" />
           <NavigationProperty Name="Competition" Relationship="Self.FK__Combats__ID_Comp__0F2D40CE" FromRole="Combats" ToRole="Competitions" />
           <NavigationProperty Name="Competition_Detail" Relationship="Self.FK__Competiti__ID_Co__40F9A68C" FromRole="Combats" ToRole="Competition_Detail" />
@@ -786,6 +794,10 @@
                 <ScalarProperty Name="ID_Poule" ColumnName="ID_Poule" />
                 <ScalarProperty Name="Tour_Match" ColumnName="Tour_Match" />
                 <ScalarProperty Name="ID_Competition" ColumnName="ID_Competition" />
+                <ScalarProperty Name="Sub_Combattant2" ColumnName="Sub_Combattant2" />
+                <ScalarProperty Name="Sub_Combattant1" ColumnName="Sub_Combattant1" />
+                <ScalarProperty Name="Victoire_Combattant1" ColumnName="Victoire_Combattant1" />
+                <ScalarProperty Name="Victoire_Combattant2" ColumnName="Victoire_Combattant2" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

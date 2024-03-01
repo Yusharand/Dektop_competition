@@ -37,6 +37,10 @@
     <Property Name="ID_Poule" Type="int" />
     <Property Name="Tour_Match" Type="nvarchar" MaxLength="50" />
     <Property Name="ID_Competition" Type="int" />
+    <Property Name="Sub_Combattant2" Type="int" />
+    <Property Name="Sub_Combattant1" Type="int" />
+    <Property Name="Victoire_Combattant1" Type="nvarchar" MaxLength="100" />
+    <Property Name="Victoire_Combattant2" Type="nvarchar" MaxLength="100" />
   </EntityType>
   <EntityType Name="Combattants">
     <Key>

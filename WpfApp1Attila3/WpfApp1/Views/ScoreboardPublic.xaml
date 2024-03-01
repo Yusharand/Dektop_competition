@@ -52,10 +52,10 @@
                                 </Viewbox>
                             </Border>
                             <Viewbox Margin="200,11,0,8" HorizontalAlignment="Left" Width="92" Grid.Row="1">
-                                <TextBlock Text="" x:Name="textblockClub3" Style="{StaticResource styleclub}" Height="85" VerticalAlignment="Top" TextWrapping="Wrap"/>
+                                <TextBlock Text="MAD" x:Name="textblockPays1" Style="{StaticResource styleclub}" Height="85" VerticalAlignment="Top" TextWrapping="Wrap"/>
                             </Viewbox>
                             <Viewbox HorizontalAlignment="Left" Height="38" Margin="295,10,0,0" VerticalAlignment="Top" Width="51" Grid.Row="1">
-                                <Image Height="38" Width="51" x:Name="imagepays1"/>
+                                <Image Height="38" Width="51" x:Name="imagepays1" Source="/Images/téléchargement (36).png"/>
                             </Viewbox>
 
                             <Grid  Margin="32,59,133,19" Grid.Row="1" Grid.RowSpan="2">
@@ -178,10 +178,10 @@
                                     </Viewbox>
                                 </Border>
                                 <Viewbox HorizontalAlignment="Left" Height="43" Margin="202,7,0,0" VerticalAlignment="Top" Width="92" Grid.Row="1">
-                                    <TextBlock Text="" x:Name="textblockClub4" Style="{StaticResource styleclub}" TextWrapping="Wrap"/>
+                                    <TextBlock Text="MAD" x:Name="textblockPays2" Style="{StaticResource styleclub}" TextWrapping="Wrap"/>
                                 </Viewbox>
                                 <Viewbox HorizontalAlignment="Left" Height="38" Margin="299,10,0,0" VerticalAlignment="Top" Width="51" Grid.Row="1">
-                                    <Image Height="38" Width="51" x:Name="imagepays2"/>
+                                    <Image Height="38" Width="51" x:Name="imagepays2" Source="/Images/téléchargement (36).png"/>
                                 </Viewbox>
                                 <Grid  Margin="32,4,0,0" Grid.Row="2" HorizontalAlignment="Left" Width="374">
 
@@ -288,7 +288,7 @@
                                     <ColumnDefinition Width="2*"/>
                                 </Grid.ColumnDefinitions>
                                 <Viewbox>
-                                    <TextBox Height="132" BorderThickness="0" Background="Transparent"  Text="00" FontWeight="Bold" TextAlignment="Right" Foreground="White"  Name="tb_Minutes_2" FontSize="90"  Width="143" />
+                                    <TextBox Height="132" BorderThickness="0" Background="Transparent"  Text="05" FontWeight="Bold" TextAlignment="Right" Foreground="White"  Name="tb_Minutes_2" FontSize="90"  Width="143" />
                                 </Viewbox>
                                 <Viewbox Grid.Column="1" HorizontalAlignment="Center" Height="134" VerticalAlignment="Center" Width="30">
                                     <TextBlock Height="146" Text=":" TextAlignment="Center" FontSize="95" Foreground="white" Name="tb_separator" TextWrapping="Wrap" Width="32"/>

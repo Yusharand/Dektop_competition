@@ -43,7 +43,8 @@ namespace WpfApp1.Views
             InitializeComponent();
             this.Id = id;
             Information_Click(sender, e);
-            Charger_Information();         
+            Charger_Information();  
+            
         }
 
         public void Charger_Information()
@@ -243,11 +244,11 @@ namespace WpfApp1.Views
             combattantsDataGrid.Children.Clear();
             combattantsDataGrid.Children.Add(UcListeCategorie);
         }
-        private void FormCombat_Click(object sender, RoutedEventArgs e)
+        /*private void FormCombat_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                Formulaire formulaire = new Formulaire();
+                Formulaire formulaire = new Formulaire(this.Id);
                 Application.Current.MainWindow = formulaire;
 
                 formulaire.Show();
@@ -258,7 +259,7 @@ namespace WpfApp1.Views
             {
                 MessageBox.Show("Erreur:" + ex.Message);
             }
-        }
+        }*/
 
         private void AjoutCombattant_Click(object sender, RoutedEventArgs e)
         {
@@ -273,7 +274,9 @@ namespace WpfApp1.Views
         private void TSupprimer_Click(object sender, RoutedEventArgs e)
         {
             ConnexionBD connection = new ConnexionBD();
-            connection.Delete("DELETE FROM Combattants ");
+
+            connection.Delete("DELETE FROM Combattants WHERE ID_Competition = " +this.Id);
+            
             connection.Close();
             ListeCombattant_Click(sender, e);
         }

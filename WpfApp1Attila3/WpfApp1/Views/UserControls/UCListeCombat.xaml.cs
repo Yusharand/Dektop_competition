@@ -35,22 +35,7 @@ namespace WpfApp1.Views.UserControls
         }
 
 
-        public class CombatInfo
-        {
-            public int ID_Combat { get; set; }
-            public string Nom_Combattant1 { get; set; }
-            public string Nom_Combattant2 { get; set; }
-            public string Prenom_Combattant1 { get; set; }
-            public string Prenom_Combattant2 { get; set; }
-            public string Club_Combattant1 { get; set; }
-            public string Club_Combattant2 { get; set; }
-            public string Points_Combattant1 { get; set; }
-            public string Points_Combattant2 { get; set; }
-            public string Duree_combat { get; set; }
-            public string Categorie_Combat { get; set; }
-            public string Tour_Match { get; set; }
-
-        }
+        
 
         public void Charger()
         {
@@ -94,6 +79,8 @@ namespace WpfApp1.Views.UserControls
                         Duree_combat = combat.Duree_combat,
                         Categorie_Combat = nom_categorie,
                         Tour_Match = combat.Tour_Match,
+                        Victoire1 = combat.Victoire_Combattant1,
+                        Victoire2 = combat.Victoire_Combattant2
                     });
                 }
 
@@ -118,9 +105,9 @@ namespace WpfApp1.Views.UserControls
         private void PlayMatch_Click(object sender, RoutedEventArgs e)
         {
             CombatInfo combatInfoSelectionne = (CombatInfo)ListeCombatsDataGrid.SelectedItem;
-            int id = combatInfoSelectionne.ID_Combat;
+            int id_combat = combatInfoSelectionne.ID_Combat;
             context = new Competition_JJBEntities();
-            var combat = context.Combats.FirstOrDefault(c => c.ID_Combat == id);
+            var combat = context.Combats.FirstOrDefault(c => c.ID_Combat == id_combat);
             var combattant1 = context.Combattants.FirstOrDefault(c => c.ID_Combattant == combat.ID_Combattant1);
             var combattant2 = context.Combattants.FirstOrDefault(c => c.ID_Combattant == combat.ID_Combattant2);
             var competition = context.Competitions.FirstOrDefault(c => c.ID_Competition == this.Id);
@@ -135,14 +122,16 @@ namespace WpfApp1.Views.UserControls
             string tour = combat.Tour_Match;
             string categorie = combat.Category?.Nom_Categorie;
             string fondscoreboard = competition.FondScoreboard_Competition;
-            MainWindow mainWindow = new MainWindow(this.Id);
-            ScoreboardPublic scoreboardPublic = new ScoreboardPublic(this.Id);
-            DashboardCombattant dashboardCombattant = new DashboardCombattant(this.Id);
-            mainWindow.Load_Data(nom1, nom2, prenom1, prenom2, club1, club2, logoclub1, logoclub2, tour, categorie, fondscoreboard);
-            scoreboardPublic .Load_Data(nom1, nom2, prenom1, prenom2, club1, club2, logoclub1, logoclub2, tour, categorie, fondscoreboard);
-            mainWindow.Show();
-            scoreboardPublic.Show();
-            dashboardCombattant.Close();
+            Formulaire formulaire = new Formulaire(this.Id, id_combat);
+            
+            /*Window dashboardCombattant = Window.GetWindow(this);
+            if(dashboardCombattant != null)
+            {
+                dashboardCombattant.Close();
+            }*/
+            formulaire.Load_Data(nom1, nom2, prenom1, prenom2, club1, club2, logoclub1, logoclub2, tour, categorie, fondscoreboard);
+            formulaire.Show();
+            
         }
     }
 }

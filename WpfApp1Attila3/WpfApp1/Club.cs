@@ -11,8 +11,7 @@ namespace WpfApp1
 {
     using System;
     using System.Collections.Generic;
-    using System.Windows.Media.Imaging;
-
+    
     public partial class Club
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -25,28 +24,7 @@ namespace WpfApp1
         public string Nom_Club { get; set; }
         public Nullable<int> ID_Competition { get; set; }
         public string Logo_Club { get; set; }
-        public BitmapImage LogoClubImage
-        {
-            get
-            {
-                if (!string.IsNullOrEmpty(Logo_Club))
-                {
-                    try
-                    {
-                        BitmapImage imglogo = new BitmapImage(new Uri(Logo_Club, UriKind.RelativeOrAbsolute));
-                        return imglogo;
-                    }
-                    catch (Exception ex)
-                    {
-                        
-                        Console.WriteLine($"Erreur lors du chargement de l'image : {ex.Message}");
-                    }
-                }
-                // Retourner une image par défaut ou null 
-                return null;
-            }
-        }
-
+    
         public virtual Competition Competition { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Combattant> Combattants { get; set; }

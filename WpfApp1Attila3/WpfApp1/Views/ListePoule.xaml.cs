@@ -74,13 +74,13 @@ namespace WpfApp1.Views
                                           "FROM Combattants " +
                                           "JOIN Poules ON Combattants.ID_Poule = Poules.ID_Poule " +
                                           "JOIN Clubs ON Combattants.ID_Club = Clubs.ID_Club " +
-                                          "WHERE Poules.Nom_poule = 'Poule A' AND Combattants.ID_Categorie = " + this.Id);
+                                          "WHERE Poules.Nom_poule = 'Poule A' AND Combattants.ID_Categorie = " + this.Id + "ORDER BY Combattants.Pointspoules ");
 
             SqlDataReader reader2 = connection2.Select("SELECT Combattants.*, Poules.*, Clubs.nom_club " +
                                           "FROM Combattants " +
                                           "JOIN Poules ON Combattants.ID_Poule = Poules.ID_Poule " +
                                           "JOIN Clubs ON Combattants.ID_Club = Clubs.id_club " +
-                                          "WHERE Poules.Nom_poule = 'Poule B' AND Combattants.ID_Categorie = " + this.Id);
+                                          "WHERE Poules.Nom_poule = 'Poule B' AND Combattants.ID_Categorie = " + this.Id + " ORDER BY Combattants.Pointspoules ");
 
             //Classement 1
             int i = 1;
@@ -91,9 +91,9 @@ namespace WpfApp1.Views
                     string club1 = reader1["Nom_Club"].ToString();
                     string nom1 = reader1["Nom_Combattant"].ToString();
                     string prenom1 = reader1["Prenom_Combattant"].ToString();
+                    string points = reader1["Pointspoules"].ToString();
 
-
-                    Classement1.Add(new CombattantViewModel_1 { Position = i, Nom = nom1, Prenom = prenom1, Club = club1, Points = 0 });
+                    Classement1.Add(new CombattantViewModel_1 { Position = i, Nom = nom1, Prenom = prenom1, Club = club1, Points = int.Parse(points) });
                     
 
                 if (Classement1 == null)
@@ -118,8 +118,8 @@ namespace WpfApp1.Views
                 string club2 = reader2["Nm_Club"].ToString();
                 string nom2 = reader2["Nom_Combattant"].ToString();
                 string prenom2 = reader2["Prenom_Combattant"].ToString();
-
-                Classement2.Add(new CombattantViewModel_1 { Position = j, Nom = nom2, Prenom = prenom2, Club = club2, Points = 0 });
+                string points = reader2["Pointspoules"].ToString();
+                Classement2.Add(new CombattantViewModel_1 { Position = j, Nom = nom2, Prenom = prenom2, Club = club2, Points = int.Parse(points) });
 
                 if (Classement1 == null)
                 {

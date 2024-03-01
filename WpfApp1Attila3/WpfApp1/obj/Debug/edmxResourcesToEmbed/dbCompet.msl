@@ -39,6 +39,10 @@
           <ScalarProperty Name="ID_Poule" ColumnName="ID_Poule" />
           <ScalarProperty Name="Tour_Match" ColumnName="Tour_Match" />
           <ScalarProperty Name="ID_Competition" ColumnName="ID_Competition" />
+          <ScalarProperty Name="Sub_Combattant2" ColumnName="Sub_Combattant2" />
+          <ScalarProperty Name="Sub_Combattant1" ColumnName="Sub_Combattant1" />
+          <ScalarProperty Name="Victoire_Combattant1" ColumnName="Victoire_Combattant1" />
+          <ScalarProperty Name="Victoire_Combattant2" ColumnName="Victoire_Combattant2" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

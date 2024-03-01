@@ -44,13 +44,13 @@ namespace WpfApp1.Views
         bool active = false;
         private string imagefndPath;
         public int Id;
+        public int Id_combat;
 
-
-        public ScoreboardPublic(int id)
+        public ScoreboardPublic(int id, int id_combat)
         {
             InitializeComponent();
-
-
+            this.Id = id;
+            this.Id_combat = id_combat;
 
             MainWindow mainWindow = Application.Current.MainWindow as MainWindow;
             if (mainWindow != null)
@@ -144,7 +144,7 @@ namespace WpfApp1.Views
             }
         }
 
-        public void Load_Data(string nom1, string nom2, string prenom1, string prenom2, string club1, string club2, string logoclub1, string logoclub2, string tour, string categorie, string fondscoreboard)
+        public void Load_Data(string nom1, string nom2, string prenom1, string prenom2, string club1, string club2, string logoclub1, string logoclub2, string tour, string categorie, string fondscoreboard, string couleur1, string couleur2, string minute)
         {
             textblockNom1.Text = nom1;
             textblockNom2.Text = nom2;
@@ -160,7 +160,13 @@ namespace WpfApp1.Views
             tb_Categorie.Text = categorie;
             BitmapImage imgfond = new BitmapImage(new Uri(fondscoreboard, UriKind.RelativeOrAbsolute));
             imgfnd.Source = imgfond;
+
+            bordercl1.Background = (Brush)new System.Windows.Media.BrushConverter().ConvertFromString(couleur1);
+            bordercl2.Background = (Brush)new System.Windows.Media.BrushConverter().ConvertFromString(couleur2);
+
+            tb_Minutes_2.Text = minute;
         }
+
 
         public void SetImage(string textPath1, string imagePath1, string textPath2, string imagePath2, string selectedImagePath, string textPath3, string imagePath3, string textPath4, string imagePath4, string Nom1, string Prenom1, string Nom2, string Prenom2, string Couleur1, string Couleur2, string MinuteC, string PhaseC, string CategorieC)
         {
@@ -175,11 +181,11 @@ namespace WpfApp1.Views
 
             BitmapImage img3 = new BitmapImage(new Uri(imagePath3, UriKind.RelativeOrAbsolute));
             imagepays1.Source = img3;
-            textblockClub3.Text = textPath3;
+            textblockPays1.Text = textPath3;
 
             BitmapImage img4 = new BitmapImage(new Uri(imagePath4, UriKind.RelativeOrAbsolute));
             imagepays2.Source = img4;
-            textblockClub4.Text = textPath4;
+            textblockPays2.Text = textPath4;
 
             if (selectedImagePath != null)
             {
@@ -411,9 +417,9 @@ namespace WpfApp1.Views
             textblockClub2.Text = textblockClub1.Text;
             textblockClub1.Text = tmp3;
 
-            tmp4 = textblockClub3.Text;
-            textblockClub3.Text = textblockClub4.Text;
-            textblockClub4.Text = tmp4;
+            tmp4 = textblockPays1.Text;
+            textblockPays1.Text = textblockPays2.Text;
+            textblockPays2.Text = tmp4;
 
             tmp5 = tb_MinutesMed1.Text;
             tb_MinutesMed1.Text = tb_MinutesMed2.Text;
@@ -1299,7 +1305,7 @@ namespace WpfApp1.Views
                         scoreboardData.RougeScore -= 2;
                     }
                     scoreboardData.BleuPenalite -= 1;
-
+                    
                 }
             });
         }

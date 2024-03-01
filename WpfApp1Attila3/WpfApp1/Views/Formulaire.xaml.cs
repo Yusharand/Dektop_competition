@@ -22,8 +22,10 @@ namespace WpfApp1.Views
     public partial class Formulaire : Window
     {
         public static Formulaire instance = null;
+        public Competition_JJBEntities context;
 
         public int Id;
+        public int Id_combat;
         public string imagePath1;
         public string textPath1;
         public string imagePath2;
@@ -55,16 +57,18 @@ namespace WpfApp1.Views
 
         private Category categorieSelectionnee;
 
-        public Formulaire()
+        public Formulaire(int id, int id_combat)
         {
             InitializeComponent();
+            this.Id = id;
+            this.Id_combat = id_combat;
             if (instance == null)
             {
                 instance = this;
             }
 
 
-            using (var contexte = new Competition_JJBEntities()) // Remplacez VotreContexte par le nom de votre contexte EF
+            /*using (var contexte = new Competition_JJBEntities()) // Remplacez VotreContexte par le nom de votre contexte EF
             {
                 // Récupérez les données de la table de la base de données
                 var categories = contexte.Categories.ToList();
@@ -130,10 +134,22 @@ namespace WpfApp1.Views
 
                     textBoxPrenom2.Items.Add(comboBoxItem);
 
-                }*/
-            }
+                }
+            }*/
 
 
+        }
+
+        public void Load_Data(string nom1, string nom2, string prenom1, string prenom2, string club1, string club2, string logoclub1, string logoclub2, string tour, string categorie, string fondscoreboard)
+        {
+            textBoxNom1.Text = nom1;
+            textBoxNom2.Text = nom2;
+            textBoxPrenom1.Text = prenom1;
+            textBoxPrenom2.Text = prenom2;
+            textBoxClub1.Text = club1;
+            textBoxClub2.Text = club2;
+            textBoxphase.Text = tour;
+            
         }
 
         private void Windows_Keydown_2(object sender, System.Windows.Input.KeyEventArgs e)
@@ -153,15 +169,15 @@ namespace WpfApp1.Views
 
         private void Button_Click_Scoreboard(object sender, RoutedEventArgs e)
         {
-            try
+            /*try
             {
-                /*if (((ComboBoxItem)textBoxPrenom1.SelectedItem).Content == null || ((ComboBoxItem)textBoxPrenom2.SelectedItem).Content == null)
+                if (((ComboBoxItem)textBoxPrenom1.SelectedItem).Content == null || ((ComboBoxItem)textBoxPrenom2.SelectedItem).Content == null)
                 {
                     MessageBox.Show("Veuillez remplir les prénoms!");
                 }
                 .
                 else
-                {*/
+                {
                 ComboBoxItem club1 = textBoxClub1.SelectedItem as ComboBoxItem;
 
                 ComboBoxItem club2 = textBoxClub2.SelectedItem as ComboBoxItem;
@@ -224,12 +240,6 @@ namespace WpfApp1.Views
                     }
 
                     //drapeau pays
-
-
-
-
-
-
                     string imagePath1 = selectedImage1.Source.ToString();
                     string textPath1 = selectedTextBlock1.Text;
 
@@ -243,12 +253,8 @@ namespace WpfApp1.Views
 
                     string imagePath4 = selectedImage4.Source.ToString();
                     string textPath4 = selectedTextBlock4.Text;
-
-
-
                     string couleur1 = colorpicker1.SelectedColorText;
                     string couleur2 = colorpicker2.SelectedColorText;
-
                     string minuteC = ((ComboBoxItem)comboboxminutes.SelectedItem).Content.ToString();
                     string phaseC = ((ComboBoxItem)comboboxphase.SelectedItem).Content.ToString();
                     string categorieC = categorieSelectionnee.Nom_Categorie;
@@ -256,15 +262,15 @@ namespace WpfApp1.Views
                     string prenom1 = textBoxPrenom1.SelectedItem.ToString();
                     string nom2 = textBoxNom2.SelectedItem.ToString();
                     string prenom2 = textBoxPrenom2.SelectedItem.ToString();
-                   /* MainWindow mainwindow = new MainWindow();
+                    MainWindow mainwindow = new MainWindow(this.Id);
                     Application.Current.MainWindow = mainwindow;
                     mainwindow.SetImage(textPath1, imagePath1, textPath2, imagePath2, selectedImagePath, textPath3, imagePath3, textPath4, imagePath4, nom1, prenom1, nom2, prenom2, couleur1, couleur2, minuteC, phaseC, categorieC);
                     mainwindow.Show();
 
-                    ScoreboardPublic scoreboardPublic = new ScoreboardPublic();
+                    ScoreboardPublic scoreboardPublic = new ScoreboardPublic(this.Id);
                     Application.Current.MainWindow = scoreboardPublic;
                     scoreboardPublic.SetImage(textPath1, imagePath1, textPath2, imagePath2, selectedImagePath, textPath3, imagePath3, textPath4, imagePath4, nom1, prenom1, nom2, prenom2, couleur1, couleur2, minuteC, phaseC, categorieC);
-                    scoreboardPublic.Show();*/
+                    scoreboardPublic.Show();
 
                     this.Close();
 
@@ -275,78 +281,34 @@ namespace WpfApp1.Views
             catch (Exception ex)
             {
                 MessageBox.Show("Erreur:" + ex.Message);
-            }
-
-
-
-        }
-
-        private void Comboboxcategorie_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            try
-            {
-                categorieSelectionnee = comboboxcategorie.SelectedItem as Category;
-
-                //if (categorieSelectionnee != null)
-                //{
-                using (var contexte = new Competition_JJBEntities()) // Remplacez VotreContexte par le nom de votre contexte EF
-                {
-                    // Récupérez les combattants associés à la catégorie sélectionnée
-                    var prenomcombattants = contexte.Combattants.Where(c => c.ID_Categorie == categorieSelectionnee.ID_Categorie).Select(c => c.Prenom_Combattant).ToList();
-                    var nomcombattants = contexte.Combattants.Where(c => c.ID_Categorie == categorieSelectionnee.ID_Categorie).Select(c => c.Nom_Combattant).ToList();
-
-
-
-
-
-                    textBoxPrenom1.ItemsSource = prenomcombattants;
-                    textBoxPrenom2.ItemsSource = prenomcombattants;
-                    textBoxNom1.ItemsSource = nomcombattants;
-                    textBoxNom2.ItemsSource = nomcombattants;
-
-
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-
-        }
-
-
-
-        private void TextBoxPrenom1_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-            var prenomSelectionnee = textBoxPrenom1.SelectedItem as string;
-
-            if (!string.IsNullOrEmpty(prenomSelectionnee))
-            {
-                using (var contexte = new Competition_JJBEntities()) // Remplacez VotreContexte par le nom de votre contexte EF
-                {
-                    // Récupérez les noms des combattants correspondant au prénom sélectionné
-                    var nomsDesCombattants = contexte.Combattants.Where(c => c.Prenom_Combattant == prenomSelectionnee).Select(c => c.Nom_Combattant).FirstOrDefault();
-
-                    textBoxNom1.SelectedItem = nomsDesCombattants;
-                }
-            }
-        }
-
-        private void TextBoxPrenom2_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var prenomSelectionnee = textBoxPrenom2.SelectedItem as string;
-
-            if (!string.IsNullOrEmpty(prenomSelectionnee))
-            {
-                using (var contexte = new Competition_JJBEntities()) // Remplacez VotreContexte par le nom de votre contexte EF
-                {
-                    // Récupérez les noms des combattants correspondant au prénom sélectionné
-                    var nomsDesCombattants = contexte.Combattants.Where(c => c.Prenom_Combattant == prenomSelectionnee).Select(c => c.Nom_Combattant).FirstOrDefault();
-
-                    textBoxNom2.SelectedItem = nomsDesCombattants;
-                }
-            }
+            }*/
+            context = new Competition_JJBEntities();
+            var combat = context.Combats.FirstOrDefault(c => c.ID_Combat == this.Id_combat);
+            var combattant1 = context.Combattants.FirstOrDefault(c => c.ID_Combattant == combat.ID_Combattant1);
+            var combattant2 = context.Combattants.FirstOrDefault(c => c.ID_Combattant == combat.ID_Combattant2);
+            var competition = context.Competitions.FirstOrDefault(c => c.ID_Competition == this.Id);
+            string nom1 = textBoxNom1.Text;
+            string nom2 = textBoxNom2.Text;
+            string prenom1 = textBoxPrenom1.Text;
+            string prenom2 = textBoxPrenom2.Text;
+            string club1 = textBoxClub1.Text;
+            string club2 = textBoxClub2.Text;
+            string logoclub1 = combattant1.Club?.Logo_Club;
+            string logoclub2 = combattant2.Club?.Logo_Club;
+            string tour = textBoxphase.Text;
+            string categorie = combat.Category?.Nom_Categorie;
+            string fondscoreboard = competition.FondScoreboard_Competition;
+            string couleur1 = colorpicker1.SelectedColorText;
+            string couleur2 = colorpicker2.SelectedColorText;
+            string minute = ((ComboBoxItem)comboboxminutes.SelectedItem).Content.ToString();
+            MainWindow mainwindow = new MainWindow(this.Id, combat.ID_Combat);
+            Application.Current.MainWindow = mainwindow;
+            mainwindow.Load_Data(nom1, nom2, prenom1, prenom2, club1, club2, logoclub1, logoclub2, tour, categorie, fondscoreboard, couleur1, couleur2, minute);
+            mainwindow.Show();
+            ScoreboardPublic scoreboardPublic = new ScoreboardPublic(this.Id, combat.ID_Combat);
+            Application.Current.MainWindow = scoreboardPublic;
+            scoreboardPublic.Load_Data(nom1, nom2, prenom1, prenom2, club1, club2, logoclub1, logoclub2, tour, categorie, fondscoreboard, couleur1, couleur2, minute);
+            scoreboardPublic.Show();
         }
 
         private void RetourDashboard_Click(object sender, RoutedEventArgs e)

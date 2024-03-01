@@ -19,11 +19,11 @@
                     </DataGridCheckBoxColumn.HeaderTemplate>
                 </DataGridCheckBoxColumn>
 
-                <DataGridTextColumn Header="Nom Club" IsReadOnly="True" Width="1*" Binding="{Binding Nom_Club}"/>
+                <DataGridTextColumn Header="Nom Club" IsReadOnly="True" Width="0.5*" Binding="{Binding Nom_Club}"/>
                 <DataGridTemplateColumn Header="Logo Club">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Image  Width="50" Height="50" Source="{Binding LogoClubImage}"  />
+                            <Image  Width="40" Height="40" Source="{Binding LogoClubImage}" Margin="0, 0, 0, 0" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
@@ -31,7 +31,11 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
-                                <Button Style="{StaticResource gridEditButton}" x:Name="Insert_Logo" Click="Insert_Logo_Click" Content="Insérer logo" >
+                                <Button Style="{StaticResource gridEditButton}" x:Name="Insert_Logo"  Click="Insert_Logo_Click">
+                                    <Icon:PackIconMaterial Kind="Plus" Style="{StaticResource gridButtonIcon}"/>
+                                </Button>
+                                <Button Style="{StaticResource gridRemoveButton}" Margin="5 0 0 0" x:Name="Delete_Logo" Click="Delete_Logo_Click">
+                                    <Icon:PackIconMaterial Kind="DeleteOutline" Style="{StaticResource gridButtonIcon}"/>
                                 </Button>
                             </StackPanel>
                         </DataTemplate>

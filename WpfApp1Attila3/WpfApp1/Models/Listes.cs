@@ -123,6 +123,24 @@ namespace WpfApp1.Models
         }
     }
 
+    public class CombatInfo
+    {
+        public int ID_Combat { get; set; }
+        public string Nom_Combattant1 { get; set; }
+        public string Nom_Combattant2 { get; set; }
+        public string Prenom_Combattant1 { get; set; }
+        public string Prenom_Combattant2 { get; set; }
+        public string Club_Combattant1 { get; set; }
+        public string Club_Combattant2 { get; set; }
+        public string Points_Combattant1 { get; set; }
+        public string Points_Combattant2 { get; set; }
+        public string Duree_combat { get; set; }
+        public string Categorie_Combat { get; set; }
+        public string Tour_Match { get; set; }
+        public string Victoire1 { get; set; }
+        public string Victoire2 { get; set; }
+    }
+
     public class ListeCat
     {
         public string Entete { get; set; }
