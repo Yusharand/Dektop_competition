@@ -17,11 +17,14 @@ namespace WpfApp1.Views
     /// <summary>
     /// Logique d'interaction pour RougeFinCombat.xaml
     /// </summary>
+    
     public partial class RougeFinCombat : UserControl
     {
         public UserControl UC { get; set; }
-
-
+        public static UserControl userpointrouge = null;
+        public static UserControl usersoumissionrouge = null;
+        public  static UserControl userdecisionrouge = null;
+        public static UserControl userdisqualificationrouge = null;
         public static RougeFinCombat instance = null;
 
         public event EventHandler VPointClicked;
@@ -61,6 +64,7 @@ namespace WpfApp1.Views
             grContentAllBleu.Visibility = Visibility.Collapsed;
             btnContent3.Children.Add(vpointrouge_1);
             btnContent1.Children.Add(vpointrouge);
+            userpointrouge = vpointrouge;
             btnContent3.Visibility = Visibility.Visible;
 
             Grid btnContent2 = MainWindow.Instance.getContent2();
@@ -87,6 +91,7 @@ namespace WpfApp1.Views
             Grid btnContent2 = MainWindow.Instance.getContent2();
             btnContent2.Visibility = Visibility.Collapsed;
             btnContent1.Children.Add(vsoumissionrouge);
+            usersoumissionrouge = vsoumissionrouge;
             btnContent1.Visibility = Visibility.Visible;
 
         }
@@ -107,6 +112,7 @@ namespace WpfApp1.Views
 
             btnContent3.Visibility = Visibility.Visible;
             btnContent1.Children.Add(vdisqualificationrouge);
+            userdisqualificationrouge = vdisqualificationrouge;
             Grid btnContent2 = MainWindow.Instance.getContent2();
             btnContent2.Visibility = Visibility.Collapsed;
             btnContent1.Visibility = Visibility.Visible;
@@ -130,6 +136,7 @@ namespace WpfApp1.Views
             Grid btnContent2 = MainWindow.Instance.getContent2();
             btnContent2.Visibility = Visibility.Collapsed;
             btnContent1.Children.Add(vdecisionrouge);
+            userdecisionrouge = vdecisionrouge;
             btnContent1.Visibility = Visibility.Visible;
         }
 

@@ -26,6 +26,7 @@ namespace WpfApp1.Views
     {
         public ObservableCollection<CombattantViewModel_1> Classement1;
         public ObservableCollection<CombattantViewModel_1> Classement2;
+        private Competition_JJBEntities context;
         private int Id;
 
 
@@ -33,8 +34,9 @@ namespace WpfApp1.Views
         {
             InitializeComponent();
             this.Id = id;
+            Charger_Pointspoules();
             Charger();
-            Charger_Match_Poule();
+            
             
             
 
@@ -59,9 +61,19 @@ namespace WpfApp1.Views
             classement2ListView.ItemsSource = Classement2;*/
         }
 
-        public void Charger_Match_Poule()
+        public void Charger_Pointspoules()
         {
-
+            context = new Competition_JJBEntities();
+            var combattants_poule = context.Combattants.Where(c => c.ID_Categorie == this.Id).ToList();
+            foreach (var combattant in combattants_poule)
+            {
+                if (combattant.Pointspoules == null)
+                {
+                    ConnexionBD connexionBD = new ConnexionBD();
+                    connexionBD.Insert("UPDATE Combattants SET Pointspoules = '" + 0 + "' WHERE ID_Combattant = '" + combattant.ID_Combattant + "'");
+                    connexionBD.Close();
+                }
+            }
         }
 
         public void Charger()
@@ -74,13 +86,13 @@ namespace WpfApp1.Views
                                           "FROM Combattants " +
                                           "JOIN Poules ON Combattants.ID_Poule = Poules.ID_Poule " +
                                           "JOIN Clubs ON Combattants.ID_Club = Clubs.ID_Club " +
-                                          "WHERE Poules.Nom_poule = 'Poule A' AND Combattants.ID_Categorie = " + this.Id + "ORDER BY Combattants.Pointspoules ");
+                                          "WHERE Poules.Nom_poule = 'Poule A' AND Combattants.ID_Categorie = " + this.Id + "ORDER BY Combattants.Pointspoules DESC, ORDER BY Combattants.Avantage_Marque DESC, ORDER BY Combattants.Penalite_Marque");
 
             SqlDataReader reader2 = connection2.Select("SELECT Combattants.*, Poules.*, Clubs.nom_club " +
                                           "FROM Combattants " +
                                           "JOIN Poules ON Combattants.ID_Poule = Poules.ID_Poule " +
                                           "JOIN Clubs ON Combattants.ID_Club = Clubs.id_club " +
-                                          "WHERE Poules.Nom_poule = 'Poule B' AND Combattants.ID_Categorie = " + this.Id + " ORDER BY Combattants.Pointspoules ");
+                                          "WHERE Poules.Nom_poule = 'Poule B' AND Combattants.ID_Categorie = " + this.Id + " ORDER BY Combattants.Pointspoules DESC, ORDER BY Combattants.Avantage_Marque DESC, ORDER BY Combattants.Penalite_Marque");
 
             //Classement 1
             int i = 1;
@@ -93,7 +105,7 @@ namespace WpfApp1.Views
                     string prenom1 = reader1["Prenom_Combattant"].ToString();
                     string points = reader1["Pointspoules"].ToString();
 
-                    Classement1.Add(new CombattantViewModel_1 { Position = i, Nom = nom1, Prenom = prenom1, Club = club1, Points = int.Parse(points) });
+                    Classement1.Add(new CombattantViewModel_1 { Position = i, Nom = nom1, Prenom = prenom1, Club = club1, Points = points });
                     
 
                 if (Classement1 == null)
@@ -115,11 +127,11 @@ namespace WpfApp1.Views
             while (reader2.Read())
             {
 
-                string club2 = reader2["Nm_Club"].ToString();
+                string club2 = reader2["Nom_Club"].ToString();
                 string nom2 = reader2["Nom_Combattant"].ToString();
                 string prenom2 = reader2["Prenom_Combattant"].ToString();
                 string points = reader2["Pointspoules"].ToString();
-                Classement2.Add(new CombattantViewModel_1 { Position = j, Nom = nom2, Prenom = prenom2, Club = club2, Points = int.Parse(points) });
+                Classement2.Add(new CombattantViewModel_1 { Position = j, Nom = nom2, Prenom = prenom2, Club = club2, Points = points });
 
                 if (Classement1 == null)
                 {
@@ -158,6 +170,11 @@ namespace WpfApp1.Views
             connection.Close();
             Charger();
         }
+
+        private void SemifinalButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 
 
@@ -169,7 +186,7 @@ namespace WpfApp1.Views
         public string Prenom { get; set; }
         public string Club { get; set; }
         public string Poids { get; set; }
-        public int Points { get; set; }
+        public string Points { get; set; }
     }
 
     public class CombattantViewModel_2

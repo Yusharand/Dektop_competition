@@ -19,6 +19,12 @@ namespace WpfApp1.Views
     public partial class BleuFinCombat : UserControl
     {
         public UserControl UC { get; set; }
+
+        public static UserControl userpointbleu = null;
+        public static UserControl usersoumissionbleu = null;
+        public static UserControl userdecisionbleu = null;
+        public static UserControl userdisqualificationbleu = null;
+
         public static BleuFinCombat instance;
 
         public event EventHandler VPointClicked;
@@ -52,6 +58,7 @@ namespace WpfApp1.Views
             btnContent4.Children.Add(vpointbleu_1);
             btnContent4.Visibility = Visibility.Visible;
             btnContent2.Children.Add(vpointbleu);
+            userpointbleu = vpointbleu;
             Grid btnContent1 = MainWindow.Instance.getContent1();
             btnContent1.Visibility = Visibility.Collapsed;
             btnContent2.Visibility = Visibility.Visible;
@@ -75,6 +82,7 @@ namespace WpfApp1.Views
             btnContent4.Children.Add(vsoumissionrouge_1);
             btnContent4.Visibility = Visibility.Visible;
             btnContent2.Children.Add(vsoumissionbleu);
+            usersoumissionbleu = vsoumissionbleu;
             Grid btnContent1 = MainWindow.Instance.getContent1();
             btnContent1.Visibility = Visibility.Collapsed;
             btnContent2.Visibility = Visibility.Visible;
@@ -95,6 +103,7 @@ namespace WpfApp1.Views
             btnContent4.Children.Add(vdisqualificationbleu_1);
             btnContent4.Visibility = Visibility.Visible;
             btnContent2.Children.Add(vdisqualificationbleu);
+            userdisqualificationbleu = vdisqualificationbleu;
             Grid btnContent1 = MainWindow.Instance.getContent1();
             btnContent1.Visibility = Visibility.Collapsed;
             btnContent2.Visibility = Visibility.Visible;
@@ -115,6 +124,7 @@ namespace WpfApp1.Views
             btnContent4.Children.Add(vdecisionbleu_1);
             btnContent4.Visibility = Visibility.Visible;
             btnContent2.Children.Add(vdecisionbleu);
+            userdecisionbleu = vdecisionbleu;
             Grid btnContent1 = MainWindow.Instance.getContent1();
             btnContent1.Visibility = Visibility.Collapsed;
             btnContent2.Visibility = Visibility.Visible;

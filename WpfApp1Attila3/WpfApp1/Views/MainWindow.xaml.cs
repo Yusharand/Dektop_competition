@@ -48,10 +48,7 @@ namespace WpfApp1
         public static RougeFinCombat rougeFinCombat;
         public UserControl UC { get; set; }
 
-        public VPoint vpoint;
-        public VDecision vavantage;
-        public VDisqualification vdisqualification;
-        public VSoumission vsoumission;
+        
         private List<UserAction> userActions = new List<UserAction>();
 
 
@@ -104,6 +101,8 @@ namespace WpfApp1
         public int Id;
         public int Id_combat;
 
+        
+
 
         public MainWindow(int id, int id_combat)
         {
@@ -129,8 +128,7 @@ namespace WpfApp1
             timer2.Tick += new EventHandler(timer2_Tick);
             timer2.Interval = new TimeSpan(0, 0, 1);
 
-            minute_deb = int.Parse(tb_Minutes.Text);
-            seconde_deb = int.Parse(tb_Secondes.Text);
+            
 
             valide = true;
 
@@ -742,8 +740,12 @@ namespace WpfApp1
 
 
             timer2.Stop();
-
-
+            if(RougeIncrement1.IsEnabled == false)
+            {
+                minute_deb = int.Parse(tb_Minutes.Text);
+                seconde_deb = int.Parse(tb_Secondes.Text);
+            }
+            
             active = true;
 
             RougeIncrement1.IsEnabled = true;
@@ -1466,6 +1468,79 @@ namespace WpfApp1
             var combat = context.Combats.FirstOrDefault(c => c.ID_Combat == this.Id_combat);
             var combattant1 = context.Combattants.FirstOrDefault(c => c.ID_Combattant == combat.ID_Combattant1);
             var combattant2 = context.Combattants.FirstOrDefault(c => c.ID_Combattant == combat.ID_Combattant2);
+            if(combattant1.Points_Marque == null)
+            {
+                combattant1.Points_Marque = 0;
+            }
+            if (combattant1.Points_Concede == null)
+            {
+                combattant1.Points_Concede = 0;
+            }
+            if (combattant1.Avantage_Marque == null)
+            {
+                combattant1.Avantage_Marque = 0;
+            }
+            if (combattant1.Avantage_Concede == null)
+            {
+                combattant1.Avantage_Concede = 0;
+            }
+            if (combattant1.Penalite_Marque == null)
+            {
+                combattant1.Penalite_Marque = 0;
+            }
+            if (combattant1.Penalite_Concede == null)
+            {
+                combattant1.Penalite_Concede = 0;
+            }
+            if (combattant1.Sub_Marque == null)
+            {
+                combattant1.Sub_Marque = 0;
+            }
+            if (combattant1.Sub_Concede == null)
+            {
+                combattant1.Sub_Concede = 0;
+            }
+
+            if (combattant2.Points_Marque == null)
+            {
+                combattant2.Points_Marque = 0;
+            }
+            if (combattant2.Points_Concede == null)
+            {
+                combattant2.Points_Concede = 0;
+            }
+            if (combattant2.Avantage_Marque == null)
+            {
+                combattant2.Avantage_Marque = 0;
+            }
+            if (combattant2.Avantage_Concede == null)
+            {
+                combattant2.Avantage_Concede = 0;
+            }
+            if (combattant2.Penalite_Marque == null)
+            {
+                combattant2.Penalite_Marque = 0;
+            }
+            if (combattant2.Penalite_Concede == null)
+            {
+                combattant2.Penalite_Concede = 0;
+            }
+            if (combattant2.Sub_Marque == null)
+            {
+                combattant2.Sub_Marque = 0;
+            }
+            if (combattant2.Sub_Concede == null)
+            {
+                combattant2.Sub_Concede = 0;
+            }
+            if(combattant1.Pointspoules == null)
+            {
+                combattant1.Pointspoules = 0;
+            }
+            if (combattant2.Pointspoules == null)
+            {
+                combattant2.Pointspoules = 0;
+            }
             combat.Points_Combattant1 = scoreboardData.RougeScore;
             combat.Points_Combattant2 = scoreboardData.BleuScore;
             combat.Avantages_Combattant1 = scoreboardData.RougeAvantage;
@@ -1473,30 +1548,45 @@ namespace WpfApp1
             combat.Penalites_Combattant1 = scoreboardData.RougePenalite;
             combat.Penalites_Combattant2 = scoreboardData.BleuPenalite;
             combattant1.Points_Marque += combat.Points_Combattant1;
-            combattant1.Points_Concede += combat.Penalites_Combattant2;
+            combattant1.Points_Concede += combat.Points_Combattant2;
+            combattant1.Avantage_Marque += combat.Avantages_Combattant1;
+            combattant1.Avantage_Concede += combat.Avantages_Combattant2;
             combattant1.Penalite_Marque += combat.Penalites_Combattant1;
             combattant1.Penalite_Concede += combat.Penalites_Combattant2;
             combattant1.Sub_Marque += combat.Sub_Combattant1;
             combattant1.Sub_Concede += combat.Sub_Combattant2;
             combattant2.Points_Marque += combat.Points_Combattant2;
             combattant2.Points_Concede += combat.Penalites_Combattant1;
+            combattant2.Avantage_Marque += combat.Avantages_Combattant2;
+            combattant2.Avantage_Concede += combat.Avantages_Combattant1;
             combattant2.Penalite_Marque += combat.Penalites_Combattant2;
             combattant2.Penalite_Concede += combat.Penalites_Combattant1;
             combattant2.Sub_Marque += combat.Sub_Combattant2;
             combattant2.Sub_Concede += combat.Sub_Combattant1;
             int duree_seconde;
-            int duree_minute = minute_deb - minute_fin;
+            int duree_minute;
             if(seconde_fin != 0)
             {
                  duree_seconde = seconde_deb - seconde_fin + 60;
+                 duree_minute = minute_deb - (minute_fin + 1);
             }
             else
             {
                  duree_seconde = seconde_deb - seconde_fin;
+                duree_minute = minute_deb - minute_fin;
             }
 
             combat.Duree_combat = duree_minute.ToString() + ":" + duree_seconde.ToString();
-            if (EstUserControlDansGrid(vpoint, btnContent1))
+            UserControl vpointrouge = RougeFinCombat.userpointrouge;
+            UserControl vsoumissionrouge = RougeFinCombat.usersoumissionrouge;
+            UserControl vdecisionrouge = RougeFinCombat.userdecisionrouge;
+            UserControl vdisqualificationrouge = RougeFinCombat.userdisqualificationrouge;
+
+            UserControl vpointbleu = BleuFinCombat.userpointbleu;
+            UserControl vsoumissionbleu = BleuFinCombat.usersoumissionbleu;
+            UserControl vdecisionbleu = BleuFinCombat.userdecisionbleu;
+            UserControl vdisqualificationbleu = BleuFinCombat.userdisqualificationbleu;
+            if (EstUserControlDansGrid(vpointrouge, btnContent1))
             {
                 combat.Victoire_Combattant1 = "Victoire par points";
                 if(combat.ID_Poule != null)
@@ -1505,7 +1595,7 @@ namespace WpfApp1
                 }
                 
             }
-            else if(EstUserControlDansGrid(vpoint, btnContent2))
+            else if(EstUserControlDansGrid(vpointbleu, btnContent2))
             {
                 combat.Victoire_Combattant2 = "Victoire par points";
                 if (combat.ID_Poule != null)
@@ -1513,7 +1603,7 @@ namespace WpfApp1
                     combattant2.Pointspoules += 3;
                 }
             }
-            else if (EstUserControlDansGrid(vavantage, btnContent1))
+            else if (EstUserControlDansGrid(vdecisionrouge, btnContent1))
             {
                 combat.Victoire_Combattant1 = "Victoire par avantage";
                 if (combat.ID_Poule != null)
@@ -1521,7 +1611,7 @@ namespace WpfApp1
                     combattant1.Pointspoules += 1;
                 }
             }
-            else if (EstUserControlDansGrid(vavantage, btnContent2))
+            else if (EstUserControlDansGrid(vdecisionbleu, btnContent2))
             {
                 combat.Victoire_Combattant2 = "Victoire par avantage";
                 if (combat.ID_Poule != null)
@@ -1529,7 +1619,7 @@ namespace WpfApp1
                     combattant2.Pointspoules += 1;
                 }
             }
-            else if (EstUserControlDansGrid(vdisqualification, btnContent1))
+            else if (EstUserControlDansGrid(vdisqualificationrouge, btnContent1))
             {
                 combat.Victoire_Combattant1 = "Victoire par disqualification";
                 if (combat.ID_Poule != null)
@@ -1537,7 +1627,7 @@ namespace WpfApp1
                     combattant1.Pointspoules += 5;
                 }
             }
-            else if (EstUserControlDansGrid(vdisqualification, btnContent2))
+            else if (EstUserControlDansGrid(vdisqualificationbleu, btnContent2))
             {
                 combat.Victoire_Combattant2 = "Victoire par disqualification";
                 if (combat.ID_Poule != null)
@@ -1545,7 +1635,7 @@ namespace WpfApp1
                     combattant2.Pointspoules += 5;
                 }
             }
-            else if (EstUserControlDansGrid(vsoumission, btnContent1))
+            else if (EstUserControlDansGrid(vsoumissionrouge, btnContent1))
             {
                 combat.Victoire_Combattant1 = "Victoire par soumission";
                 if (combat.ID_Poule != null)
@@ -1553,7 +1643,7 @@ namespace WpfApp1
                     combattant1.Pointspoules += 5;
                 }
             }
-            else if (EstUserControlDansGrid(vsoumission, btnContent2))
+            else if (EstUserControlDansGrid(vsoumissionbleu, btnContent2))
             {
                 combat.Victoire_Combattant2 = "Victoire par soumission";
                 if (combat.ID_Poule != null)
@@ -1567,14 +1657,14 @@ namespace WpfApp1
 
         private bool EstUserControlDansGrid(UserControl userControl, Grid grid)
         {
-            foreach (var child in grid.Children)
+            if (grid.Children.Contains(userControl))
             {
-                if (child is UserControl control && control == userControl)
-                {
-                    return true; // Le UserControl est dans le Grid
-                }
+                return true;
             }
-            return false; // Le UserControl n'est pas dans le Grid
+            else
+            {
+                return false;
+            }
         }
 
         /*private void Tb_Minutes_TextChanged(object sender, TextChangedEventArgs e)
