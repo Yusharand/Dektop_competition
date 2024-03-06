@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:WpfApp1.Views"
         xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
         mc:Ignorable="d"
+        WindowState="Maximized"
         Title="ListePoule" Height="450" Width="700">
     <ScrollViewer CanContentScroll="True">
         <Grid>
@@ -19,13 +20,8 @@
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <TextBlock Grid.Row="0" Text="Poule A" FontSize="20" Margin="0,-5,0,390" RenderTransformOrigin="0.5,0.5"/>
-                <Button Style="{StaticResource addButton}" x:Name="RemovePouleButton" Grid.Row="0" Click="RemovePouleButton_Click" Background="#cc2721" Margin="79,2,0,396"  Width="150" Height="20" HorizontalAlignment="Left">
-                    <StackPanel Orientation="Horizontal">
-                        <Icon:PackIconMaterial Kind="Delete" VerticalAlignment="Center" Width="11" Height="11" Margin="0 1 8 0"/>
-                        <TextBlock Text="Supprimer la poule" FontSize="10"/>
-                    </StackPanel>
-                </Button>
+                <TextBlock Grid.Row="0" Text="Poule A" FontSize="20" Margin="0,-5,0,567" RenderTransformOrigin="0.5,0.5"/>
+                
                 <DataGrid Style="{DynamicResource DataGridStyle1}" Height="220" SelectionMode="Extended" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" x:Name="classement1"  Margin="0,26,0,0" VerticalAlignment="Top" Grid.RowSpan="2">
                     <DataGrid.Columns>
                         <DataGridCheckBoxColumn CanUserResize="False" Width="auto" ElementStyle="{DynamicResource CheckBoxStyle1}">
@@ -64,36 +60,45 @@
                 </DataGrid>
                 <!--Répartition match poule-->
 
-                <Grid Grid.Row="1" x:Name="Grid1" Margin="27,-80,461,48">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="90"/>
-                        <ColumnDefinition Width="22"/>
-                        <ColumnDefinition Width="22"/>
-                        <ColumnDefinition Width="22"/>
-                        <ColumnDefinition Width="22"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-                    <TextBlock Grid.Column="0" Grid.Row="0" Text="Tour 1" Background="Yellow" FontWeight="Bold" TextAlignment="Center"/>
-                    <TextBlock Grid.Column="1" Grid.Row="0" Text="Pt" Background="Yellow" FontWeight="Bold" TextAlignment="Center"/>
-                    <TextBlock Grid.Column="2" Grid.Row="0" Text="Av" Background="Yellow" FontWeight="Bold" TextAlignment="Center"/>
-                    <TextBlock Grid.Column="3" Grid.Row="0" Text="Pen" Background="Yellow" FontWeight="Bold" TextAlignment="Center"/>
-                    <TextBlock Grid.Column="4" Grid.Row="0" Text="Sub" Background="Yellow" FontWeight="Bold" TextAlignment="Center"/>
-                    <TextBlock Grid.Column="0" Grid.Row="1" x:Name="nom_combattant_a1"  Background="White" TextAlignment="Center"/>
-                    <TextBlock Grid.Column="1" Grid.Row="1" x:Name="point_combattant_a1" Text="0" Background="White" TextAlignment="Center"/>
-                    <TextBlock Grid.Column="2" Grid.Row="1" x:Name="av_combattant_a1" Text="0" Background="White" TextAlignment="Center"/>
-                    <TextBlock Grid.Column="3" Grid.Row="1" x:Name="pen_combattant_a1" Text="0" Background="White" TextAlignment="Center"/>
-                    <TextBlock Grid.Column="4" Grid.Row="1" x:Name="sub_combattant_a1" Text="0" Background="White" TextAlignment="Center"/>
-                    <TextBlock Grid.Column="0" Grid.Row="2" x:Name="nom_combattant_b1" Background="White" TextAlignment="Center"/>
-                    <TextBlock Grid.Column="1" Grid.Row="2" x:Name="point_combattant_b1" Text="0" Background="White" TextAlignment="Center"/>
-                    <TextBlock Grid.Column="2" Grid.Row="2" x:Name="av_combattant_b1" Text="0" Background="White" TextAlignment="Center"/>
-                    <TextBlock Grid.Column="3" Grid.Row="2" x:Name="pen_combattant_b1" Text="0" Background="White" TextAlignment="Center"/>
-                    <TextBlock Grid.Column="4" Grid.Row="2" x:Name="sub_combattant_b1" Text="0" Background="White" TextAlignment="Center"/>
-                </Grid>
-                
+                <DataGrid Style="{DynamicResource DataGridStyle1}" SelectionMode="Extended" Height="200" BorderBrush="Black" BorderThickness="1" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" x:Name="ListeCombatsPouleADataGrid"  Margin="0,251,0,232">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="" IsReadOnly="True" CanUserResize="false" Width="0.5*" />
+                        <DataGridTemplateColumn Header="Combats" Width="7*" CanUserResize="True">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Vertical">
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text ="{Binding Nom_Combattant1}" Margin="0, 0" FontWeight="DemiBold"/>
+                                            <TextBlock Text ="{Binding Prenom_Combattant1}" Margin="2, 0" FontWeight="DemiBold"/>
+                                            <TextBlock Text ="{Binding Club_Combattant1}" Margin="3, 0" Foreground="#4c4e52" />
+                                            <TextBlock Text ="{Binding Points_Combattant1}" Margin="10, 0" />
+                                            <TextBlock Text ="{Binding Avantages_Combattant1}" Margin="5, 0" />
+                                            <TextBlock Text ="{Binding Penalites_Combattant1}" Margin="5, 0" />
+                                            <TextBlock Text ="{Binding Sub_Combattant1}" Margin="5, 0" />
+                                            <TextBlock Text="{Binding Victoire1}"  Width="150" FontWeight="DemiBold" Foreground="#17d45f"/>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text ="{Binding Nom_Combattant2}" Margin="0, 0" FontWeight="DemiBold"/>
+                                            <TextBlock Text ="{Binding Prenom_Combattant2}" Margin="2, 0" FontWeight="DemiBold"/>
+                                            <TextBlock Text ="{Binding Club_Combattant2}" Margin="3, 0" Foreground="#4c4e52"/>
+                                            <TextBlock Text ="{Binding Points_Combattant2}" Margin="10, 0"/>
+                                            <TextBlock Text ="{Binding Avantages_Combattant2}" Margin="5, 0" />
+                                            <TextBlock Text ="{Binding Penalites_Combattant2}" Margin="5, 0" />
+                                            <TextBlock Text ="{Binding Sub_Combattant2}" Margin="5, 0" />
+                                            <TextBlock   Width="150" FontWeight="DemiBold" Text="{Binding Victoire2}" Foreground="#17d45f"/>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </DataTemplate>
+
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTextColumn Header="Durée" IsReadOnly="True" Width="1*" Binding="{Binding Duree_combat}"/>
+                        <DataGridTextColumn Header="Tour" IsReadOnly="True" Width="1*" Binding="{Binding Tour_Match}"/>
+
+                    </DataGrid.Columns>
+
+                </DataGrid>
+
             </Grid>
 
             <!--Poule B-->
@@ -138,10 +143,49 @@
                     </DataGrid.Columns>
 
                 </DataGrid>
+                <!--Match poules-->
+                <DataGrid Style="{DynamicResource DataGridStyle1}" Height="200" SelectionMode="Extended" BorderBrush="Black" BorderThickness="1" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" x:Name="ListeCombatsPouleBDataGrid"  Margin="0,250,0,0">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="" IsReadOnly="True" CanUserResize="false" Width="0.5*" />
+                        <DataGridTemplateColumn Header="Combats" Width="7*" CanUserResize="True">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Vertical">
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text ="{Binding Nom_Combattant1}" Margin="0, 0" FontWeight="DemiBold"/>
+                                            <TextBlock Text ="{Binding Prenom_Combattant1}" Margin="2, 0" FontWeight="DemiBold"/>
+                                            <TextBlock Text ="{Binding Club_Combattant1}" Margin="3, 0" Foreground="#4c4e52" />
+                                            <TextBlock Text ="{Binding Points_Combattant1}" Margin="10, 0" />
+                                            <TextBlock Text ="{Binding Avantages_Combattant1}" Margin="5, 0" />
+                                            <TextBlock Text ="{Binding Penalites_Combattant1}" Margin="5, 0" />
+                                            <TextBlock Text ="{Binding Sub_Combattant1}" Margin="5, 0" />
+                                            <TextBlock Text="{Binding Victoire1}"  Width="150" FontWeight="DemiBold" Foreground="#17d45f"/>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text ="{Binding Nom_Combattant2}" Margin="0, 0" FontWeight="DemiBold"/>
+                                            <TextBlock Text ="{Binding Prenom_Combattant2}" Margin="2, 0" FontWeight="DemiBold"/>
+                                            <TextBlock Text ="{Binding Club_Combattant2}" Margin="3, 0" Foreground="#4c4e52"/>
+                                            <TextBlock Text ="{Binding Points_Combattant2}" Margin="10, 0"/>
+                                            <TextBlock Text ="{Binding Avantages_Combattant2}" Margin="5, 0" />
+                                            <TextBlock Text ="{Binding Penalites_Combattant2}" Margin="5, 0" />
+                                            <TextBlock Text ="{Binding Sub_Combattant2}" Margin="5, 0" />
+                                            <TextBlock   Width="150" FontWeight="DemiBold" Text="{Binding Victoire2}" Foreground="#17d45f"/>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </DataTemplate>
 
-                
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTextColumn Header="Durée" IsReadOnly="True" Width="1*" Binding="{Binding Duree_combat}"/>
+                        <DataGridTextColumn Header="Tour" IsReadOnly="True" Width="1*" Binding="{Binding Tour_Match}"/>
+
+                        
+                    </DataGrid.Columns>
+
+                </DataGrid>
+
             </Grid>
-            <Button Style="{StaticResource addButton}" x:Name="SemifinalButton" Grid.Row="0" Click="SemifinalButton_Click" Background="#033dfc" Margin="514,2,0,904"  Width="150" Height="20" HorizontalAlignment="Left">
+            <Button Style="{StaticResource addButton}" x:Name="SemifinalButton" Grid.Row="0" Click="SemifinalButton_Click" Background="#033dfc" Margin="0,2,11,1244"  Width="150" Height="20" HorizontalAlignment="Right">
                 <StackPanel Orientation="Horizontal">
                     <Icon:PackIconMaterial Kind="Plus" VerticalAlignment="Center" Width="11" Height="11" Margin="0 1 8 0"/>
                     <TextBlock Text="Générer demi-final" FontSize="10"/>

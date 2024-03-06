@@ -26,6 +26,8 @@ namespace WpfApp1.Views
     {
         public ObservableCollection<CombattantViewModel_1> Classement1;
         public ObservableCollection<CombattantViewModel_1> Classement2;
+        public ObservableCollection<CombatInfo> ListeCombats_A;
+        public ObservableCollection<CombatInfo> ListeCombats_B;
         private Competition_JJBEntities context;
         private int Id;
 
@@ -36,29 +38,7 @@ namespace WpfApp1.Views
             this.Id = id;
             Charger_Pointspoules();
             Charger();
-            
-            
-            
-
-            // Initialisation des données (vous devriez récupérer ces données de votre modèle réel)
-            /*Classement1 = new ObservableCollection<CombattantViewModel>
-            {
-                new CombattantViewModel { Position = 1, Nom = "Rakotoarison", Prenom = "Diary", Club = "Southside", Points = 0 },
-                new CombattantViewModel { Position = 2, Nom = "Razafimahandry", Prenom="Tantelintsoa", Club = "Attila", Points = 0 },
-                new CombattantViewModel { Position = 3, Nom = "Andrianina", Prenom="Lova", Club = "Checkmat", Points = 0 },
-                new CombattantViewModel { Position = 4, Nom = "Raharimbolamanana", Prenom="Rajo", Club = "Checkmat", Points = 0 },
-            };
-
-            classement1ListView.ItemsSource = Classement1;
-
-            Classement2 = new ObservableCollection<CombattantViewModel>
-            {
-                new CombattantViewModel { Position = 1, Nom = "Randimbinirina", Prenom = "Yusha", Club = "Attila", Points = 0 },
-                new CombattantViewModel { Position = 2, Nom = "Nantenaina", Prenom="Zawa", Club = "Checkmat", Points = 0 },
-                new CombattantViewModel { Position = 3, Nom = "Rakotondralambo", Prenom="Fifaliana", Club = "One Tribe", Points = 0 },
-                new CombattantViewModel { Position = 4, Nom = "Rakotosoa", Prenom="Mahefa", Club = "One Tribe", Points = 0 },
-            };
-            classement2ListView.ItemsSource = Classement2;*/
+            Charger_Match_Poule();
         }
 
         public void Charger_Pointspoules()
@@ -86,13 +66,13 @@ namespace WpfApp1.Views
                                           "FROM Combattants " +
                                           "JOIN Poules ON Combattants.ID_Poule = Poules.ID_Poule " +
                                           "JOIN Clubs ON Combattants.ID_Club = Clubs.ID_Club " +
-                                          "WHERE Poules.Nom_poule = 'Poule A' AND Combattants.ID_Categorie = " + this.Id + "ORDER BY Combattants.Pointspoules DESC, ORDER BY Combattants.Avantage_Marque DESC, ORDER BY Combattants.Penalite_Marque");
+                                          "WHERE Poules.Nom_poule = 'Poule A' AND Combattants.ID_Categorie = " + this.Id + "ORDER BY Combattants.Pointspoules DESC, Combattants.Sub_Marque DESC, Combattants.Points_Marque DESC , Combattants.Avantage_Marque DESC, Combattants.Penalite_Marque, Combattants.Sub_Concede, Combattants.Points_Concede , Combattants.Avantage_Concede, Combattants.Penalite_Concede DESC");
 
             SqlDataReader reader2 = connection2.Select("SELECT Combattants.*, Poules.*, Clubs.nom_club " +
                                           "FROM Combattants " +
                                           "JOIN Poules ON Combattants.ID_Poule = Poules.ID_Poule " +
                                           "JOIN Clubs ON Combattants.ID_Club = Clubs.id_club " +
-                                          "WHERE Poules.Nom_poule = 'Poule B' AND Combattants.ID_Categorie = " + this.Id + " ORDER BY Combattants.Pointspoules DESC, ORDER BY Combattants.Avantage_Marque DESC, ORDER BY Combattants.Penalite_Marque");
+                                          "WHERE Poules.Nom_poule = 'Poule B' AND Combattants.ID_Categorie = " + this.Id + " ORDER BY Combattants.Pointspoules DESC, Combattants.Sub_Marque DESC, Combattants.Points_Marque DESC , Combattants.Avantage_Marque DESC, Combattants.Penalite_Marque, Combattants.Sub_Concede, Combattants.Points_Concede , Combattants.Avantage_Concede, Combattants.Penalite_Concede DESC");
 
             //Classement 1
             int i = 1;
@@ -148,6 +128,130 @@ namespace WpfApp1.Views
             classement2.ItemsSource = Classement2;
         }
 
+        private void Charger_Match_Poule()
+        {
+            using (var context = new Competition_JJBEntities())
+            {
+                // Charger les données des combats à partir de la base de données
+                var poule_A = context.Poules.FirstOrDefault(p => p.ID_Categorie == this.Id && p.Nom_poule == "Poule A");
+                var poule_B = context.Poules.FirstOrDefault(p => p.ID_Categorie == this.Id && p.Nom_poule == "Poule B");
+                var combatspoules_A = context.Combats.Where(c => c.ID_Poule == poule_A.ID_Poule).ToList();
+                
+                // Créer une liste pour stocker les informations sur les combats
+                var listeCombatInfo_A = new List<CombatInfo>();
+                
+                // Pour chaque combat, récupérons le prénom du combattant correspondant
+                foreach (var combat in combatspoules_A)
+                {
+                    // Récupérez le prénom du combattant 1
+                    var categorie = context.Categories.FirstOrDefault(c => c.ID_Categorie == combat.ID_Categorie);
+                    string nom_categorie = categorie != null ? categorie.Nom_Categorie : "";
+                    var combattant1 = context.Combattants.FirstOrDefault(c => c.ID_Combattant == combat.ID_Combattant1);
+                    string nom1 = combattant1 != null ? combattant1.Nom_Combattant : "";
+                    string prenom1 = combattant1 != null ? combattant1.Prenom_Combattant : "";
+                    string club1 = combattant1 != null ? combattant1.Club?.Nom_Club : "";
+                    string point1 = combat.Points_Combattant1.ToString();
+                    string avantage1 = combat.Avantages_Combattant1.ToString();
+                    string penalite1 = combat.Penalites_Combattant1.ToString();
+                    string sub1 = combat.Sub_Combattant1.ToString();
+                    // Récupérez le prénom du combattant 2
+                    var combattant2 = context.Combattants.FirstOrDefault(c => c.ID_Combattant == combat.ID_Combattant2);
+                    string nom2 = combattant2 != null ? combattant2.Nom_Combattant : "";
+                    string prenom2 = combattant2 != null ? combattant2.Prenom_Combattant : "";
+                    string club2 = combattant1 != null ? combattant2.Club?.Nom_Club : "";
+                    string point2 = combat.Points_Combattant2.ToString();
+                    string avantage2 = combat.Avantages_Combattant2.ToString();
+                    string penalite2 = combat.Penalites_Combattant2.ToString();
+                    string sub2 = combat.Sub_Combattant2.ToString();
+                    // Ajoutez les informations sur le combat à la liste
+                    listeCombatInfo_A.Add(new CombatInfo
+                    {
+                        ID_Combat = combat.ID_Combat,
+                        Nom_Combattant1 = "-" + nom1,
+                        Nom_Combattant2 = "-" + nom2,
+                        Prenom_Combattant1 = prenom1,
+                        Prenom_Combattant2 = prenom2,
+                        Club_Combattant1 = "(" + club1 + ")",
+                        Club_Combattant2 = "(" + club2 + ")",
+                        Points_Combattant1 = "PTS:" + point1,
+                        Points_Combattant2 = "PTS:" + point2,
+                        Avantages_Combattant1 = "AV:" + avantage1,
+                        Avantages_Combattant2 = "AV:" + avantage2,
+                        Penalites_Combattant1 = "PEN:" + penalite1,
+                        Penalites_Combattant2 = "PEN:" + penalite2,
+                        Sub_Combattant1 = "SUB:" + sub1,
+                        Sub_Combattant2 = "SUB:" + sub2,
+                        Duree_combat = combat.Duree_combat,
+                        Tour_Match = combat.Tour_Match,
+                        Victoire1 = combat.Victoire_Combattant1,
+                        Victoire2 = combat.Victoire_Combattant2
+                    });
+                }
+
+                ListeCombats_A = new ObservableCollection<CombatInfo>(listeCombatInfo_A);
+
+                ListeCombatsPouleADataGrid.ItemsSource = ListeCombats_A;
+
+                if (poule_B != null)
+                {
+                    var listeCombatInfo_B = new List<CombatInfo>();
+                    var combatspoules_B = context.Combats.Where(c => c.ID_Poule == poule_B.ID_Poule).ToList();
+                    foreach (var combat in combatspoules_B)
+                    {
+                        // Récupérez le prénom du combattant 1
+                        var categorie = context.Categories.FirstOrDefault(c => c.ID_Categorie == combat.ID_Categorie);
+                        string nom_categorie = categorie != null ? categorie.Nom_Categorie : "";
+                        var combattant1 = context.Combattants.FirstOrDefault(c => c.ID_Combattant == combat.ID_Combattant1);
+                        string nom1 = combattant1 != null ? combattant1.Nom_Combattant : "";
+                        string prenom1 = combattant1 != null ? combattant1.Prenom_Combattant : "";
+                        string club1 = combattant1 != null ? combattant1.Club?.Nom_Club : "";
+                        string point1 = combat.Points_Combattant1.ToString();
+                        string avantage1 = combat.Avantages_Combattant1.ToString();
+                        string penalite1 = combat.Penalites_Combattant1.ToString();
+                        string sub1 = combat.Sub_Combattant1.ToString();
+                        // Récupérez le prénom du combattant 2
+                        var combattant2 = context.Combattants.FirstOrDefault(c => c.ID_Combattant == combat.ID_Combattant2);
+                        string nom2 = combattant2 != null ? combattant2.Nom_Combattant : "";
+                        string prenom2 = combattant2 != null ? combattant2.Prenom_Combattant : "";
+                        string club2 = combattant1 != null ? combattant2.Club?.Nom_Club : "";
+                        string point2 = combat.Points_Combattant2.ToString();
+                        string avantage2 = combat.Avantages_Combattant2.ToString();
+                        string penalite2 = combat.Penalites_Combattant2.ToString();
+                        string sub2 = combat.Sub_Combattant2.ToString();
+                        // Ajoutez les informations sur le combat à la liste
+                        listeCombatInfo_B.Add(new CombatInfo
+                        {
+                            ID_Combat = combat.ID_Combat,
+                            Nom_Combattant1 = "-" + nom1,
+                            Nom_Combattant2 = "-" + nom2,
+                            Prenom_Combattant1 = prenom1,
+                            Prenom_Combattant2 = prenom2,
+                            Club_Combattant1 = "(" + club1 + ")",
+                            Club_Combattant2 = "(" + club2 + ")",
+                            Points_Combattant1 = "PTS:" + point1,
+                            Points_Combattant2 = "PTS:" + point2,
+                            Avantages_Combattant1 = "AV:" + avantage1,
+                            Avantages_Combattant2 = "AV:" + avantage2,
+                            Penalites_Combattant1 = "PEN:" + penalite1,
+                            Penalites_Combattant2 = "PEN:" + penalite2,
+                            Sub_Combattant1 = "SUB:" + sub1,
+                            Sub_Combattant2 = "SUB:" + sub2,
+                            Duree_combat = combat.Duree_combat,
+                            Tour_Match = combat.Tour_Match,
+                            Victoire1 = combat.Victoire_Combattant1,
+                            Victoire2 = combat.Victoire_Combattant2
+                        });
+                    }
+
+                    // Assurez-vous que vous avez une propriété ObservableCollection<CombatInfo> dans votre ViewModel
+                    // Pour stocker les informations sur les combats
+                    ListeCombats_B = new ObservableCollection<CombatInfo>(listeCombatInfo_B);
+
+                    ListeCombatsPouleBDataGrid.ItemsSource = ListeCombats_B;
+                }
+                
+            }
+        }
         private void RemovePouleButton_Click(object sender, RoutedEventArgs e)
         {
             

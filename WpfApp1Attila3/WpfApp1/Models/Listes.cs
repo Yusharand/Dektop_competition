@@ -134,6 +134,12 @@ namespace WpfApp1.Models
         public string Club_Combattant2 { get; set; }
         public string Points_Combattant1 { get; set; }
         public string Points_Combattant2 { get; set; }
+        public string Avantages_Combattant1 { get; set; }
+        public string Avantages_Combattant2 { get; set; }
+        public string Penalites_Combattant1 { get; set; }
+        public string Penalites_Combattant2 { get; set; }
+        public string Sub_Combattant1 { get; set; }
+        public string Sub_Combattant2 { get; set; }
         public string Duree_combat { get; set; }
         public string Categorie_Combat { get; set; }
         public string Tour_Match { get; set; }

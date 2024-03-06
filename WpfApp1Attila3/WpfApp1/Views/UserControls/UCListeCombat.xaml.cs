@@ -35,8 +35,6 @@ namespace WpfApp1.Views.UserControls
         }
 
 
-        
-
         public void Charger()
         {
             using (var context = new Competition_JJBEntities())
