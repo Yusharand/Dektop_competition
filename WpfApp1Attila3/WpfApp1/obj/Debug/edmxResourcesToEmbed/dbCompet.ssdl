@@ -69,6 +69,9 @@
     <Property Name="ID_Competition" Type="int" />
     <Property Name="ID_Club" Type="int" />
     <Property Name="Nom_Club" Type="nvarchar" MaxLength="50" />
+    <Property Name="Position_poule" Type="int" />
+    <Property Name="Victoire_demi" Type="int" />
+    <Property Name="Victoire_finale" Type="int" />
   </EntityType>
   <EntityType Name="Competition_Detail">
     <Key>

@@ -144,7 +144,7 @@
 
                 </DataGrid>
                 <!--Match poules-->
-                <DataGrid Style="{DynamicResource DataGridStyle1}" Height="200" SelectionMode="Extended" BorderBrush="Black" BorderThickness="1" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" x:Name="ListeCombatsPouleBDataGrid"  Margin="0,250,0,0">
+                <DataGrid Style="{DynamicResource DataGridStyle1}" Height="200" SelectionMode="Extended" BorderBrush="Black" BorderThickness="1" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" x:Name="ListeCombatsPouleBDataGrid"  Margin="0,400,0,0">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="" IsReadOnly="True" CanUserResize="false" Width="0.5*" />
                         <DataGridTemplateColumn Header="Combats" Width="7*" CanUserResize="True">
@@ -185,10 +185,16 @@
                 </DataGrid>
 
             </Grid>
-            <Button Style="{StaticResource addButton}" x:Name="SemifinalButton" Grid.Row="0" Click="SemifinalButton_Click" Background="#033dfc" Margin="0,2,11,1244"  Width="150" Height="20" HorizontalAlignment="Right">
+            <Button Style="{StaticResource addButton}" x:Name="SemifinalButton" Grid.Row="0" Click="SemifinalButton_Click" Background="#033dfc" Margin="0,2,159,1504"  Width="150" Height="20" HorizontalAlignment="Right">
                 <StackPanel Orientation="Horizontal">
                     <Icon:PackIconMaterial Kind="Plus" VerticalAlignment="Center" Width="11" Height="11" Margin="0 1 8 0"/>
-                    <TextBlock Text="Générer demi-final" FontSize="10"/>
+                    <TextBlock Text="Générer demi-finales" FontSize="10"/>
+                </StackPanel>
+            </Button>
+            <Button Style="{StaticResource addButton}" x:Name="FinalButton" Grid.Row="0" Click="FinalButton_Click" Background="#033dfc" Margin="0,2,1,1504"  Width="150" Height="20" HorizontalAlignment="Right">
+                <StackPanel Orientation="Horizontal">
+                    <Icon:PackIconMaterial Kind="Plus" VerticalAlignment="Center" Width="11" Height="11" Margin="0 1 8 0"/>
+                    <TextBlock Text="Générer finale" FontSize="10"/>
                 </StackPanel>
             </Button>
         </Grid>

@@ -106,6 +106,8 @@ namespace WpfApp1.Views.UserControls
             int id_combat = combatInfoSelectionne.ID_Combat;
             context = new Competition_JJBEntities();
             var combat = context.Combats.FirstOrDefault(c => c.ID_Combat == id_combat);
+            combat.Victoire_Combattant1 = null;
+            combat.Victoire_Combattant2 = null;
             var combattant1 = context.Combattants.FirstOrDefault(c => c.ID_Combattant == combat.ID_Combattant1);
             var combattant2 = context.Combattants.FirstOrDefault(c => c.ID_Combattant == combat.ID_Combattant2);
             var competition = context.Competitions.FirstOrDefault(c => c.ID_Competition == this.Id);

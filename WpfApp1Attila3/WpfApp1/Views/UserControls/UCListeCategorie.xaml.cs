@@ -62,12 +62,15 @@ namespace WpfApp1.Views.UserControls
             ConnexionBD connection2 = new ConnexionBD();
             ConnexionBD connection3 = new ConnexionBD();
             ConnexionBD connection4 = new ConnexionBD();
+            ConnexionBD connection5 = new ConnexionBD();
             connection2.Update("UPDATE Combattants SET ID_Categorie = NULL WHERE ID_Categorie = " + id);
             connection2.Close();
             connection3.Update("UPDATE Combattants SET ID_Poule = NULL WHERE ID_Categorie = " + id);
             connection3.Close();
             connection4.Update("UPDATE Poules SET ID_Categorie = NULL WHERE ID_Categorie = " + id);
             connection4.Close();
+            connection5.Delete("DELETE FROM Combats WHERE ID_Categorie = " + id);
+            connection5.Close();
             connection.Delete("DELETE FROM Categories WHERE ID_Categorie = " + id);
             connection.Close();
 

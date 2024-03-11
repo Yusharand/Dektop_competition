@@ -1593,7 +1593,14 @@ namespace WpfApp1
                 {
                     combattant1.Pointspoules += 3;
                 }
-                
+                if (combat.Tour_Match == "Demi-finale 1" || combat.Tour_Match == "Demi-finale 2")
+                {
+                    combattant1.Victoire_demi = 1;
+                }
+                if (combat.Tour_Match == "Finale")
+                {
+                    combattant1.Victoire_finale = 1;
+                }
             }
             else if(EstUserControlDansGrid(vpointbleu, btnContent2))
             {
@@ -1601,6 +1608,14 @@ namespace WpfApp1
                 if (combat.ID_Poule != null)
                 {
                     combattant2.Pointspoules += 3;
+                }
+                if (combat.Tour_Match == "Demi-finale 1" || combat.Tour_Match == "Demi-finale 2")
+                {
+                    combattant2.Victoire_demi = 1;
+                }
+                if (combat.Tour_Match == "Finale")
+                {
+                    combattant2.Victoire_finale = 1;
                 }
             }
             else if (EstUserControlDansGrid(vdecisionrouge, btnContent1))
@@ -1610,6 +1625,14 @@ namespace WpfApp1
                 {
                     combattant1.Pointspoules += 1;
                 }
+                if (combat.Tour_Match == "Demi-finale 1" || combat.Tour_Match == "Demi-finale 2")
+                {
+                    combattant1.Victoire_demi = 1;
+                }
+                if (combat.Tour_Match == "Finale")
+                {
+                    combattant1.Victoire_finale = 1;
+                }
             }
             else if (EstUserControlDansGrid(vdecisionbleu, btnContent2))
             {
@@ -1617,6 +1640,14 @@ namespace WpfApp1
                 if (combat.ID_Poule != null)
                 {
                     combattant2.Pointspoules += 1;
+                }
+                if (combat.Tour_Match == "Demi-finale 1" || combat.Tour_Match == "Demi-finale 2")
+                {
+                    combattant2.Victoire_demi = 1;
+                }
+                if (combat.Tour_Match == "Finale")
+                {
+                    combattant2.Victoire_finale = 1;
                 }
             }
             else if (EstUserControlDansGrid(vdisqualificationrouge, btnContent1))
@@ -1626,6 +1657,14 @@ namespace WpfApp1
                 {
                     combattant1.Pointspoules += 5;
                 }
+                if (combat.Tour_Match == "Demi-finale 1" || combat.Tour_Match == "Demi-finale 2")
+                {
+                    combattant1.Victoire_demi = 1;
+                }
+                if (combat.Tour_Match == "Finale")
+                {
+                    combattant1.Victoire_finale = 1;
+                }
             }
             else if (EstUserControlDansGrid(vdisqualificationbleu, btnContent2))
             {
@@ -1633,6 +1672,14 @@ namespace WpfApp1
                 if (combat.ID_Poule != null)
                 {
                     combattant2.Pointspoules += 5;
+                }
+                if (combat.Tour_Match == "Demi-finale 1" || combat.Tour_Match == "Demi-finale 2")
+                {
+                    combattant2.Victoire_demi = 1;
+                }
+                if (combat.Tour_Match == "Finale")
+                {
+                    combattant2.Victoire_finale = 1;
                 }
             }
             else if (EstUserControlDansGrid(vsoumissionrouge, btnContent1))
@@ -1642,6 +1689,14 @@ namespace WpfApp1
                 {
                     combattant1.Pointspoules += 5;
                 }
+                if (combat.Tour_Match == "Demi-finale 1" || combat.Tour_Match == "Demi-finale 2")
+                {
+                    combattant1.Victoire_demi = 1;
+                }
+                if (combat.Tour_Match == "Finale")
+                {
+                    combattant1.Victoire_finale = 1;
+                }
             }
             else if (EstUserControlDansGrid(vsoumissionbleu, btnContent2))
             {
@@ -1649,6 +1704,14 @@ namespace WpfApp1
                 if (combat.ID_Poule != null)
                 {
                     combattant2.Pointspoules += 5;
+                }
+                if (combat.Tour_Match == "Demi-finale 1" || combat.Tour_Match == "Demi-finale 2")
+                {
+                    combattant2.Victoire_demi = 1;
+                }
+                if (combat.Tour_Match == "Finale")
+                {
+                    combattant2.Victoire_finale = 1;
                 }
             }
             context.SaveChanges();

@@ -74,6 +74,9 @@
           <Property Name="ID_Competition" Type="int" />
           <Property Name="ID_Club" Type="int" />
           <Property Name="Nom_Club" Type="nvarchar" MaxLength="50" />
+          <Property Name="Position_poule" Type="int" />
+          <Property Name="Victoire_demi" Type="int" />
+          <Property Name="Victoire_finale" Type="int" />
         </EntityType>
         <EntityType Name="Competition_Detail">
           <Key>
@@ -445,6 +448,9 @@
           <Property Name="ID_Competition" Type="Int32" />
           <Property Name="ID_Club" Type="Int32" />
           <Property Name="Nom_Club" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Position_poule" Type="Int32" />
+          <Property Name="Victoire_demi" Type="Int32" />
+          <Property Name="Victoire_finale" Type="Int32" />
           <NavigationProperty Name="Category" Relationship="Self.FK__Combattan__ID_Ca__04E4BC85" FromRole="Combattants" ToRole="Categories" />
           <NavigationProperty Name="Club" Relationship="Self.FK__Combattan__ID_Cl__1B9317B3" FromRole="Combattants" ToRole="Clubs" />
           <NavigationProperty Name="Competition" Relationship="Self.FK__Combattan__ID_Co__0A688BB1" FromRole="Combattants" ToRole="Competitions" />
@@ -827,6 +833,9 @@
                 <ScalarProperty Name="ID_Competition" ColumnName="ID_Competition" />
                 <ScalarProperty Name="ID_Club" ColumnName="ID_Club" />
                 <ScalarProperty Name="Nom_Club" ColumnName="Nom_Club" />
+                <ScalarProperty Name="Position_poule" ColumnName="Position_poule" />
+                <ScalarProperty Name="Victoire_demi" ColumnName="Victoire_demi" />
+                <ScalarProperty Name="Victoire_finale" ColumnName="Victoire_finale" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

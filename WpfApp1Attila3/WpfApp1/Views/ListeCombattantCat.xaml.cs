@@ -131,8 +131,8 @@ namespace WpfApp1.Views
 
         private void Creer_PouleA_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
+            /*try
+            {*/
                 var combattantsSelectionnes = ListeCombattantsCatDataGrid.SelectedItems.Cast<Combattant>().ToList();
                 Poule pouleselectionne = ObtenirPoule("Poule A");
                 string[] index = { "a", "b", "c", "d", "e" };
@@ -141,7 +141,7 @@ namespace WpfApp1.Views
                 {
                     combattant.ID_Poule = pouleselectionne.ID_Poule;
                     combattant.ID_Categorie = this.Id_cat;
-                    combattant.ID_Categorie = this.Id_compet;
+                    combattant.ID_Competition = this.Id_compet;
                     combattant.Index_Poule = index[ind];
                     context.Combattants.Attach(combattant);
                     context.Entry(combattant).State = EntityState.Modified;
@@ -270,11 +270,11 @@ namespace WpfApp1.Views
                 context.SaveChanges();
                 Charger();
                 MessageBox.Show("Poule créée avec succès");
-            }
+           /* }
             catch(Exception ex)
             {
                 MessageBox.Show("Erreur : " + ex.Message + "Choisissez d'abord votre bracket de combat");
-            }
+            }*/
 
         }
 

@@ -37,6 +37,9 @@ namespace WpfApp1
         public Nullable<int> ID_Competition { get; set; }
         public Nullable<int> ID_Club { get; set; }
         public string Nom_Club { get; set; }
+        public Nullable<int> Position_poule { get; set; }
+        public Nullable<int> Victoire_demi { get; set; }
+        public Nullable<int> Victoire_finale { get; set; }
     
         public virtual Category Category { get; set; }
         public virtual Club Club { get; set; }
