@@ -37,16 +37,6 @@ namespace WpfApp1.Views
         {
             InitializeComponent();
             this.Id = id;
-            context = new Competition_JJBEntities();
-            var poule_B = context.Poules.FirstOrDefault(p => p.ID_Categorie == this.Id && p.Nom_poule == "Poule B");
-            if(poule_B == null)
-            {
-                SemifinalButton.IsEnabled = false;
-            }
-            else
-            {
-                FinalButton.IsEnabled = false;
-            }
             Charger_Pointspoules();
             Charger();
             Charger_Match_Poule();
@@ -214,7 +204,6 @@ namespace WpfApp1.Views
                 if (poule_B != null)
                 {
                     
-                    SemifinalButton.Background = Brushes.Gray;
                     var listeCombatInfo_B = new List<CombatInfo>();
                     var combatspoules_B = context.Combats.Where(c => c.ID_Poule == poule_B.ID_Poule).ToList();
                     foreach (var combat in combatspoules_B)
@@ -298,119 +287,142 @@ namespace WpfApp1.Views
 
         private void SemifinalButton_Click(object sender, RoutedEventArgs e)
         {
-            FinalButton.IsEnabled = true;
-            context = new Competition_JJBEntities();
-            var poule_A = context.Poules.FirstOrDefault(p => p.ID_Categorie == this.Id && p.Nom_poule == "Poule A");
-            var poule_B = context.Poules.FirstOrDefault(p => p.ID_Categorie == this.Id && p.Nom_poule == "Poule B");
-            var combattant1_1 = context.Combattants.FirstOrDefault(c => c.ID_Poule == poule_A.ID_Poule && c.Position_poule == 1);
-            var combattant1_2 = context.Combattants.FirstOrDefault(c => c.ID_Poule == poule_A.ID_Poule && c.Position_poule == 2);
-            var combattant2_1 = context.Combattants.FirstOrDefault(c => c.ID_Poule == poule_B.ID_Poule && c.Position_poule == 1);
-            var combattant2_2 = context.Combattants.FirstOrDefault(c => c.ID_Poule == poule_B.ID_Poule && c.Position_poule == 2);
-            List<Combat> combats = new List<Combat>();
-            Combat combat1 = new Combat
+            try
             {
-                // Assigner les propriétés du combat
-                Nom_Combat = $"Combat {combattant1_1.Prenom_Combattant } vs {combattant2_2.Prenom_Combattant}",
-                ID_Categorie = this.Id,
-                Points_Combattant1 = 0,
-                Points_Combattant2 = 0,
-                Avantages_Combattant1 = 0,
-                Avantages_Combattant2 = 0,
-                Penalites_Combattant1 = 0,
-                Penalites_Combattant2 = 0,
-                Sub_Combattant1 = 0,
-                Sub_Combattant2 = 0,
-                ID_Combattant1 = combattant1_1.ID_Combattant,
-                ID_Combattant2 = combattant2_2.ID_Combattant,
-                Tour_Match = "Demi-finale 1",
-                // Vous pouvez également initialiser d'autres propriétés du combat selon vos besoins
-            };
-            combats.Add(combat1);
-            context.Combats.Attach(combat1);
-            context.Entry(combat1).State = EntityState.Added;
+                context = new Competition_JJBEntities();
+                var poule_A = context.Poules.FirstOrDefault(p => p.ID_Categorie == this.Id && p.Nom_poule == "Poule A");
+                var poule_B = context.Poules.FirstOrDefault(p => p.ID_Categorie == this.Id && p.Nom_poule == "Poule B");
+                var combattant1_1 = context.Combattants.FirstOrDefault(c => c.ID_Poule == poule_A.ID_Poule && c.Position_poule == 1);
+                var combattant1_2 = context.Combattants.FirstOrDefault(c => c.ID_Poule == poule_A.ID_Poule && c.Position_poule == 2);
+                var combattant2_1 = context.Combattants.FirstOrDefault(c => c.ID_Poule == poule_B.ID_Poule && c.Position_poule == 1);
+                var combattant2_2 = context.Combattants.FirstOrDefault(c => c.ID_Poule == poule_B.ID_Poule && c.Position_poule == 2);
+                List<Combat> combats = new List<Combat>();
+                Combat combat1 = new Combat
+                {
+                    // Assigner les propriétés du combat
+                    Nom_Combat = $"Combat {combattant1_1.Prenom_Combattant } vs {combattant2_2.Prenom_Combattant}",
+                    ID_Categorie = this.Id,
+                    Points_Combattant1 = 0,
+                    Points_Combattant2 = 0,
+                    Avantages_Combattant1 = 0,
+                    Avantages_Combattant2 = 0,
+                    Penalites_Combattant1 = 0,
+                    Penalites_Combattant2 = 0,
+                    Sub_Combattant1 = 0,
+                    Sub_Combattant2 = 0,
+                    ID_Combattant1 = combattant1_1.ID_Combattant,
+                    ID_Combattant2 = combattant2_2.ID_Combattant,
+                    Tour_Match = "Demi-finale 1",
+                    // Vous pouvez également initialiser d'autres propriétés du combat selon vos besoins
+                };
+                combats.Add(combat1);
+                context.Combats.Attach(combat1);
+                context.Entry(combat1).State = EntityState.Added;
 
-            Combat combat2 = new Combat
+                Combat combat2 = new Combat
+                {
+                    // Assigner les propriétés du combat
+                    Nom_Combat = $"Combat {combattant1_2.Prenom_Combattant } vs {combattant2_1.Prenom_Combattant}",
+                    ID_Categorie = this.Id,
+                    Points_Combattant1 = 0,
+                    Points_Combattant2 = 0,
+                    Avantages_Combattant1 = 0,
+                    Avantages_Combattant2 = 0,
+                    Penalites_Combattant1 = 0,
+                    Penalites_Combattant2 = 0,
+                    Sub_Combattant1 = 0,
+                    Sub_Combattant2 = 0,
+                    ID_Combattant1 = combattant1_2.ID_Combattant,
+                    ID_Combattant2 = combattant2_1.ID_Combattant,
+                    Tour_Match = "Demi-finale 2",
+                    // Vous pouvez également initialiser d'autres propriétés du combat selon vos besoins
+                };
+                // Ajouter le combat à la liste des combats
+                combats.Add(combat2);
+                context.Combats.Attach(combat2);
+                context.Entry(combat2).State = EntityState.Added;
+
+                context.SaveChanges();
+            }
+            catch
             {
-                // Assigner les propriétés du combat
-                Nom_Combat = $"Combat {combattant1_2.Prenom_Combattant } vs {combattant2_1.Prenom_Combattant}",
-                ID_Categorie = this.Id,
-                Points_Combattant1 = 0,
-                Points_Combattant2 = 0,
-                Avantages_Combattant1 = 0,
-                Avantages_Combattant2 = 0,
-                Penalites_Combattant1 = 0,
-                Penalites_Combattant2 = 0,
-                Sub_Combattant1 = 0,
-                Sub_Combattant2 = 0,
-                ID_Combattant1 = combattant1_2.ID_Combattant,
-                ID_Combattant2 = combattant2_1.ID_Combattant,
-                Tour_Match = "Demi-finale 2",
-                // Vous pouvez également initialiser d'autres propriétés du combat selon vos besoins
-            };
-            // Ajouter le combat à la liste des combats
-            combats.Add(combat2);
-            context.Combats.Attach(combat2);
-            context.Entry(combat2).State = EntityState.Added;
-
-            context.SaveChanges();
+                MessageBox.Show("Requête invalide!");
+            }
         }
 
         private void FinalButton_Click(object sender, RoutedEventArgs e)
         {
-            context = new Competition_JJBEntities();
-            var poule_B = context.Poules.FirstOrDefault(p => p.ID_Categorie == this.Id && p.Nom_poule == "Poule B");
-            if(poule_B == null)
+            try
             {
-                var combattant1 = context.Combattants.FirstOrDefault(c => c.ID_Categorie == this.Id && c.Position_poule == 1);
-                var combattant2 = context.Combattants.FirstOrDefault(c => c.ID_Categorie == this.Id && c.Position_poule == 2);
-                Combat combat1 = new Combat
-                {
-                    // Assigner les propriétés du combat
-                    Nom_Combat = $"Combat {combattant1.Prenom_Combattant } vs {combattant2.Prenom_Combattant}",
-                    ID_Categorie = this.Id,
-                    Points_Combattant1 = 0,
-                    Points_Combattant2 = 0,
-                    Avantages_Combattant1 = 0,
-                    Avantages_Combattant2 = 0,
-                    Penalites_Combattant1 = 0,
-                    Penalites_Combattant2 = 0,
-                    Sub_Combattant1 = 0,
-                    Sub_Combattant2 = 0,
-                    ID_Combattant1 = combattant1.ID_Combattant,
-                    ID_Combattant2 = combattant2.ID_Combattant,
-                    Tour_Match = "Finale",
-                    // Vous pouvez également initialiser d'autres propriétés du combat selon vos besoins
-                };
+                context = new Competition_JJBEntities();
+                var poule_B = context.Poules.FirstOrDefault(p => p.ID_Categorie == this.Id && p.Nom_poule == "Poule B");
                 
-                context.Combats.Attach(combat1);
-                context.Entry(combat1).State = EntityState.Added;
-                context.SaveChanges();
-            }
-            else
-            {
-                var combattantfinaliste = context.Combattants.Where(c => c.ID_Categorie == this.Id && c.Victoire_demi != null).ToList();
-                Combat combat1 = new Combat
+                if (poule_B == null)
                 {
-                    // Assigner les propriétés du combat
-                    Nom_Combat = $"Combat {combattantfinaliste[0].Prenom_Combattant } vs {combattantfinaliste[1].Prenom_Combattant}",
-                    ID_Categorie = this.Id,
-                    Points_Combattant1 = 0,
-                    Points_Combattant2 = 0,
-                    Avantages_Combattant1 = 0,
-                    Avantages_Combattant2 = 0,
-                    Penalites_Combattant1 = 0,
-                    Penalites_Combattant2 = 0,
-                    Sub_Combattant1 = 0,
-                    Sub_Combattant2 = 0,
-                    ID_Combattant1 = combattantfinaliste[0].ID_Combattant,
-                    ID_Combattant2 = combattantfinaliste[1].ID_Combattant,
-                    Tour_Match = "Finale",
-                    // Vous pouvez également initialiser d'autres propriétés du combat selon vos besoins
-                };
+                    var combattant1 = context.Combattants.FirstOrDefault(c => c.ID_Categorie == this.Id && c.Position_poule == 1);
+                    var combattant2 = context.Combattants.FirstOrDefault(c => c.ID_Categorie == this.Id && c.Position_poule == 2);
+                    Combat combat1 = new Combat
+                    {
+                        // Assigner les propriétés du combat
+                        Nom_Combat = $"Combat {combattant1.Prenom_Combattant } vs {combattant2.Prenom_Combattant}",
+                        ID_Categorie = this.Id,
+                        Points_Combattant1 = 0,
+                        Points_Combattant2 = 0,
+                        Avantages_Combattant1 = 0,
+                        Avantages_Combattant2 = 0,
+                        Penalites_Combattant1 = 0,
+                        Penalites_Combattant2 = 0,
+                        Sub_Combattant1 = 0,
+                        Sub_Combattant2 = 0,
+                        ID_Combattant1 = combattant1.ID_Combattant,
+                        ID_Combattant2 = combattant2.ID_Combattant,
+                        Tour_Match = "Finale",
+                        // Vous pouvez également initialiser d'autres propriétés du combat selon vos besoins
+                    };
 
-                context.Combats.Attach(combat1);
-                context.Entry(combat1).State = EntityState.Added;
-                context.SaveChanges();
+                    context.Combats.Attach(combat1);
+                    context.Entry(combat1).State = EntityState.Added;
+                    context.SaveChanges();
+                }
+                else
+                {
+
+                    var combattantfinaliste = context.Combattants.Where(c => c.ID_Categorie == this.Id && c.Victoire_demi != null).ToList();
+                    if ((combattantfinaliste == null))
+                    {
+                        MessageBox.Show("Requête invalide!");
+                    }
+                    else
+                    {
+                        Combat combat1 = new Combat
+                        {
+                            // Assigner les propriétés du combat
+                            Nom_Combat = $"Combat {combattantfinaliste[0].Prenom_Combattant } vs {combattantfinaliste[1].Prenom_Combattant}",
+                            ID_Categorie = this.Id,
+                            Points_Combattant1 = 0,
+                            Points_Combattant2 = 0,
+                            Avantages_Combattant1 = 0,
+                            Avantages_Combattant2 = 0,
+                            Penalites_Combattant1 = 0,
+                            Penalites_Combattant2 = 0,
+                            Sub_Combattant1 = 0,
+                            Sub_Combattant2 = 0,
+                            ID_Combattant1 = combattantfinaliste[0].ID_Combattant,
+                            ID_Combattant2 = combattantfinaliste[1].ID_Combattant,
+                            Tour_Match = "Finale",
+                            // Vous pouvez également initialiser d'autres propriétés du combat selon vos besoins
+                        };
+
+                        context.Combats.Attach(combat1);
+                        context.Entry(combat1).State = EntityState.Added;
+                        context.SaveChanges();
+                    }
+                       
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Erreur:" + ex);
             }
         }
     }

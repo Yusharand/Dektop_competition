@@ -309,6 +309,7 @@ namespace WpfApp1.Views
             Application.Current.MainWindow = scoreboardPublic;
             scoreboardPublic.Load_Data(nom1, nom2, prenom1, prenom2, club1, club2, logoclub1, logoclub2, tour, categorie, fondscoreboard, couleur1, couleur2, minute);
             scoreboardPublic.Show();
+            this.Close();
         }
 
         private void RetourDashboard_Click(object sender, RoutedEventArgs e)
