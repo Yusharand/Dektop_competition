@@ -1,0 +1,23 @@
+﻿<Window x:Class="WpfApp1.Views.ChoixCompet"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1.Views" WindowStartupLocation="CenterScreen"
+        Title="ChoixCompet" Height="450" Width="800">
+    <Grid>
+        <Border Padding="3" Background="White" CornerRadius="100" DockPanel.Dock="Top" Margin="312,0,0,242" Height="145" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="156">
+            <Ellipse x:Name="ellipsePhoto">
+                <Ellipse.Fill>
+                    <ImageBrush ImageSource="/Images/1691418727718.jpg"/>
+                </Ellipse.Fill>
+            </Ellipse>
+        </Border>
+        <StackPanel Margin="158,252,174,71" Orientation="Vertical">
+            <Button Content="NOUVELLE COMPETITION" Style="{StaticResource removeButton}" Background="#042a63" Height="78" Margin="0,0,255,0" Click="NewCompet_Click" Width="198" HorizontalAlignment="Right"/>
+            <Button Content="CHARGER COMPETITION" Name="finDeMatch" Style="{StaticResource removeButton}" Click="ChargeCompet_Click" Background="#042a63" Height="78" Margin="0,-77,0,0"  Width="198"/>
+
+        </StackPanel>
+
+    </Grid>
+</Window>

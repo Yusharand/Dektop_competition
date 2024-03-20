@@ -1,0 +1,78 @@
+﻿<Window x:Class="WpfApp1.Views.Login"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1.Views"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen" SizeToContent="WidthAndHeight" SnapsToDevicePixels="True"
+        Background="AliceBlue"  ResizeMode="NoResize"
+        KeyDown="Window_KeyDown">
+    <Window.Resources>
+        <!--<Storyboard x:Key="FadeIn">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="window">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0.4"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.4" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>-->
+
+
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+
+    </Window.Resources>
+    <!--<Window.Triggers>
+        <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+            <BeginStoryboard Storyboard="{StaticResource FadeIn}"/>
+        </EventTrigger>
+    </Window.Triggers>-->
+    <Border >
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="48" />
+                <RowDefinition Height="1" />
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8,0,0,0" Height="40">
+                    <Path Width="19.5" Height="28.5" Margin="20,0,12,0" Stretch="Fill" HorizontalAlignment="Center" VerticalAlignment="Center"  Data="F1 M 25,27L 46,19L 46,22.25L 28.5,29L 31.75,31.25L 51,23.75L 51,48.5L 31.75,57L 25,52L 25,27 Z "/>
+                    <!--<Image Source="/Ruby;component/Backend/Icons/32x32/Normal/asset-banknote.png" Style="{StaticResource UserControlImageStyle}" ></Image>-->
+                    <TextBlock  Text="Login Window" FontSize="20" Margin="8,2,0,0" FontWeight="Normal" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Segoe WP" />
+                </StackPanel>
+
+            </Grid>
+            <Grid Grid.Row="1"></Grid>
+            <Grid Grid.Row="2">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid Grid.Column="1" Name="SplitGrid" Width="20" Visibility="Visible">
+                        <StackPanel Height="326" Width="1"  Margin="0,40,0,40"></StackPanel>
+                    </Grid>
+                    <Grid Grid.Column="2" Name="LocalLoginGrid" Visibility="Visible" Width="380">
+                        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Margin="80,56,80,0">
+
+                            <Label Content="Login " Margin="0,4,0,12" HorizontalAlignment="Center"  FontFamily="Segoe UI Semilight" FontSize="26"></Label>
+                            <Grid Margin="0,0,0,8">
+                                <TextBlock Margin="4,1,2,0" VerticalAlignment="Center" TextAlignment="Center" FontSize="16" Height="22" Text="Entrer la cle d'activation" Foreground="Black"
+                                            />
+
+                            </Grid>
+                            <Grid Margin="0,0,0,8">
+                                <PasswordBox Background="Transparent" HorizontalContentAlignment="Center"  HorizontalAlignment="Center" VerticalContentAlignment="Center" Name="LocalPasswordBox" Height="36" Width="220"  TabIndex="5" />
+                            </Grid>
+
+
+
+
+                            <Button Name="LocalLoginButton" Content="Login" Width="220" Height="36" Click="LocalLoginButton_Click" Margin="0,0,0,32" TabIndex="8" />
+                        </StackPanel>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>

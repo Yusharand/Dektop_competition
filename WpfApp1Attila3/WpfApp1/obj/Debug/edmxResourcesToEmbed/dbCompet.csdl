@@ -82,7 +82,9 @@
     <Property Name="Nom_Club" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Position_poule" Type="Int32" />
     <Property Name="Victoire_demi" Type="Int32" />
-    <Property Name="Victoire_finale" Type="Int32" />
+    <Property Name="Victoire_aller" Type="Int32" />
+    <Property Name="Victoire_retour" Type="Int32" />
+    <Property Name="Victoire_finale" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Category" Relationship="Self.FK__Combattan__ID_Ca__04E4BC85" FromRole="Combattants" ToRole="Categories" />
     <NavigationProperty Name="Club" Relationship="Self.FK__Combattan__ID_Cl__1B9317B3" FromRole="Combattants" ToRole="Clubs" />
     <NavigationProperty Name="Competition" Relationship="Self.FK__Combattan__ID_Co__0A688BB1" FromRole="Combattants" ToRole="Competitions" />

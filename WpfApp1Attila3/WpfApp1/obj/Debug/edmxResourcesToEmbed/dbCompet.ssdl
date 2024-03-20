@@ -71,7 +71,9 @@
     <Property Name="Nom_Club" Type="nvarchar" MaxLength="50" />
     <Property Name="Position_poule" Type="int" />
     <Property Name="Victoire_demi" Type="int" />
-    <Property Name="Victoire_finale" Type="int" />
+    <Property Name="Victoire_aller" Type="int" />
+    <Property Name="Victoire_retour" Type="int" />
+    <Property Name="Victoire_finale" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="Competition_Detail">
     <Key>

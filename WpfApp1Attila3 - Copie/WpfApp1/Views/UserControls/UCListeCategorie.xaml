@@ -1,0 +1,71 @@
+﻿<UserControl x:Class="WpfApp1.Views.UserControls.UCListeCategorie"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WpfApp1.Views.UserControls"
+             xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             mc:Ignorable="d"  
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+
+        <!--<ComboBox Height="30" Margin="553,10,0,0" VerticalAlignment="Top" x:Name="cmbColumns" HorizontalAlignment="Left" Width="212">
+            <ComboBoxItem>Nom</ComboBoxItem>
+            <ComboBoxItem IsSelected="True">Prénom</ComboBoxItem>
+            <ComboBoxItem>Club</ComboBoxItem>
+            <ComboBoxItem>Grade</ComboBoxItem>
+        </ComboBox>-->
+        <DataGrid Style="{DynamicResource DataGridStyle1}" SelectionMode="Extended" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" x:Name="ListeCategoriesDataGrid" SelectionChanged="ListeCategoriesDataGrid_SelectionChanged" Margin="0,78,0,59">
+            <DataGrid.Columns>
+                <DataGridCheckBoxColumn CanUserResize="False" Width="auto" ElementStyle="{DynamicResource CheckBoxStyle1}">
+                    <DataGridCheckBoxColumn.HeaderTemplate>
+                        <DataTemplate>
+                            <CheckBox Style="{DynamicResource CheckBoxStyle1}"  />
+                        </DataTemplate>
+                    </DataGridCheckBoxColumn.HeaderTemplate>
+                </DataGridCheckBoxColumn>
+
+                <DataGridTextColumn Header="ID" IsReadOnly="True" CanUserResize="false" Width="0.5*" Binding="{Binding ID_Categorie}"/>
+
+
+                <DataGridTextColumn Header="Nom catégorie" IsReadOnly="True" Width="1*" Binding="{Binding Nom_Categorie}"/>
+
+
+
+
+                <DataGridTemplateColumn Header="Opération" IsReadOnly="True" Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Button Style="{StaticResource gridEditButton}" Click="ModifCat_Click">
+                                    <Icon:PackIconMaterial Kind="PencilOutline" Style="{StaticResource gridButtonIcon}"/>
+                                </Button>
+                                <Button Style="{StaticResource gridRemoveButton}" Margin="5 0 0 0" Click="DeleteCat_Click">
+                                    <Icon:PackIconMaterial Kind="DeleteOutline" Style="{StaticResource gridButtonIcon}"/>
+                                </Button>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="" IsReadOnly="True" Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+
+                                <Button Style="{StaticResource gridEditButton}" Width="80" Content="Brackets" Click="Bracket_Click" Background="Green"/>
+                                <Button Style="{StaticResource gridEditButton}" Width="80" Content="Poule" Click="Poule_Click" Background="Green"/>
+                            </StackPanel>
+
+
+
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+
+        </DataGrid>
+
+
+
+    </Grid>
+</UserControl>

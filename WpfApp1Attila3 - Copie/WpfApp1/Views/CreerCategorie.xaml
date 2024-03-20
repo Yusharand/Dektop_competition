@@ -1,0 +1,42 @@
+﻿<Window x:Class="WpfApp1.Views.CreerCategorie"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1.Views"
+        xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        mc:Ignorable="d" AllowsTransparency="True" WindowStyle="None" WindowStartupLocation="CenterScreen"
+        Title="CreerCategorie" Height="380" Width="500">
+    <Grid>
+
+        <UniformGrid Margin="72,133,111,161">
+            <Label Content="Nom de la catégorie" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.778,1.077" Margin="0,0,0,-13"/>
+            <TextBox x:Name="InpNom_Cat" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="152" Margin="-26,1,0,0" />
+
+        </UniformGrid>
+
+
+
+
+
+
+
+
+
+
+
+        <Button x:Name="BtnAjouter" Background="#cc2721" Style="{StaticResource addButton}"  Margin="0,326,143,8" Grid.Row="0" Width="105" Height="Auto" Click="BtnAjouter_Click">
+            <StackPanel Orientation="Horizontal">
+                <Icon:PackIconMaterial Kind="Plus" VerticalAlignment="Center" Margin="0 1 8 0" Width="11" Height="11"/>
+                <TextBlock><Run Text="Ajouter "/></TextBlock>
+            </StackPanel>
+        </Button>
+        <Button x:Name="BtnAnnuler" Background="#cc2721" Style="{StaticResource addButton}"   Margin="0,327,258,8" Grid.Row="0" Width="105" Height="Auto" Click="BtnAnnuler_Click">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock><Run Text="Annuler "/></TextBlock>
+            </StackPanel>
+        </Button>
+
+        <Label Content="Ajouter catégorie" HorizontalAlignment="Left" FontSize="20" VerticalAlignment="Top" Foreground="#FF1C497C" FontWeight="Bold" Margin="163,16,0,0"/>
+    </Grid>
+</Window>

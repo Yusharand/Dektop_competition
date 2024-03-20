@@ -1,0 +1,60 @@
+﻿<UserControl x:Class="WpfApp1.Views.UserControls.UCListeCombat"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WpfApp1.Views.UserControls"
+             xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <DataGrid Style="{DynamicResource DataGridStyle1}" SelectionMode="Extended" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" x:Name="ListeCombatsDataGrid"  Margin="0">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="" IsReadOnly="True" CanUserResize="false" Width="0.5*" />
+                <DataGridTemplateColumn Header="Info Combat" Width="5*" CanUserResize="True">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Vertical">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text ="{Binding Nom_Combattant1}" Margin="0, 0" FontWeight="DemiBold"/>
+                                    <TextBlock Text ="{Binding Prenom_Combattant1}" Margin="2, 0" FontWeight="DemiBold"/>
+                                    <TextBlock Text ="{Binding Club_Combattant1}" Margin="3, 0" Foreground="#4c4e52" />
+                                    <TextBlock Text ="{Binding Points_Combattant1}" Margin="10, 0" />
+                                    <TextBlock Text="{Binding Victoire1}"  Width="150" FontWeight="DemiBold" Foreground="#17d45f"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text ="{Binding Nom_Combattant2}" Margin="0, 0" FontWeight="DemiBold"/>
+                                    <TextBlock Text ="{Binding Prenom_Combattant2}" Margin="2, 0" FontWeight="DemiBold"/>
+                                    <TextBlock Text ="{Binding Club_Combattant2}" Margin="3, 0" Foreground="#4c4e52"/>
+                                    <TextBlock Text ="{Binding Points_Combattant2}" Margin="10, 0"/>
+                                    <TextBlock   Width="150" FontWeight="DemiBold" Text="{Binding Victoire2}" Foreground="#17d45f"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </DataTemplate>
+                        
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="Duréé combat" IsReadOnly="True" Width="1*" Binding="{Binding Duree_combat}"/>
+                <DataGridTextColumn Header="Tour" IsReadOnly="True" Width="1*" Binding="{Binding Tour_Match}"/>
+                <DataGridTextColumn Header="Catégorie"  IsReadOnly="True" Width="2*" Binding="{Binding Categorie_Combat}"/>
+               
+                <DataGridTemplateColumn Header="" IsReadOnly="True" Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+
+                                <Button Style="{StaticResource gridEditButton}" x:Name="PlayMatch" Click="PlayMatch_Click">
+                                    <Icon:PackIconMaterial Kind="Play" Style="{StaticResource gridButtonIcon}"/>
+                                </Button>
+                                <Button Style="{StaticResource gridRemoveButton}" Margin="5 0 0 0" x:Name="DeleteMatch" Click="DeleteMatch_Click">
+                                    <Icon:PackIconMaterial Kind="DeleteOutline" Style="{StaticResource gridButtonIcon}"/>
+                                </Button>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+
+        </DataGrid>
+    </Grid>
+</UserControl>

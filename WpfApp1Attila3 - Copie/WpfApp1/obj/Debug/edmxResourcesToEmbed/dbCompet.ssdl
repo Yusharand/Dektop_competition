@@ -1,0 +1,361 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="dbCompet.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Categories">
+    <Key>
+      <PropertyRef Name="ID_Categorie" />
+    </Key>
+    <Property Name="ID_Categorie" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nom_Categorie" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ID_Competition" Type="int" />
+  </EntityType>
+  <EntityType Name="Clubs">
+    <Key>
+      <PropertyRef Name="ID_Club" />
+    </Key>
+    <Property Name="ID_Club" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nom_Club" Type="nvarchar" MaxLength="50" />
+    <Property Name="ID_Competition" Type="int" />
+    <Property Name="Logo_Club" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="Combats">
+    <Key>
+      <PropertyRef Name="ID_Combat" />
+    </Key>
+    <Property Name="ID_Combat" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nom_Combat" Type="nvarchar" MaxLength="50" />
+    <Property Name="Points_Combattant1" Type="int" />
+    <Property Name="Points_Combattant2" Type="int" />
+    <Property Name="Avantages_Combattant1" Type="int" />
+    <Property Name="Avantages_Combattant2" Type="int" />
+    <Property Name="Penalites_Combattant1" Type="int" />
+    <Property Name="Penalites_Combattant2" Type="int" />
+    <Property Name="Duree_combat" Type="nvarchar" MaxLength="20" />
+    <Property Name="Date_Heure" Type="datetime" />
+    <Property Name="ID_Combattant1" Type="int" />
+    <Property Name="ID_Combattant2" Type="int" />
+    <Property Name="ID_Categorie" Type="int" />
+    <Property Name="ID_Poule" Type="int" />
+    <Property Name="Tour_Match" Type="nvarchar" MaxLength="50" />
+    <Property Name="ID_Competition" Type="int" />
+    <Property Name="Sub_Combattant2" Type="int" />
+    <Property Name="Sub_Combattant1" Type="int" />
+    <Property Name="Victoire_Combattant1" Type="nvarchar" MaxLength="100" />
+    <Property Name="Victoire_Combattant2" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Combattants">
+    <Key>
+      <PropertyRef Name="ID_Combattant" />
+    </Key>
+    <Property Name="Nom_Combattant" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Prenom_Combattant" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Genre_Combattant" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="Date_Naiss" Type="date" Nullable="false" />
+    <Property Name="Age" Type="int" Nullable="false" />
+    <Property Name="Grade" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Poids" Type="float" Nullable="false" />
+    <Property Name="ID_Categorie" Type="int" />
+    <Property Name="Pointspoules" Type="int" />
+    <Property Name="ID_Poule" Type="int" />
+    <Property Name="Index_Poule" Type="nvarchar" MaxLength="5" />
+    <Property Name="Points_Marque" Type="int" />
+    <Property Name="Points_Concede" Type="int" />
+    <Property Name="Avantage_Marque" Type="int" />
+    <Property Name="Avantage_Concede" Type="int" />
+    <Property Name="Penalite_Marque" Type="int" />
+    <Property Name="Penalite_Concede" Type="int" />
+    <Property Name="Sub_Marque" Type="int" />
+    <Property Name="Sub_Concede" Type="int" />
+    <Property Name="ID_Combattant" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_Competition" Type="int" />
+    <Property Name="ID_Club" Type="int" />
+    <Property Name="Nom_Club" Type="nvarchar" MaxLength="50" />
+    <Property Name="Position_poule" Type="int" />
+    <Property Name="Victoire_demi" Type="int" />
+    <Property Name="Victoire_finale" Type="int" />
+  </EntityType>
+  <EntityType Name="Competition_Detail">
+    <Key>
+      <PropertyRef Name="ID_Competition_Detail" />
+    </Key>
+    <Property Name="ID_Competition_Detail" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_Competition" Type="int" />
+    <Property Name="ID_Combattant" Type="int" />
+    <Property Name="ID_Categorie" Type="int" />
+    <Property Name="ID_Combat" Type="int" />
+    <Property Name="ID_Poule" Type="int" />
+  </EntityType>
+  <EntityType Name="Competitions">
+    <Key>
+      <PropertyRef Name="ID_Competition" />
+    </Key>
+    <Property Name="ID_Competition" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nom_Competition" Type="nvarchar" MaxLength="50" />
+    <Property Name="Lieu_Competition" Type="nvarchar" MaxLength="50" />
+    <Property Name="Date_Competition" Type="date" />
+    <Property Name="LieuPese_Competition" Type="nvarchar" MaxLength="50" />
+    <Property Name="Date_Pese" Type="date" />
+    <Property Name="Condition_Pese" Type="nvarchar" MaxLength="50" />
+    <Property Name="DroitCombattant" Type="int" />
+    <Property Name="Remboursement" Type="int" />
+    <Property Name="FondScoreboard_Competition" Type="nvarchar" MaxLength="255" />
+    <Property Name="Logo_Competition" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="Poules">
+    <Key>
+      <PropertyRef Name="ID_Poule" />
+    </Key>
+    <Property Name="ID_Poule" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nom_poule" Type="nvarchar" MaxLength="50" />
+    <Property Name="ID_Categorie" Type="int" />
+    <Property Name="ID_Competition" Type="int" />
+  </EntityType>
+  <Association Name="FK__Categorie__ID_Co__0D44F85C">
+    <End Role="Competitions" Type="Self.Competitions" Multiplicity="0..1" />
+    <End Role="Categories" Type="Self.Categories" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Competitions">
+        <PropertyRef Name="ID_Competition" />
+      </Principal>
+      <Dependent Role="Categories">
+        <PropertyRef Name="ID_Competition" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Clubs__ID_Compet__2CBDA3B5">
+    <End Role="Competitions" Type="Self.Competitions" Multiplicity="0..1" />
+    <End Role="Clubs" Type="Self.Clubs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Competitions">
+        <PropertyRef Name="ID_Competition" />
+      </Principal>
+      <Dependent Role="Clubs">
+        <PropertyRef Name="ID_Competition" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Combats__ID_Comp__0F2D40CE">
+    <End Role="Competitions" Type="Self.Competitions" Multiplicity="0..1" />
+    <End Role="Combats" Type="Self.Combats" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Competitions">
+        <PropertyRef Name="ID_Competition" />
+      </Principal>
+      <Dependent Role="Combats">
+        <PropertyRef Name="ID_Competition" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Combattan__ID_Ca__04E4BC85">
+    <End Role="Categories" Type="Self.Categories" Multiplicity="0..1" />
+    <End Role="Combattants" Type="Self.Combattants" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Categories">
+        <PropertyRef Name="ID_Categorie" />
+      </Principal>
+      <Dependent Role="Combattants">
+        <PropertyRef Name="ID_Categorie" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Combattan__ID_Cl__1B9317B3">
+    <End Role="Clubs" Type="Self.Clubs" Multiplicity="0..1" />
+    <End Role="Combattants" Type="Self.Combattants" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Clubs">
+        <PropertyRef Name="ID_Club" />
+      </Principal>
+      <Dependent Role="Combattants">
+        <PropertyRef Name="ID_Club" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Combattan__ID_Co__0A688BB1">
+    <End Role="Competitions" Type="Self.Competitions" Multiplicity="0..1" />
+    <End Role="Combattants" Type="Self.Combattants" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Competitions">
+        <PropertyRef Name="ID_Competition" />
+      </Principal>
+      <Dependent Role="Combattants">
+        <PropertyRef Name="ID_Competition" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Combattan__ID_Po__2BFE89A6">
+    <End Role="Poules" Type="Self.Poules" Multiplicity="0..1" />
+    <End Role="Combattants" Type="Self.Combattants" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Poules">
+        <PropertyRef Name="ID_Poule" />
+      </Principal>
+      <Dependent Role="Combattants">
+        <PropertyRef Name="ID_Poule" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Competiti__ID_Ca__40058253">
+    <End Role="Categories" Type="Self.Categories" Multiplicity="0..1" />
+    <End Role="Competition_Detail" Type="Self.Competition_Detail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Categories">
+        <PropertyRef Name="ID_Categorie" />
+      </Principal>
+      <Dependent Role="Competition_Detail">
+        <PropertyRef Name="ID_Categorie" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Competiti__ID_Co__3E1D39E1">
+    <End Role="Competitions" Type="Self.Competitions" Multiplicity="0..1" />
+    <End Role="Competition_Detail" Type="Self.Competition_Detail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Competitions">
+        <PropertyRef Name="ID_Competition" />
+      </Principal>
+      <Dependent Role="Competition_Detail">
+        <PropertyRef Name="ID_Competition" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Competiti__ID_Co__40F9A68C">
+    <End Role="Combats" Type="Self.Combats" Multiplicity="0..1" />
+    <End Role="Competition_Detail" Type="Self.Competition_Detail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Combats">
+        <PropertyRef Name="ID_Combat" />
+      </Principal>
+      <Dependent Role="Competition_Detail">
+        <PropertyRef Name="ID_Combat" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Competiti__ID_Po__41EDCAC5">
+    <End Role="Poules" Type="Self.Poules" Multiplicity="0..1" />
+    <End Role="Competition_Detail" Type="Self.Competition_Detail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Poules">
+        <PropertyRef Name="ID_Poule" />
+      </Principal>
+      <Dependent Role="Competition_Detail">
+        <PropertyRef Name="ID_Poule" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Poules__ID_Categ__2B0A656D">
+    <End Role="Categories" Type="Self.Categories" Multiplicity="0..1" />
+    <End Role="Poules" Type="Self.Poules" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Categories">
+        <PropertyRef Name="ID_Categorie" />
+      </Principal>
+      <Dependent Role="Poules">
+        <PropertyRef Name="ID_Categorie" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Poules__ID_Compe__10216507">
+    <End Role="Competitions" Type="Self.Competitions" Multiplicity="0..1" />
+    <End Role="Poules" Type="Self.Poules" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Competitions">
+        <PropertyRef Name="ID_Competition" />
+      </Principal>
+      <Dependent Role="Poules">
+        <PropertyRef Name="ID_Competition" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ID_Categorie">
+    <End Role="Categories" Type="Self.Categories" Multiplicity="0..1" />
+    <End Role="Combats" Type="Self.Combats" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Categories">
+        <PropertyRef Name="ID_Categorie" />
+      </Principal>
+      <Dependent Role="Combats">
+        <PropertyRef Name="ID_Categorie" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ID_Poule">
+    <End Role="Poules" Type="Self.Poules" Multiplicity="0..1" />
+    <End Role="Combats" Type="Self.Combats" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Poules">
+        <PropertyRef Name="ID_Poule" />
+      </Principal>
+      <Dependent Role="Combats">
+        <PropertyRef Name="ID_Poule" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="dbCompetStoreContainer">
+    <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Clubs" EntityType="Self.Clubs" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Combats" EntityType="Self.Combats" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Combattants" EntityType="Self.Combattants" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Competition_Detail" EntityType="Self.Competition_Detail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Competitions" EntityType="Self.Competitions" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Poules" EntityType="Self.Poules" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Categorie__ID_Co__0D44F85C" Association="Self.FK__Categorie__ID_Co__0D44F85C">
+      <End Role="Competitions" EntitySet="Competitions" />
+      <End Role="Categories" EntitySet="Categories" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Clubs__ID_Compet__2CBDA3B5" Association="Self.FK__Clubs__ID_Compet__2CBDA3B5">
+      <End Role="Competitions" EntitySet="Competitions" />
+      <End Role="Clubs" EntitySet="Clubs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Combats__ID_Comp__0F2D40CE" Association="Self.FK__Combats__ID_Comp__0F2D40CE">
+      <End Role="Competitions" EntitySet="Competitions" />
+      <End Role="Combats" EntitySet="Combats" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Combattan__ID_Ca__04E4BC85" Association="Self.FK__Combattan__ID_Ca__04E4BC85">
+      <End Role="Categories" EntitySet="Categories" />
+      <End Role="Combattants" EntitySet="Combattants" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Combattan__ID_Cl__1B9317B3" Association="Self.FK__Combattan__ID_Cl__1B9317B3">
+      <End Role="Clubs" EntitySet="Clubs" />
+      <End Role="Combattants" EntitySet="Combattants" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Combattan__ID_Co__0A688BB1" Association="Self.FK__Combattan__ID_Co__0A688BB1">
+      <End Role="Competitions" EntitySet="Competitions" />
+      <End Role="Combattants" EntitySet="Combattants" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Combattan__ID_Po__2BFE89A6" Association="Self.FK__Combattan__ID_Po__2BFE89A6">
+      <End Role="Poules" EntitySet="Poules" />
+      <End Role="Combattants" EntitySet="Combattants" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Competiti__ID_Ca__40058253" Association="Self.FK__Competiti__ID_Ca__40058253">
+      <End Role="Categories" EntitySet="Categories" />
+      <End Role="Competition_Detail" EntitySet="Competition_Detail" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Competiti__ID_Co__3E1D39E1" Association="Self.FK__Competiti__ID_Co__3E1D39E1">
+      <End Role="Competitions" EntitySet="Competitions" />
+      <End Role="Competition_Detail" EntitySet="Competition_Detail" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Competiti__ID_Co__40F9A68C" Association="Self.FK__Competiti__ID_Co__40F9A68C">
+      <End Role="Combats" EntitySet="Combats" />
+      <End Role="Competition_Detail" EntitySet="Competition_Detail" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Competiti__ID_Po__41EDCAC5" Association="Self.FK__Competiti__ID_Po__41EDCAC5">
+      <End Role="Poules" EntitySet="Poules" />
+      <End Role="Competition_Detail" EntitySet="Competition_Detail" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Poules__ID_Categ__2B0A656D" Association="Self.FK__Poules__ID_Categ__2B0A656D">
+      <End Role="Categories" EntitySet="Categories" />
+      <End Role="Poules" EntitySet="Poules" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Poules__ID_Compe__10216507" Association="Self.FK__Poules__ID_Compe__10216507">
+      <End Role="Competitions" EntitySet="Competitions" />
+      <End Role="Poules" EntitySet="Poules" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ID_Categorie" Association="Self.FK_ID_Categorie">
+      <End Role="Categories" EntitySet="Categories" />
+      <End Role="Combats" EntitySet="Combats" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ID_Poule" Association="Self.FK_ID_Poule">
+      <End Role="Poules" EntitySet="Poules" />
+      <End Role="Combats" EntitySet="Combats" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -19,7 +19,7 @@ using System.Windows.Threading;
 using WpfApp1.Views;
 using System.Media;
 using System.ComponentModel;
-
+using System.Data.Entity;
 
 namespace WpfApp1
 {
@@ -1573,8 +1573,10 @@ namespace WpfApp1
             else
             {
                  duree_seconde = seconde_deb - seconde_fin;
-                duree_minute = minute_deb - minute_fin;
+                 duree_minute = minute_deb - minute_fin;
             }
+            
+            
 
             combat.Duree_combat = duree_minute.ToString() + ":" + duree_seconde.ToString();
             UserControl vpointrouge = RougeFinCombat.userpointrouge;
@@ -1599,8 +1601,53 @@ namespace WpfApp1
                 }
                 if (combat.Tour_Match == "Finale")
                 {
-                    combattant1.Victoire_finale = 1;
+                    combattant1.Victoire_finale = "Champion";
+                    combattant2.Victoire_finale = "Vice-champion";
                 }
+                if(combat.Tour_Match == "Match Aller")
+                {
+                    combattant1.Victoire_aller = 1;
+                }
+                if (combat.Tour_Match == "Match Retour")
+                {
+                    combattant1.Victoire_retour = 1;
+                    if((combattant1.Victoire_aller != null && combattant1.Victoire_retour != null))
+                    {
+                        combattant1.Victoire_finale = "Champion";
+                        combattant2.Victoire_finale = "Vice-champion";
+                    }
+                    else if((combattant2.Victoire_aller != null && combattant2.Victoire_retour != null))
+                    {
+                        combattant2.Victoire_finale = "Champion";
+                        combattant1.Victoire_finale = "Vice-champion";
+                    }
+                    else if((combattant1.Victoire_aller != null && combattant2.Victoire_retour != null) || (combattant2.Victoire_aller != null && combattant1.Victoire_retour != null))
+                    {
+                        Combat combat1 = new Combat
+                        {
+                            // Assigner les propriétés du combat
+                            Nom_Combat = $"Combat {combattant1.Prenom_Combattant } vs {combattant2.Prenom_Combattant}",
+                            ID_Categorie = this.Id,
+                            Points_Combattant1 = 0,
+                            Points_Combattant2 = 0,
+                            Avantages_Combattant1 = 0,
+                            Avantages_Combattant2 = 0,
+                            Penalites_Combattant1 = 0,
+                            Penalites_Combattant2 = 0,
+                            Sub_Combattant1 = 0,
+                            Sub_Combattant2 = 0,
+                            ID_Combattant1 = combattant1.ID_Combattant,
+                            ID_Combattant2 = combattant2.ID_Combattant,
+                            Tour_Match = "Finale",
+                            // Vous pouvez également initialiser d'autres propriétés du combat selon vos besoins
+                        };
+
+                        context.Combats.Attach(combat1);
+                        context.Entry(combat1).State = EntityState.Added;
+                        context.SaveChanges();
+                    }
+                }
+
             }
             else if(EstUserControlDansGrid(vpointbleu, btnContent2))
             {
@@ -1615,7 +1662,51 @@ namespace WpfApp1
                 }
                 if (combat.Tour_Match == "Finale")
                 {
-                    combattant2.Victoire_finale = 1;
+                    combattant2.Victoire_finale = "Champion";
+                    combattant1.Victoire_finale = "Vice-champion";
+                }
+                if (combat.Tour_Match == "Match Aller")
+                {
+                    combattant2.Victoire_aller = 1;
+                }
+                if (combat.Tour_Match == "Match Retour")
+                {
+                    combattant2.Victoire_retour = 1;
+                    if ((combattant1.Victoire_aller != null && combattant1.Victoire_retour != null))
+                    {
+                        combattant1.Victoire_finale = "Champion";
+                        combattant2.Victoire_finale = "Vice-champion";
+                    }
+                    else if ((combattant2.Victoire_aller != null && combattant2.Victoire_retour != null))
+                    {
+                        combattant2.Victoire_finale = "Champion";
+                        combattant1.Victoire_finale = "Vice-champion";
+                    }
+                    else if ((combattant1.Victoire_aller != null && combattant2.Victoire_retour != null) || (combattant2.Victoire_aller != null && combattant1.Victoire_retour != null))
+                    {
+                        Combat combat1 = new Combat
+                        {
+                            // Assigner les propriétés du combat
+                            Nom_Combat = $"Combat {combattant1.Prenom_Combattant } vs {combattant2.Prenom_Combattant}",
+                            ID_Categorie = this.Id,
+                            Points_Combattant1 = 0,
+                            Points_Combattant2 = 0,
+                            Avantages_Combattant1 = 0,
+                            Avantages_Combattant2 = 0,
+                            Penalites_Combattant1 = 0,
+                            Penalites_Combattant2 = 0,
+                            Sub_Combattant1 = 0,
+                            Sub_Combattant2 = 0,
+                            ID_Combattant1 = combattant1.ID_Combattant,
+                            ID_Combattant2 = combattant2.ID_Combattant,
+                            Tour_Match = "Finale",
+                            // Vous pouvez également initialiser d'autres propriétés du combat selon vos besoins
+                        };
+
+                        context.Combats.Attach(combat1);
+                        context.Entry(combat1).State = EntityState.Added;
+                        context.SaveChanges();
+                    }
                 }
             }
             else if (EstUserControlDansGrid(vdecisionrouge, btnContent1))
@@ -1631,7 +1722,51 @@ namespace WpfApp1
                 }
                 if (combat.Tour_Match == "Finale")
                 {
-                    combattant1.Victoire_finale = 1;
+                    combattant1.Victoire_finale = "Champion";
+                    combattant2.Victoire_finale = "Vice-champion";
+                }
+                if (combat.Tour_Match == "Match Aller")
+                {
+                    combattant1.Victoire_aller = 1;
+                }
+                if (combat.Tour_Match == "Match Retour")
+                {
+                    combattant1.Victoire_retour = 1;
+                    if ((combattant1.Victoire_aller != null && combattant1.Victoire_retour != null))
+                    {
+                        combattant1.Victoire_finale = "Champion";
+                        combattant2.Victoire_finale = "Vice-champion";
+                    }
+                    else if ((combattant2.Victoire_aller != null && combattant2.Victoire_retour != null))
+                    {
+                        combattant2.Victoire_finale = "Champion";
+                        combattant1.Victoire_finale = "Vice-champion";
+                    }
+                    else if ((combattant1.Victoire_aller != null && combattant2.Victoire_retour != null) || (combattant2.Victoire_aller != null && combattant1.Victoire_retour != null))
+                    {
+                        Combat combat1 = new Combat
+                        {
+                            // Assigner les propriétés du combat
+                            Nom_Combat = $"Combat {combattant1.Prenom_Combattant } vs {combattant2.Prenom_Combattant}",
+                            ID_Categorie = this.Id,
+                            Points_Combattant1 = 0,
+                            Points_Combattant2 = 0,
+                            Avantages_Combattant1 = 0,
+                            Avantages_Combattant2 = 0,
+                            Penalites_Combattant1 = 0,
+                            Penalites_Combattant2 = 0,
+                            Sub_Combattant1 = 0,
+                            Sub_Combattant2 = 0,
+                            ID_Combattant1 = combattant1.ID_Combattant,
+                            ID_Combattant2 = combattant2.ID_Combattant,
+                            Tour_Match = "Finale",
+                            // Vous pouvez également initialiser d'autres propriétés du combat selon vos besoins
+                        };
+
+                        context.Combats.Attach(combat1);
+                        context.Entry(combat1).State = EntityState.Added;
+                        context.SaveChanges();
+                    }
                 }
             }
             else if (EstUserControlDansGrid(vdecisionbleu, btnContent2))
@@ -1647,7 +1782,51 @@ namespace WpfApp1
                 }
                 if (combat.Tour_Match == "Finale")
                 {
-                    combattant2.Victoire_finale = 1;
+                    combattant2.Victoire_finale = "Champion";
+                    combattant1.Victoire_finale = "Vice-champion";
+                }
+                if (combat.Tour_Match == "Match Aller")
+                {
+                    combattant2.Victoire_aller = 1;
+                }
+                if (combat.Tour_Match == "Match Retour")
+                {
+                    combattant2.Victoire_retour = 1;
+                    if ((combattant1.Victoire_aller != null && combattant1.Victoire_retour != null))
+                    {
+                        combattant1.Victoire_finale = "Champion";
+                        combattant2.Victoire_finale = "Vice-champion";
+                    }
+                    else if ((combattant2.Victoire_aller != null && combattant2.Victoire_retour != null))
+                    {
+                        combattant2.Victoire_finale = "Champion";
+                        combattant1.Victoire_finale = "Vice-champion";
+                    }
+                    else if ((combattant1.Victoire_aller != null && combattant2.Victoire_retour != null) || (combattant2.Victoire_aller != null && combattant1.Victoire_retour != null))
+                    {
+                        Combat combat1 = new Combat
+                        {
+                            // Assigner les propriétés du combat
+                            Nom_Combat = $"Combat {combattant1.Prenom_Combattant } vs {combattant2.Prenom_Combattant}",
+                            ID_Categorie = this.Id,
+                            Points_Combattant1 = 0,
+                            Points_Combattant2 = 0,
+                            Avantages_Combattant1 = 0,
+                            Avantages_Combattant2 = 0,
+                            Penalites_Combattant1 = 0,
+                            Penalites_Combattant2 = 0,
+                            Sub_Combattant1 = 0,
+                            Sub_Combattant2 = 0,
+                            ID_Combattant1 = combattant1.ID_Combattant,
+                            ID_Combattant2 = combattant2.ID_Combattant,
+                            Tour_Match = "Finale",
+                            // Vous pouvez également initialiser d'autres propriétés du combat selon vos besoins
+                        };
+
+                        context.Combats.Attach(combat1);
+                        context.Entry(combat1).State = EntityState.Added;
+                        context.SaveChanges();
+                    }
                 }
             }
             else if (EstUserControlDansGrid(vdisqualificationrouge, btnContent1))
@@ -1663,7 +1842,51 @@ namespace WpfApp1
                 }
                 if (combat.Tour_Match == "Finale")
                 {
-                    combattant1.Victoire_finale = 1;
+                    combattant1.Victoire_finale = "Champion";
+                    combattant2.Victoire_finale = "Vice-champion";
+                }
+                if (combat.Tour_Match == "Match Aller")
+                {
+                    combattant1.Victoire_aller = 1;
+                }
+                if (combat.Tour_Match == "Match Retour")
+                {
+                    combattant1.Victoire_retour = 1;
+                    if ((combattant1.Victoire_aller != null && combattant1.Victoire_retour != null))
+                    {
+                        combattant1.Victoire_finale = "Champion";
+                        combattant2.Victoire_finale = "Vice-champion";
+                    }
+                    else if ((combattant2.Victoire_aller != null && combattant2.Victoire_retour != null))
+                    {
+                        combattant2.Victoire_finale = "Champion";
+                        combattant1.Victoire_finale = "Vice-champion";
+                    }
+                    else if ((combattant1.Victoire_aller != null && combattant2.Victoire_retour != null) || (combattant2.Victoire_aller != null && combattant1.Victoire_retour != null))
+                    {
+                        Combat combat1 = new Combat
+                        {
+                            // Assigner les propriétés du combat
+                            Nom_Combat = $"Combat {combattant1.Prenom_Combattant } vs {combattant2.Prenom_Combattant}",
+                            ID_Categorie = this.Id,
+                            Points_Combattant1 = 0,
+                            Points_Combattant2 = 0,
+                            Avantages_Combattant1 = 0,
+                            Avantages_Combattant2 = 0,
+                            Penalites_Combattant1 = 0,
+                            Penalites_Combattant2 = 0,
+                            Sub_Combattant1 = 0,
+                            Sub_Combattant2 = 0,
+                            ID_Combattant1 = combattant1.ID_Combattant,
+                            ID_Combattant2 = combattant2.ID_Combattant,
+                            Tour_Match = "Finale",
+                            // Vous pouvez également initialiser d'autres propriétés du combat selon vos besoins
+                        };
+
+                        context.Combats.Attach(combat1);
+                        context.Entry(combat1).State = EntityState.Added;
+                        context.SaveChanges();
+                    }
                 }
             }
             else if (EstUserControlDansGrid(vdisqualificationbleu, btnContent2))
@@ -1679,7 +1902,51 @@ namespace WpfApp1
                 }
                 if (combat.Tour_Match == "Finale")
                 {
-                    combattant2.Victoire_finale = 1;
+                    combattant2.Victoire_finale = "Champion";
+                    combattant1.Victoire_finale = "Vice-champion";
+                }
+                if (combat.Tour_Match == "Match Aller")
+                {
+                    combattant2.Victoire_aller = 1;
+                }
+                if (combat.Tour_Match == "Match Retour")
+                {
+                    combattant2.Victoire_retour = 1;
+                    if ((combattant1.Victoire_aller != null && combattant1.Victoire_retour != null))
+                    {
+                        combattant1.Victoire_finale = "Champion";
+                        combattant2.Victoire_finale = "Vice-champion";
+                    }
+                    else if ((combattant2.Victoire_aller != null && combattant2.Victoire_retour != null))
+                    {
+                        combattant2.Victoire_finale = "Champion";
+                        combattant1.Victoire_finale = "Vice-champion";
+                    }
+                    else if ((combattant1.Victoire_aller != null && combattant2.Victoire_retour != null) || (combattant2.Victoire_aller != null && combattant1.Victoire_retour != null))
+                    {
+                        Combat combat1 = new Combat
+                        {
+                            // Assigner les propriétés du combat
+                            Nom_Combat = $"Combat {combattant1.Prenom_Combattant } vs {combattant2.Prenom_Combattant}",
+                            ID_Categorie = this.Id,
+                            Points_Combattant1 = 0,
+                            Points_Combattant2 = 0,
+                            Avantages_Combattant1 = 0,
+                            Avantages_Combattant2 = 0,
+                            Penalites_Combattant1 = 0,
+                            Penalites_Combattant2 = 0,
+                            Sub_Combattant1 = 0,
+                            Sub_Combattant2 = 0,
+                            ID_Combattant1 = combattant1.ID_Combattant,
+                            ID_Combattant2 = combattant2.ID_Combattant,
+                            Tour_Match = "Finale",
+                            // Vous pouvez également initialiser d'autres propriétés du combat selon vos besoins
+                        };
+
+                        context.Combats.Attach(combat1);
+                        context.Entry(combat1).State = EntityState.Added;
+                        context.SaveChanges();
+                    }
                 }
             }
             else if (EstUserControlDansGrid(vsoumissionrouge, btnContent1))
@@ -1695,7 +1962,51 @@ namespace WpfApp1
                 }
                 if (combat.Tour_Match == "Finale")
                 {
-                    combattant1.Victoire_finale = 1;
+                    combattant1.Victoire_finale = "Champion";
+                    combattant2.Victoire_finale = "Vice-champion";
+                }
+                if (combat.Tour_Match == "Match Aller")
+                {
+                    combattant1.Victoire_aller = 1;
+                }
+                if (combat.Tour_Match == "Match Retour")
+                {
+                    combattant1.Victoire_retour = 1;
+                    if ((combattant1.Victoire_aller != null && combattant1.Victoire_retour != null))
+                    {
+                        combattant1.Victoire_finale = "Champion";
+                        combattant2.Victoire_finale = "Vice-champion";
+                    }
+                    else if ((combattant2.Victoire_aller != null && combattant2.Victoire_retour != null))
+                    {
+                        combattant2.Victoire_finale = "Champion";
+                        combattant1.Victoire_finale = "Vice-champion";
+                    }
+                    else if ((combattant1.Victoire_aller != null && combattant2.Victoire_retour != null) || (combattant2.Victoire_aller != null && combattant1.Victoire_retour != null))
+                    {
+                        Combat combat1 = new Combat
+                        {
+                            // Assigner les propriétés du combat
+                            Nom_Combat = $"Combat {combattant1.Prenom_Combattant } vs {combattant2.Prenom_Combattant}",
+                            ID_Categorie = combattant1.ID_Categorie,
+                            Points_Combattant1 = 0,
+                            Points_Combattant2 = 0,
+                            Avantages_Combattant1 = 0,
+                            Avantages_Combattant2 = 0,
+                            Penalites_Combattant1 = 0,
+                            Penalites_Combattant2 = 0,
+                            Sub_Combattant1 = 0,
+                            Sub_Combattant2 = 0,
+                            ID_Combattant1 = combattant1.ID_Combattant,
+                            ID_Combattant2 = combattant2.ID_Combattant,
+                            Tour_Match = "Finale",
+                            // Vous pouvez également initialiser d'autres propriétés du combat selon vos besoins
+                        };
+
+                        context.Combats.Attach(combat1);
+                        context.Entry(combat1).State = EntityState.Added;
+                        context.SaveChanges();
+                    }
                 }
             }
             else if (EstUserControlDansGrid(vsoumissionbleu, btnContent2))
@@ -1711,9 +2022,54 @@ namespace WpfApp1
                 }
                 if (combat.Tour_Match == "Finale")
                 {
-                    combattant2.Victoire_finale = 1;
+                    combattant2.Victoire_finale = "Champion";
+                    combattant1.Victoire_finale = "Vice-champion";
+                }
+                if (combat.Tour_Match == "Match Aller")
+                {
+                    combattant2.Victoire_aller = 1;
+                }
+                if (combat.Tour_Match == "Match Retour")
+                {
+                    combattant2.Victoire_retour = 1;
+                    if ((combattant1.Victoire_aller != null && combattant1.Victoire_retour != null))
+                    {
+                        combattant1.Victoire_finale = "Champion";
+                        combattant2.Victoire_finale = "Vice-champion";
+                    }
+                    else if ((combattant2.Victoire_aller != null && combattant2.Victoire_retour != null))
+                    {
+                        combattant2.Victoire_finale = "Champion";
+                        combattant1.Victoire_finale = "Vice-champion";
+                    }
+                    else if ((combattant1.Victoire_aller != null && combattant2.Victoire_retour != null) || (combattant2.Victoire_aller != null && combattant1.Victoire_retour != null))
+                    {
+                        Combat combat1 = new Combat
+                        {
+                            // Assigner les propriétés du combat
+                            Nom_Combat = $"Combat {combattant1.Prenom_Combattant } vs {combattant2.Prenom_Combattant}",
+                            ID_Categorie = this.Id,
+                            Points_Combattant1 = 0,
+                            Points_Combattant2 = 0,
+                            Avantages_Combattant1 = 0,
+                            Avantages_Combattant2 = 0,
+                            Penalites_Combattant1 = 0,
+                            Penalites_Combattant2 = 0,
+                            Sub_Combattant1 = 0,
+                            Sub_Combattant2 = 0,
+                            ID_Combattant1 = combattant1.ID_Combattant,
+                            ID_Combattant2 = combattant2.ID_Combattant,
+                            Tour_Match = "Finale",
+                            // Vous pouvez également initialiser d'autres propriétés du combat selon vos besoins
+                        };
+
+                        context.Combats.Attach(combat1);
+                        context.Entry(combat1).State = EntityState.Added;
+                        context.SaveChanges();
+                    }
                 }
             }
+            
             context.SaveChanges();
             MessageBox.Show("Enregistrement des données du match enregistrées avec succès!");
         }

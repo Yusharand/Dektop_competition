@@ -1,0 +1,79 @@
+﻿<Window x:Class="WpfApp1.Views.ModifierCombattant"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1.Views"
+        xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        mc:Ignorable="d" AllowsTransparency="True" WindowStyle="None" WindowStartupLocation="CenterScreen"
+        Title="ModifierCombattant" Height="380" Width="500" >
+    <Grid>
+        <UniformGrid Margin="12,64,236,230">
+            <Label Content="Numéro" HorizontalAlignment="Left" RenderTransformOrigin="0.778,1.077" Margin="0,0,0,-13"/>
+            <TextBox x:Name="InpNum1" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Margin="-24,1,0,-11"/>
+
+        </UniformGrid>
+        <UniformGrid Margin="12,97,236,197">
+            <Label Content="Club" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.778,1.077" Margin="0,0,0,-13"/>
+            <TextBox x:Name="InpClub1" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Margin="-24,1,0,-11"/>
+
+        </UniformGrid>
+        <UniformGrid Margin="13,129,235,165">
+            <Label Content="Nom" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.778,1.077" Margin="0,0,0,-13"/>
+            <TextBox x:Name="InpNom1" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Margin="-24,1,0,-11"/>
+
+        </UniformGrid>
+        <UniformGrid Margin="13,162,235,132">
+            <Label Content="Prénom" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.778,1.077" Margin="0,0,0,-13"/>
+            <TextBox x:Name="InpPrenom1" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Margin="-24,1,0,-11"/>
+
+        </UniformGrid>
+        <UniformGrid Margin="13,194,235,100">
+            <Label Content="Genre" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.778,1.077" Margin="0,0,0,-13"/>
+            <TextBox x:Name="InpGenre1" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Margin="-24,1,0,-11"/>
+
+        </UniformGrid>
+
+        <UniformGrid Margin="245,63,3,231">
+            <Label Content="Date de naissance" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.778,1.077" Margin="0,0,0,-13"/>
+            <DatePicker x:Name="InpDDN1" HorizontalAlignment="Left" Height="23" VerticalAlignment="Top" Width="120" Margin="-13,1,-11,-11"/>
+
+        </UniformGrid>
+
+        <UniformGrid Margin="248,128,0,166">
+            <Label Content="Grade" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.778,1.077" Margin="0,0,0,-13"/>
+            <TextBox x:Name="InpGrade1" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Margin="-16,1,-8,-11"/>
+
+        </UniformGrid>
+        <UniformGrid Margin="248,160,0,134">
+            <Label Content="Poids" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.778,1.077" Margin="0,0,0,-13"/>
+            <TextBox x:Name="InpPoids1" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Margin="-16,1,-8,-11"/>
+
+        </UniformGrid>
+        <UniformGrid Margin="248,194,0,136">
+            <Label Content="Catégorie" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.778,1.077" Margin="0,0,0,-13"/>
+            <ComboBox x:Name="cbxCat" Height="23"  VerticalAlignment="Center" Margin="-16,0,22,0"/>
+
+        </UniformGrid>
+
+
+
+
+        <Button x:Name="BtnAjouter" Style="{StaticResource addButton}" Background="#cc2721" Margin="0,326,143,0" Grid.Row="0" Width="105" Height="46" Click="BtnModif_Click" VerticalAlignment="Top" >
+            <StackPanel Orientation="Horizontal">
+                <Icon:PackIconMaterial Kind="Pencil" VerticalAlignment="Center" Margin="0 1 8 0" Width="11" Height="11"/>
+                <TextBlock><Run Text="Modifier "/></TextBlock>
+            </StackPanel>
+        </Button>
+        <Button x:Name="BtnAnnuler" Style="{StaticResource addButton}" Background="#cc2721"  Margin="0,327,258,8" Grid.Row="0" Width="105" Height="Auto" Click="BtnAnnuler_Click" >
+            <StackPanel Orientation="Horizontal">
+                <TextBlock><Run Text="Annuler "/></TextBlock>
+            </StackPanel>
+        </Button>
+        <UniformGrid Margin="245,97,3,197">
+            <Label Content="Age" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.778,1.077" Margin="0,0,0,-13"/>
+            <TextBox x:Name="InpAge1" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Margin="-13,1,-11,-11"/>
+        </UniformGrid>
+        <Label Content="Ajouter combattant" HorizontalAlignment="Left" FontSize="20" VerticalAlignment="Top" Foreground="#FF1C497C" FontWeight="Bold" Margin="163,16,0,0"/>
+    </Grid>
+</Window>

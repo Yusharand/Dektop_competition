@@ -1,0 +1,195 @@
+﻿
+<Window x:Class="WpfApp1.Views.Formulaire"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1.Views" WindowState="Maximized"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        mc:Ignorable="d" 
+        Title="Formulaire" Height="750" Width="1080"
+        KeyDown="Windows_Keydown_2">
+    <ScrollViewer CanContentScroll="True">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="6*"/>
+                <RowDefinition Height="*"/>
+
+            </Grid.RowDefinitions>
+
+            <Border Background="#115663">
+                <Viewbox HorizontalAlignment="Left" Margin="28,25,0,26" Width="378">
+                    <TextBlock Text="INFORMATIONS COMBATTANTS:" FontSize="20"  TextAlignment="Center" FontFamily="Arial" Foreground="#ffffff" FontWeight="DemiBold" TextWrapping="Wrap" Height="23" Width="341"/>
+                </Viewbox>
+            </Border>
+            <Border BorderThickness="1" BorderBrush="Black" Grid.Row="1">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.95*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Viewbox HorizontalAlignment="Left" Height="52" Margin="130,9,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="278">
+                        <TextBlock Text="Combattant 1" FontWeight="DemiBold" TextAlignment="Center" TextWrapping="Wrap" Width="86"/>
+                    </Viewbox>
+                    <TextBlock HorizontalAlignment="Left" Height="52" x:Name="selectedTextBlock1" Margin="9,9,0,0" Grid.RowSpan="2" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="100"/>
+                    <Image HorizontalAlignment="Left" x:Name="selectedImage1" Height="52" Margin="452,9,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="68"/>
+                    <Label Content="Nom" FontSize="16" Margin="140,27,300,61" Grid.RowSpan="2" Grid.Row="1"/>
+                    <TextBox Margin="142,58,93,31" Text="" x:Name="textBoxNom1" FontSize="16"  Grid.Row="1"  Grid.RowSpan="2" />
+                    <Label Content="Prénom" FontSize="16" Margin="143,60,297,27" Grid.Row="2" Grid.RowSpan="2"/>
+                    <TextBox Text="" x:Name="textBoxPrenom1" Margin="142,41,92,38" Grid.Row="3" FontSize="16" />
+                    <Label Content="Club" FontSize="16" Margin="145,108,294,76" Grid.Row="3" Grid.RowSpan="2"/>
+                    <TextBox Text="" x:Name="textBoxClub1" Margin="140,27,94,149" Grid.Row="4" FontSize="16">
+                        
+                    </TextBox>
+                    <Label Content="Pays" FontSize="16" Margin="145,105,294,10" Grid.Row="4" Grid.RowSpan="2"/>
+                    <TextBlock HorizontalAlignment="Left" x:Name="selectedTextBlock3" Height="49" Margin="451,134,0,0" Grid.Row="4" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="48"/>
+                    <Image HorizontalAlignment="Left" x:Name="selectedImage3" Height="36" Margin="40,139,0,0" Grid.Row="4" VerticalAlignment="Top" Width="49"/>
+                    <ComboBox Text="" x:Name="textBoxPays1" Margin="139,134,92,30" Grid.Row="4" FontSize="16" >
+                        <ComboBoxItem IsSelected="True">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="MAD"/>
+                                <Image Source="/Images/téléchargement (36).png" Width="20" Height="20"/>
+                            </StackPanel>
+                        </ComboBoxItem>
+                        <ComboBoxItem>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="REU"/>
+                                <Image Source="/Images/téléchargement (9).jpg" Width="20" Height="20"/>
+                            </StackPanel>
+                        </ComboBoxItem>
+                        <ComboBoxItem>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="MAU"/>
+                                <Image Source="/Images/téléchargement (37).png" Width="20" Height="20"/>
+                            </StackPanel>
+                        </ComboBoxItem>
+
+                    </ComboBox>
+                    <Viewbox Grid.Column="1" HorizontalAlignment="Left" Height="52" Margin="140,9,0,0" VerticalAlignment="Top" Width="268" Grid.RowSpan="2">
+                        <TextBlock Text="Combattant 2" FontWeight="DemiBold" TextAlignment="Center" TextWrapping="Wrap" Width="81"/>
+                    </Viewbox>
+                    <TextBlock Grid.Column="1" HorizontalAlignment="Left" x:Name="selectedTextBlock2" Height="52" Margin="38,9,0,0" Grid.RowSpan="2" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="78"/>
+                    <Image Grid.Column="1" HorizontalAlignment="Left" x:Name="selectedImage2" Height="52" Margin="448,9,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="72"/>
+                    <Label Content="Nom" Grid.Column="1" FontSize="16" Margin="132,30,308,58" Grid.Row="1" Grid.RowSpan="2"/>
+                    <TextBox Grid.Column="1" Text="" x:Name="textBoxNom2" FontSize="16" Margin="132,60,103,31" Grid.Row="1"  Grid.RowSpan="2"  />
+                    <Label Content="Prénom" Grid.Column="1" FontSize="16" Margin="134,16,306,22" Grid.Row="3"/>
+                    <TextBox Grid.Column="1" Text="" x:Name="textBoxPrenom2" FontSize="16" Margin="132,45,104,34" Grid.Row="3" />
+                    <Label Content="Club" FontSize="16" Grid.Column="1" Margin="136,109,305,80" Grid.Row="3" Grid.RowSpan="2"/>
+                    <TextBox Text="" x:Name="textBoxClub2" Margin="132,29,104,149" Grid.Column="1" Grid.Row="4" FontSize="16">
+                        
+                    </TextBox>
+                    <Label Content="Pays" FontSize="16" Grid.Column="1" Margin="134,105,306,64" Grid.Row="4" Grid.RowSpan="3"/>
+                    <TextBlock Grid.Column="1" HorizontalAlignment="Left" x:Name="selectedTextBlock4" Height="44" Margin="52,139,0,0" Grid.Row="4" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="46"/>
+                    <ComboBox Text="" x:Name="textBoxPays2" Grid.Column="1" FontSize="16" Margin="132,134,104,30" Grid.Row="4">
+                        <ComboBoxItem IsSelected="True">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="MAD"/>
+                                <Image Source="/Images/téléchargement (36).png" Width="20" Height="20"/>
+                            </StackPanel>
+                        </ComboBoxItem>
+                        <ComboBoxItem>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="REU"/>
+                                <Image Source="/Images/téléchargement (9).jpg" Width="20" Height="20"/>
+                            </StackPanel>
+                        </ComboBoxItem>
+                        <ComboBoxItem>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="MAU"/>
+                                <Image Source="/Images/téléchargement (37).png" Width="20" Height="20"/>
+                            </StackPanel>
+                        </ComboBoxItem>
+                    </ComboBox>
+                    <Image Grid.Column="1" x:Name="selectedImage4" HorizontalAlignment="Left" Height="39" Margin="446,136,0,0" Grid.Row="4" VerticalAlignment="Top" Width="57"/>
+
+                </Grid>
+            </Border>
+            <!--Info Scoreboard-->
+            <Border BorderThickness="1" BorderBrush="Black" Grid.Row="2">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.95*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Image x:Name="selectedImage5" HorizontalAlignment="Left" Height="74" Margin="25,38,0,0" Grid.RowSpan="2" Grid.Row="2" VerticalAlignment="Top" Width="66"/>
+                    
+                    <Label Content="Phase de Combat" FontSize="16" Margin="130,37,251,17" Grid.Row="2" Grid.Column="0"/>
+                    <TextBox Margin="132,85,103,141" FontSize="16"  Grid.Row="2" RenderTransformOrigin="0.5,0.5" Grid.Column="0" Grid.RowSpan="2" x:Name="textBoxphase">
+                        
+                    </TextBox>
+                    <Label Content="Minutes" FontSize="16" Margin="143,76,300,43" Grid.Row="3"/>
+                    <ComboBox Text=""  Margin="142,115,92,24" Grid.Row="3" FontSize="16" x:Name="comboboxminutes">
+                        <ComboBoxItem Content="00" />
+                        <ComboBoxItem Content="01"/>
+                        <ComboBoxItem Content="02"/>
+                        <ComboBoxItem Content="03"/>
+                        <ComboBoxItem Content="04"/>
+                        <ComboBoxItem Content="05" IsSelected="True"/>
+                        <ComboBoxItem Content="06"/>
+                        <ComboBoxItem Content="07"/>
+                        <ComboBoxItem Content="08"/>
+                        <ComboBoxItem Content="09"/>
+                        <ComboBoxItem Content="10"/>
+                        <ComboBoxItem Content="11"/>
+                        <ComboBoxItem Content="12"/>
+                        <ComboBoxItem Content="13"/>
+                        <ComboBoxItem Content="14"/>
+                        <ComboBoxItem Content="15"/>
+                        <ComboBoxItem Content="16"/>
+                        <ComboBoxItem Content="17"/>
+                        <ComboBoxItem Content="18"/>
+                        <ComboBoxItem Content="19"/>
+                        <ComboBoxItem Content="20"/>
+                    </ComboBox>
+
+                    <!--<Label Content="Catégorie" Foreground="Yellow" FontWeight="ExtraBold" FontSize="16" Height="35" Margin="522,-542,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="94" Grid.ColumnSpan="2"/>
+                    <ComboBox Height="30" FontSize="16" Margin="460,-508,0,0" VerticalAlignment="Top" x:Name="comboboxcategorie" IsEditable="True" DisplayMemberPath="Nom_Categorie" SelectionChanged="Comboboxcategorie_SelectionChanged" HorizontalAlignment="Left" Width="224" Grid.ColumnSpan="2" />-->
+
+
+
+
+                    <Label Content="Couleur Combattant 1" FontSize="16" Margin="145,7,56,69" Grid.Row="4"/>
+                    <xctk:ColorPicker x:Name="colorpicker1" Margin="140,59,94,29" Grid.Row="4" FontSize="16" SelectedColor="Red" ></xctk:ColorPicker>
+                    <Label Content="Couleur Combattant 2" FontSize="16" Grid.Column="1" Margin="136,10,103,69" Grid.Row="4"/>
+                    <xctk:ColorPicker x:Name="colorpicker2" FontSize="16" Grid.Column="1" Margin="132,58,104,29" Grid.Row="4" SelectedColor="Blue" />
+
+                </Grid>
+            </Border>
+            <Border BorderThickness="1" Background="#115663" BorderBrush="Black" Margin="0,433,0,0" Grid.Row="2" Height="93" VerticalAlignment="Top">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Button Content="Retour" FontWeight="ExtraBold" Style="{StaticResource toscorebutton}" FontSize="25" Height="Auto" Margin="44,20,0,24" Click="RetourDashboard_Click" Grid.Column="0" Width="138" HorizontalAlignment="Left"/>
+                    <Button Content="Combat" FontWeight="ExtraBold" Style="{StaticResource toscorebutton}" FontSize="25" Click="Button_Click_Scoreboard" Height="Auto" Margin="0,20,44,24" Grid.Row="2" Grid.Column="1" Width="139" HorizontalAlignment="Right"/>
+                </Grid>
+            </Border>
+
+
+        </Grid>
+    </ScrollViewer>
+</Window>

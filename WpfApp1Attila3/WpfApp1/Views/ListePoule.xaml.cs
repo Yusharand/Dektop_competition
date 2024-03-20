@@ -40,6 +40,12 @@ namespace WpfApp1.Views
             Charger_Pointspoules();
             Charger();
             Charger_Match_Poule();
+            var combattantscategorie = context.Combattants.Where(c => c.ID_Categorie == this.Id).ToList();
+            if(combattantscategorie.Count == 2)
+            {
+                SemifinalButton.Visibility = Visibility.Hidden;
+                FinalButton.Visibility = Visibility.Hidden;
+            }
         }
 
         public void Charger_Pointspoules()
@@ -343,6 +349,7 @@ namespace WpfApp1.Views
                 context.Entry(combat2).State = EntityState.Added;
 
                 context.SaveChanges();
+                MessageBox.Show("Génération avec succès!");
             }
             catch
             {
@@ -419,6 +426,7 @@ namespace WpfApp1.Views
                     }
                        
                 }
+                MessageBox.Show("Génération avec succès!");
             }
             catch(Exception ex)
             {

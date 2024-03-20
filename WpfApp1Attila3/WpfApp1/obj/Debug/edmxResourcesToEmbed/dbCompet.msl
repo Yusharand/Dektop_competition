@@ -74,6 +74,8 @@
           <ScalarProperty Name="Nom_Club" ColumnName="Nom_Club" />
           <ScalarProperty Name="Position_poule" ColumnName="Position_poule" />
           <ScalarProperty Name="Victoire_demi" ColumnName="Victoire_demi" />
+          <ScalarProperty Name="Victoire_aller" ColumnName="Victoire_aller" />
+          <ScalarProperty Name="Victoire_retour" ColumnName="Victoire_retour" />
           <ScalarProperty Name="Victoire_finale" ColumnName="Victoire_finale" />
         </MappingFragment>
       </EntityTypeMapping>

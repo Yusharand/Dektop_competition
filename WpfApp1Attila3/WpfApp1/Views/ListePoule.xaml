@@ -60,7 +60,7 @@
                 </DataGrid>
                 <!--Répartition match poule-->
 
-                <DataGrid Style="{DynamicResource DataGridStyle1}" SelectionMode="Extended" Visibility="Hidden" Height="200" BorderBrush="Black" BorderThickness="1" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" x:Name="ListeCombatsPouleADataGrid"  Margin="0,251,0,232">
+                <DataGrid Style="{DynamicResource DataGridStyle1}" SelectionMode="Extended"  Height="200" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" x:Name="ListeCombatsPouleADataGrid"  Margin="0,251,0,232">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="" IsReadOnly="True" CanUserResize="false" Width="0.5*" />
                         <DataGridTemplateColumn Header="Combats" Width="7*" CanUserResize="True">
@@ -144,7 +144,7 @@
 
                 </DataGrid>
                 <!--Match poules-->
-                <DataGrid Style="{DynamicResource DataGridStyle1}" Height="200" Visibility="Hidden" SelectionMode="Extended" BorderBrush="Black" BorderThickness="1" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" x:Name="ListeCombatsPouleBDataGrid"  Margin="0,400,0,0">
+                <DataGrid Style="{DynamicResource DataGridStyle1}" Height="200"  SelectionMode="Extended" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" x:Name="ListeCombatsPouleBDataGrid"  Margin="0,400,0,0">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="" IsReadOnly="True" CanUserResize="false" Width="0.5*" />
                         <DataGridTemplateColumn Header="Combats" Width="7*" CanUserResize="True">
