@@ -40,7 +40,7 @@ namespace WpfApp1.Views.UserControls
             using (var context = new Competition_JJBEntities())
             {
                 // Charger les données des combats à partir de la base de données
-                var combats = context.Combats.ToList();
+                var combats = context.Combats.Where(c => c.ID_Competition == this.Id).ToList();
 
                 // Créer une liste pour stocker les informations sur les combats
                 var listeCombatInfo = new List<CombatInfo>();

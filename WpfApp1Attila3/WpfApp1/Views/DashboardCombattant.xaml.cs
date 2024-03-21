@@ -274,10 +274,11 @@ namespace WpfApp1.Views
         private void TSupprimer_Click(object sender, RoutedEventArgs e)
         {
             ConnexionBD connection = new ConnexionBD();
-
+            ConnexionBD connection2 = new ConnexionBD();
             connection.Delete("DELETE FROM Combattants WHERE ID_Competition = " +this.Id);
-            
+            connection2.Delete("DELETE FROM Clubs WHERE ID_Competition = " + this.Id);
             connection.Close();
+            connection2.Close();
             ListeCombattant_Click(sender, e);
         }
 
@@ -313,29 +314,15 @@ namespace WpfApp1.Views
             combattantsDataGrid.Children.Add(uCListeClubs);
         }
 
-        /*private void CombatEnCours_Click(object sender, RoutedEventArgs e)
+        private void Results_Click(object sender, RoutedEventArgs e)
         {
-            UCListeCombatEncours UcListeCombatEncours = new UCListeCombatEncours(); //User controle de Liste des Combat en cours
-
-
-            //int cpt = UcListeCombattant.compteurData(0, this.Id);
-            ListeCombatEnCours ListeCombatEnCours = new ListeCombatEnCours(); //get list of patient
-            this.DataContext = ListeCombatEnCours;
+            UCResults uCResults = new UCResults(this.Id);
+            Results results = new Results();
+            this.DataContext = results;
             combattantsDataGrid.Children.Clear();
-            combattantsDataGrid.Children.Add(UcListeCombatEncours);
+            combattantsDataGrid.Children.Add(uCResults);
         }
 
-        private void CombatEnregistres_Click(object sender, RoutedEventArgs e)
-        {
-            UCListeCombatSave UcListeCombatSave = new UCListeCombatSave(); //User controle de Liste des Combat en cours
-
-
-            //int cpt = UcListeCombattant.compteurData(0, this.Id);
-            ListeCombatEnregistres ListeCombatEnregistres = new ListeCombatEnregistres(); //get list of patient
-            this.DataContext = ListeCombatEnregistres;
-            combattantsDataGrid.Children.Clear();
-            combattantsDataGrid.Children.Add(UcListeCombatSave);
-        }*/
     }
 }
 

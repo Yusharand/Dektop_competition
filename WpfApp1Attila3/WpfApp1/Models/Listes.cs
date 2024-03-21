@@ -147,6 +147,17 @@ namespace WpfApp1.Models
         public string Victoire2 { get; set; }
     }
 
+    public class Resultchamp
+    {
+        public string NomCombattant1 { get; set; }
+        public string NomCombattant2 { get; set; }
+        public string PrenomCombattant1 { get; set; }
+        public string PrenomCombattant2 { get; set; }
+        public string ClubCombattant1 { get; set; }
+        public string ClubCombattant2 { get; set; }
+        public string CategorieChamp { get; set; }
+    }
+
     public class ListeCat
     {
         public string Entete { get; set; }
@@ -158,6 +169,21 @@ namespace WpfApp1.Models
         public ListeCat()
         {
             Entete = "Liste des catégories";
+
+        }
+    }
+
+    public class Results
+    {
+        public string Entete { get; set; }
+
+
+        public int id;
+        public int cpt;
+
+        public Results()
+        {
+            Entete = "Résultats de la compétition";
 
         }
     }

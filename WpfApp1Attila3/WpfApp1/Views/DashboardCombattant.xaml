@@ -33,11 +33,11 @@
                 <Border Grid.Row="1" Background="#fa1e16">
                     <DockPanel Margin="0, 80, 0, 0">
                         <!--menu logo-->
-                        <Border Height="100" Padding="3" CornerRadius="100"  DockPanel.Dock="Top" Margin="20 -30 0 0" Width="117">
+                        <Border Height="100" Padding="3" CornerRadius="100"  DockPanel.Dock="Top" Margin="53,-30,56,0">
                             <Image Margin="0,0,0,0" x:Name="imageLogoDash">
-                                <!--<Ellipse.Fill>
-                                    <ImageBrush ImageSource="/Images/1691418727718.jpg" />
-                                </Ellipse.Fill>-->                                
+                                <Image.Clip>
+                                    <EllipseGeometry RadiusX="45" RadiusY="45" Center="45,45"/>
+                                </Image.Clip>                               
                             </Image>
                         </Border>
                         <!--menu titre-->
@@ -75,20 +75,21 @@
                                     <TextBlock Text="Clubs"/>
                                 </StackPanel>
                             </Button>
+                            <Button Style="{StaticResource menuButton}" Click="Results_Click" x:Name="Results">
+                                <StackPanel Orientation="Horizontal">
+                                    <Icon:PackIconMaterial Kind="Podium"  Style="{StaticResource menuButtonIcon}"/>
+                                    <TextBlock Text="Résultats"/>
+                                </StackPanel>
+                            </Button>
                         </StackPanel>
-                        <Button Style="{StaticResource menuButton}"  VerticalAlignment="Bottom" DockPanel.Dock="Bottom" Margin="15 0 15 20" Click="LogOut_Click">
+                        <Button Style="{StaticResource menuButton}" Background="#cc2721" VerticalAlignment="Bottom" DockPanel.Dock="Bottom" Margin="15 0 15 20" Click="LogOut_Click">
                             <StackPanel Orientation="Horizontal">
                                 <Icon:PackIconMaterial Kind="Logout" Style="{StaticResource menuButtonIcon}"/>
                                 <TextBlock Text="Déconnexion" FontWeight="Bold"/>
                             </StackPanel>
                         </Button>
-                        <Button Style="{StaticResource menuButton}" Background="#cc2721" VerticalAlignment="Bottom" DockPanel.Dock="Bottom" Margin="15 0 15 20">
-                            <StackPanel Orientation="Horizontal">
-                                <Icon:PackIconMaterial Kind="PageNext" Style="{StaticResource menuButtonIcon}"/>
-                                <TextBlock Text="Formulaire combat" FontWeight="Bold"/>
-                            </StackPanel>
-                        </Button>
-                        <Button Style="{StaticResource menuButton}"  VerticalAlignment="Bottom" DockPanel.Dock="Bottom" Margin="15 0 15 20" Click="Retour_Click">
+
+                        <Button Style="{StaticResource menuButton}" Background="#cc2721" VerticalAlignment="Bottom" DockPanel.Dock="Bottom" Margin="15 0 15 20" Click="Retour_Click">
                             <StackPanel Orientation="Horizontal">
                                 <Icon:PackIconMaterial Kind="Backspace" Style="{StaticResource menuButtonIcon}"/>
                                 <TextBlock Text="Retour" FontWeight="Bold"/>

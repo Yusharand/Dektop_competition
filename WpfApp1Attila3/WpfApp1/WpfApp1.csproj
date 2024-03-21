@@ -276,6 +276,9 @@
     <Compile Include="Views\UserControls\UCListeCombattant.xaml.cs">
       <DependentUpon>UCListeCombattant.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\UserControls\UCResults.xaml.cs">
+      <DependentUpon>UCResults.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\VDecision.xaml.cs">
       <DependentUpon>VDecision.xaml</DependentUpon>
     </Compile>
@@ -399,6 +402,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\UserControls\UCResults.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\VDecision.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -470,6 +477,9 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Images\trophy.png" />
+    <Resource Include="Images\medaille-dargent.png" />
+    <Resource Include="Images\medaille-dor.png" />
     <Resource Include="Images\1691418639629.jpg" />
     <Resource Include="Images\1691418727718.jpg" />
     <Resource Include="Images\1691418924587.jpg" />

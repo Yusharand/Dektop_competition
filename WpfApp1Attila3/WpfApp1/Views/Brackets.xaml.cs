@@ -434,6 +434,7 @@ namespace WpfApp1.Views
                     // Assigner les propriétés du combat
                     Nom_Combat = $"Combat {combattantscategorie[0].Prenom_Combattant } vs {combattantscategorie[1].Prenom_Combattant}",
                     ID_Categorie = this.Id_cat,
+                    ID_Competition = this.Id_compet,
                     ID_Poule = pouleselectionne.ID_Poule,
                     Points_Combattant1 = 0,
                     Points_Combattant2 = 0,

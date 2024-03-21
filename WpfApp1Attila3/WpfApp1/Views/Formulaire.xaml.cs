@@ -318,6 +318,8 @@ namespace WpfApp1.Views
             dashboardCombattant.Show();
             this.Close();
         }
+
+        
     }
 }
 
