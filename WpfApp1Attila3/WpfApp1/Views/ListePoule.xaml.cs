@@ -143,7 +143,7 @@ namespace WpfApp1.Views
             classement2.ItemsSource = Classement2;
         }
 
-        private void Charger_Match_Poule()
+        public void Charger_Match_Poule()
         {
             using (var context = new Competition_JJBEntities())
             {

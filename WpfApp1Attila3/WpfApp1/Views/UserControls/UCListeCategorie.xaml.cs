@@ -67,7 +67,7 @@ namespace WpfApp1.Views.UserControls
             connection2.Close();
             connection3.Update("UPDATE Combattants SET ID_Poule = NULL WHERE ID_Categorie = " + id);
             connection3.Close();
-            connection4.Update("UPDATE Poules SET ID_Categorie = NULL WHERE ID_Categorie = " + id);
+            connection4.Update("DELETE FROM Poules WHERE ID_Categorie = " + id);
             connection4.Close();
             connection5.Delete("DELETE FROM Combats WHERE ID_Categorie = " + id);
             connection5.Close();

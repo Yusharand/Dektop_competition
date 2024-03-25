@@ -69,8 +69,8 @@ namespace WpfApp1.Views
                 ConnexionBD connection5 = new ConnexionBD();
 
                 connection.Delete("DELETE FROM Combats WHERE ID_Competition = " + id);
-                connection1.Delete("DELETE FROM Poules WHERE ID_Competition = " + id);
-                connection2.Delete("DELETE FROM Combattants WHERE ID_Competition = " + id);
+                connection1.Delete("DELETE FROM Combattants WHERE ID_Competition = " + id);
+                connection2.Delete("DELETE FROM Poules WHERE ID_Competition = " + id);
                 connection3.Delete("DELETE FROM Clubs WHERE ID_Competition = " + id);
                 connection4.Delete("DELETE FROM Categories WHERE ID_Competition = " + id);
                 connection5.Delete("DELETE FROM Competitions WHERE ID_Competition = " + id);

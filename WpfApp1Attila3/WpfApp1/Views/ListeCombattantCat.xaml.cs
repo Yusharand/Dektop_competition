@@ -124,7 +124,7 @@ namespace WpfApp1.Views
         {
             using(var context = new Competition_JJBEntities())
             {
-                var poule = context.Poules.FirstOrDefault(p => p.Nom_poule == nomPoule);
+                var poule = context.Poules.FirstOrDefault(p => p.Nom_poule == nomPoule && p.ID_Categorie == this.Id_cat);
                 return poule;
             }
         }

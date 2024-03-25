@@ -274,11 +274,21 @@ namespace WpfApp1.Views
         private void TSupprimer_Click(object sender, RoutedEventArgs e)
         {
             ConnexionBD connection = new ConnexionBD();
+            ConnexionBD connection1 = new ConnexionBD();
             ConnexionBD connection2 = new ConnexionBD();
-            connection.Delete("DELETE FROM Combattants WHERE ID_Competition = " +this.Id);
-            connection2.Delete("DELETE FROM Clubs WHERE ID_Competition = " + this.Id);
+            ConnexionBD connection3 = new ConnexionBD();
+            ConnexionBD connection4 = new ConnexionBD();
+
+            connection.Delete("DELETE FROM Combats WHERE ID_Competition = " + this.Id);
+            connection1.Delete("DELETE FROM Combattants WHERE ID_Competition = " + this.Id);
+            connection2.Delete("DELETE FROM Poules WHERE ID_Competition = " + this.Id);
+            connection3.Delete("DELETE FROM Clubs WHERE ID_Competition = " + this.Id);
+            connection4.Delete("DELETE FROM Categories WHERE ID_Competition = " + this.Id);
             connection.Close();
+            connection1.Close();
             connection2.Close();
+            connection3.Close();
+            connection4.Close();
             ListeCombattant_Click(sender, e);
         }
 
@@ -323,6 +333,17 @@ namespace WpfApp1.Views
             combattantsDataGrid.Children.Add(uCResults);
         }
 
+        private void ListeCategorie_Click_1(object sender, RoutedEventArgs e)
+        {
+            UCListeCategorie UcListeCategorie = new UCListeCategorie(this.Id); //User controle de Liste des Catégories
+
+
+            //int cpt = UcListeCombattant.compteurData(0, this.Id);
+            ListeCat ListeCategorie = new ListeCat(); //get list of patient
+            this.DataContext = ListeCategorie;
+            combattantsDataGrid.Children.Clear();
+            combattantsDataGrid.Children.Add(UcListeCategorie);
+        }
     }
 }
 

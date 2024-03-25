@@ -33,7 +33,7 @@
                 <Border Grid.Row="1" Background="#fa1e16">
                     <DockPanel Margin="0, 80, 0, 0">
                         <!--menu logo-->
-                        <Border Height="100" Padding="3" CornerRadius="100"  DockPanel.Dock="Top" Margin="53,-30,56,0">
+                        <Border Height="100" Padding="3" Width="100" CornerRadius="100"  DockPanel.Dock="Top" Margin="40,-30,42,0">
                             <Image Margin="0,0,0,0" x:Name="imageLogoDash">
                                 <Image.Clip>
                                     <EllipseGeometry RadiusX="45" RadiusY="45" Center="45,45"/>
@@ -61,6 +61,12 @@
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="AccountSupervisor" Style="{StaticResource menuButtonIcon}"/>
                                     <TextBlock Text="Participants"/>
+                                </StackPanel>
+                            </Button>
+                            <Button Style="{StaticResource menuButton}" x:Name="ListeCategorie" Click="ListeCategorie_Click_1">
+                                <StackPanel Orientation="Horizontal">
+                                    <Icon:PackIconMaterial Kind="Application" Style="{StaticResource menuButtonIcon}"/>
+                                    <TextBlock Text="Catégorie"/>
                                 </StackPanel>
                             </Button>
                             <Button Style="{StaticResource menuButton}" x:Name="btnListeCombats" Click="BtnListeCombats_Click" >

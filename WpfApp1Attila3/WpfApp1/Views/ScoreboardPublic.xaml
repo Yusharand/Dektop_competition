@@ -227,7 +227,7 @@
                             </Border>
                             <!--Partie avantage et pénalité-->
                             <Border BorderThickness="0" BorderBrush="Black" Margin="81,-1,0,0">
-                                <Grid Background="Transparent">
+                                <Grid Background="Transparent" Margin="45,0,0,0">
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="*"/>
                                         <RowDefinition Height="2*"/>
@@ -238,15 +238,15 @@
                                     <Viewbox>
                                         <TextBlock Text="Avantage" Foreground="#04691f" FontWeight="DemiBold" FontSize="12" TextWrapping="Wrap" Height="18" Width="53"/>
                                     </Viewbox>
-                                    <Viewbox Margin="68,39,68,40" Grid.RowSpan="3">
-                                        <TextBlock Text="{Binding BleuAvantage}" FontWeight="Bold" TextAlignment="Center" Foreground="#04691f" TextWrapping="Wrap" Width="25"/>
+                                    <Viewbox Margin="22,39,23,40" Grid.RowSpan="3">
+                                        <TextBlock Text="{Binding BleuAvantage}" FontWeight="Bold" TextAlignment="Center" Foreground="#04691f" TextWrapping="Wrap" Width="25" Height="20"/>
                                     </Viewbox>
                                     <!--Pénalité-->
                                     <Viewbox Grid.Row="2" Margin="0,0,0,2">
                                         <TextBlock Text="Pénalité" Foreground="#96150c" FontWeight="DemiBold" FontSize="12" TextWrapping="Wrap" Height="18"/>
                                     </Viewbox>
-                                    <Viewbox Margin="68,1,68,6" Grid.Row="3">
-                                        <TextBlock Text="{Binding BleuPenalite}" FontWeight="Bold" TextAlignment="Center" Foreground="#96150c" TextWrapping="Wrap" Width="24"/>
+                                    <Viewbox Margin="22,1,23,6" Grid.Row="3">
+                                        <TextBlock Text="{Binding BleuPenalite}" FontWeight="Bold" TextAlignment="Center" Foreground="#96150c" TextWrapping="Wrap" Width="24" Height="19"/>
                                     </Viewbox>
                                 </Grid>
                             </Border>

@@ -7,6 +7,7 @@
         xmlns:local="clr-namespace:WpfApp1.Views"
         xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
         mc:Ignorable="d" WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
         Title="CompetitionExist" Height="450" Width="800">
     <Grid Margin="0,0,-8,0">
         <TextBlock HorizontalAlignment="Center" Foreground="#042a63" Height="32" Margin="119,13,140,0" FontWeight="Medium" TextWrapping="Wrap" Text="Choisissez la compétition" FontFamily="arial" FontSize="20" VerticalAlignment="Top" Width="233"/>

@@ -156,7 +156,7 @@ namespace WpfApp1.Views
         {
             using (var context = new Competition_JJBEntities())
             {
-                var poule = context.Poules.FirstOrDefault(p => p.Nom_poule == nomPoule);
+                var poule = context.Poules.FirstOrDefault(p => p.Nom_poule == nomPoule && p.ID_Categorie == this.Id_cat);
                 return poule;
             }
         }
@@ -457,6 +457,7 @@ namespace WpfApp1.Views
                     Nom_Combat = $"Combat {combattantscategorie[1].Prenom_Combattant } vs {combattantscategorie[0].Prenom_Combattant}",
                     ID_Categorie = this.Id_cat,
                     ID_Poule = pouleselectionne.ID_Poule,
+                    ID_Competition = this.Id_compet,
                     Points_Combattant1 = 0,
                     Points_Combattant2 = 0,
                     Avantages_Combattant1 = 0,

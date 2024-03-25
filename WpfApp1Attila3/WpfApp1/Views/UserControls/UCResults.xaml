@@ -17,7 +17,7 @@
             </Grid.RowDefinitions>
             <!--Listes des champions et vice-champions-->
             <Grid Grid.Row="0">
-                <Image Height="40"  Margin="22,14,721,196" Source="/Images/trophy.png"/>
+                <Image Height="40"  Margin="22,14,0,196" Source="/Images/trophy.png" HorizontalAlignment="Left" Width="40"/>
                 <Label Content="Champions et vice-champions" FontSize="25" FontWeight="DemiBold" Foreground="#575251"  HorizontalAlignment="Left" Height="52" Margin="64,12,0,0" VerticalAlignment="Top" Width="360"/>
                 <DataGrid Style="{DynamicResource DataGridStyle1}" SelectionMode="Extended" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" x:Name="ListeChampDataGrid"  Margin="0,69,0,0">
                     <DataGrid.Columns>

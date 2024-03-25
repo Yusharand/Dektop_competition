@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:WpfApp1.Views"
         xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
         mc:Ignorable="d" WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
         Title="NouvelleCompetition" Height="450" Width="800">
     <Grid>
         <UniformGrid Margin="18,59,411,316">
